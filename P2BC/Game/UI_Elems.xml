@@ -1,0 +1,547 @@
+<!--UI Elements -->
+
+<config>
+
+  <Element>  0 - PANEL OrBit Title
+    <type id="0" />
+    <parent id="-1"/>
+    <position x="312" y="25"/>
+    <Texture path="gui/logo.png"/>
+    <logic_rect w="401" h="171" />
+    <normal_rect x="0" y="0" w="401" h="171"/>
+    <hover_rect x="0" y="0"  w="401" h="171"/>
+    <click_rect x="0" y="0"  w="401" h="171"/>
+  </Element>
+
+  <Element> 1 - PANEL ORB1 HUD FATHER
+    <type id="0" />
+    <parent id="-1"/>
+    <position x="25" y="100"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="52" h="51" />
+    <normal_rect x="830" y="760" w="52" h="51"/>
+    <hover_rect  x="830" y="760" w="52" h="51"/>
+    <click_rect  x="830" y="760" w="52" h="51"/>
+  </Element>
+
+  <Element> 2 - BUTTON BACK TO MAIN MENU
+    <type id="1" />
+    <parent id="-1"/>
+    <position x="420" y="500"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="236" h="140" />
+    <normal_rect x="696" y="1093" w="236" h="140"/>
+    <hover_rect x="663" y="1232" w="236" h="140"/>
+    <click_rect x="696" y="1093" w="236" h="140"/>
+  </Element>
+
+  <Element> 3 - BUTTON QUIT
+    <type id="1" />
+    <parent id="0"/>
+    <position x="-250" y="0"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="69" h="69" />
+    <normal_rect x="283" y="781" w="69" h="69"/>
+    <hover_rect  x="283" y="859" w="69" h="69"/>
+    <click_rect  x="283" y="859" w="69" h="69"/>
+  </Element>
+
+  <Element> 4 - BUTTON START
+    <type id="1" />
+    <parent id="0"/>
+    <position x="439" y="450"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="236" h="140" />
+    <normal_rect x="696" y="1093" w="236" h="140"/>
+    <hover_rect x="663" y="1232" w="236" h="140"/>
+    <click_rect x="696" y="1093" w="236" h="140"/>
+  </Element>
+
+  <Element> 5 - BUTTON CREDITS TRIGGER
+    <type id="1" />
+    <parent id="0"/>
+    <position x="50" y="522"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="330" h="226" />
+    <normal_rect x="985" y="750" w="330" h="226"/>
+    <hover_rect x="985" y="1312" w="330" h="226"/>
+    <click_rect  x="985" y="1031" w="330" h="226"/>
+  </Element>
+
+  <Element> 6 - BUTTON SETTINGS TRIGGER MAIN MENU
+    <type id="1" />
+    <parent id="0"/>
+    <position x="-300" y="522"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="330" h="226" />
+    <normal_rect x="985" y="750" w="330" h="226"/>
+    <hover_rect x="985" y="1312" w="330" h="226"/>
+    <click_rect  x="985" y="1031" w="330" h="226"/>
+  </Element>
+
+  <Element> 7 - BUTTON SETTINGS TRIGGER IN GAME
+    <type id="1" />
+    <parent id="2"/>
+    <position x="0" y="-200"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="236" h="140" />
+    <normal_rect x="696" y="1093" w="236" h="140"/>
+    <hover_rect x="663" y="1232" w="236" h="140"/>
+    <click_rect x="696" y="1093" w="236" h="140"/>
+  </Element>
+
+  <Element> 8 - PANEL CREDITS MAIN MENU
+    <type id="0" />
+    <parent id="5"/>
+    <position x="-50" y="-400"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="425" h="451" />
+    <normal_rect x="500" y="299" w="425" h="451"/>
+    <hover_rect x="500" y="299"  w="425" h="451"/>
+    <click_rect x="50" y="299"  w="425" h="451"/>
+  </Element>
+
+  <Element> 9 - PANEL SETTINGS IN GAME
+    <type id="0" />
+    <parent id="7"/>
+    <position x="-100" y="-280"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="425" h="254" />
+    <normal_rect x="500" y="34" w="425" h="254"/>
+    <hover_rect x="500" y="34" w="425" h="254"/>
+    <click_rect x="50" y="34"  w="425" h="254"/>
+  </Element>
+  
+  <Element> 10 - BUTTON SCROLLBAR VOLUME
+    <type id="1" />
+    <parent id="9"/>
+    <position x="200" y="40"/> 
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="15" h="179" />
+    <normal_rect x="979" y="78" w="15" h="179"/>
+    <hover_rect  x="979" y="78" w="15" h="179"/>
+    <click_rect  x="979" y="78" w="15" h="179"/>
+  </Element>
+
+  <Element> 11 - SLIDER VOLUME
+    <type id="4" />
+    <parent id="10"/>
+    <position x="-5" y="0"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="23" h="15" />
+    <normal_rect x="1030" y="78" w="23" h="15"/>
+    <hover_rect  x="1030" y="78" w="23" h="15"/>
+    <click_rect  x="945" y="78" w="23" h="16"/>
+  </Element>
+
+  <Element> 12 - LABEL VOLUME
+    <type id="2" />
+    <parent id="10"/>
+    <position x="0" y="0"/>
+    <place id="2"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="MUSIC"/>
+    <textB value=""/>
+  </Element>
+
+  <Element> 13 - BUTTON BACK TO IN GAME MENU TRIGGER
+    <type id="1" />
+    <parent id="9"/>
+    <position x="35" y="180"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="44" h="44" />
+    <normal_rect x="984" y="676" w="44" h="44"/>
+    <hover_rect x="984" y="676" w="44" h="44"/>
+    <click_rect x="984" y="676" w="44" h="44"/>
+  </Element>
+
+  <Element> 14- BUTTON SCROLLBAR CREDITS
+    <type id="1" />
+    <parent id="8"/>
+    <position x="100" y="100"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="18" h="317" />
+    <normal_rect x="982" y="307" w="18" h="317"/>
+    <hover_rect x="982" y="307" w="18" h="317"/>
+    <click_rect x="982" y="307" w="18" h="317"/>
+  </Element>
+
+  <Element> 15 - SLIDER CREDITS
+    <type id="4" />
+    <parent id="14"/>
+    <position x="-5" y="-9"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="29" h="18" />
+    <normal_rect x="1040" y="307" w="29" h="18"/>
+    <hover_rect  x="1040" y="307" w="29" h="18"/>
+    <click_rect  x="942" y="307" w="29" h="19"/>
+  </Element>
+
+  <Element> 16 - LABEL LICENSE
+    <type id="2" />
+    <parent id="15"/>
+    <position x="0" y="0"/>
+    <place id="3"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="MIT License
+
+Copyright (c) 2018 Andres Ricardo Saladrigas Perez and Aitor Simona Bouzas
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the 'Software'), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE."/>
+    <textB value="LICENSE"/>
+  </Element>
+
+  <Element> 17 - BUTTON BACK TO MAIN MENU TRIGGER
+    <type id="1" />
+    <parent id="8"/>
+    <position x="30" y="375"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="44" h="44" />
+    <normal_rect x="984" y="676" w="44" h="44"/>
+    <hover_rect x="984" y="676" w="44" h="44"/>
+    <click_rect x="984" y="676" w="44" h="44"/>
+  </Element>
+
+  <Element> 18 - QUIT BUTTON X
+    <type id="0" />
+    <parent id="3"/>
+    <position x="15" y="15"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="40" h="40" />
+    <normal_rect x="528" y="906" w="40" h="40"/>
+    <hover_rect x="528" y="906" w="40" h="40"/>
+    <click_rect x="528" y="906" w="40" h="40"/>
+  </Element>
+  
+  <Element> 19 - LABEL START
+    <type id="2" />
+    <parent id="4"/>
+    <position x="0" y="0"/>
+    <place id="4"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="PLAY"/>
+    <textB value="PLAY"/>
+  </Element>
+  
+    <Element> 20 - BUTTON CONTINUE IN GAME TRIGGER
+    <type id="1" />
+    <parent id="2"/>
+    <position x="0" y="-400"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="236" h="140" />
+    <normal_rect x="696" y="1093" w="236" h="140"/>
+    <hover_rect x="663" y="1232" w="236" h="140"/>
+    <click_rect x="696" y="1093" w="236" h="140"/>
+  </Element>
+
+  <Element> 21 - PANEL ORB2 HUD
+    <type id="0" />
+    <parent id="1"/>
+    <position x="75" y="0"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="52" h="51" />
+    <normal_rect x="830" y="760" w="52" h="51"/>
+    <hover_rect  x="830" y="760" w="52" h="51"/>
+    <click_rect  x="830" y="760" w="52" h="51"/>
+  </Element>
+
+  <Element>  22 - PANEL ORB3 HUD
+    <type id="0" />
+    <parent id="1"/>
+    <position x="150" y="0"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="52" h="51" />
+    <normal_rect x="830" y="760" w="52" h="51"/>
+    <hover_rect  x="830" y="760" w="52" h="51"/>
+    <click_rect  x="830" y="760" w="52" h="51"/>
+  </Element>
+  
+   <Element> 23 - LABEL CONTINUE IN GAME
+    <type id="2" />
+    <parent id="20"/>
+    <position x="0" y="0"/>
+    <place id="4"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="CONTINUE"/>
+    <textB value="CONTINUE"/>
+  </Element>
+
+  <Element> 24 - LABEL BACK TO MAIN MENU (IN GAME)
+    <type id="2" />
+    <parent id="2"/>
+    <position x="0" y="0"/>
+    <place id="4"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="MAIN MENU"/>
+    <textB value="MAIN MENU"/>
+  </Element>
+
+  <Element> 25 - LABEL SETTINGS IN GAME
+    <type id="2" />
+    <parent id="7"/>
+    <position x="0" y="0"/>
+    <place id="4"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="SETTINGS"/>
+    <textB value="SETTINGS"/>
+  </Element>
+  
+ <Element> 26 - LABEL SETTINGS MAIN MENU
+    <type id="2" />
+    <parent id="6"/>
+    <position x="0" y="0"/>
+    <place id="4"/>
+   <color r="245" g="245" b="220" a="55" />
+    <textA value="SETTINGS"/>
+    <textB value="SETTINGS"/>
+  </Element>
+  
+<Element> 27 - LABEL CREDITS MAIN MENU
+    <type id="2" />
+    <parent id="5"/>
+    <position x="0" y="0"/>
+    <place id="4"/>
+  <color r="245" g="245" b="220" a="55" />
+    <textA value="CREDITS"/>
+    <textB value="CREDITS"/>
+  </Element>
+  
+<Element> 28 - PANEL SETTINGS MAIN MENU
+    <type id="0" />
+    <parent id="6"/>
+    <position x="100" y="-280"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="425" h="254" />
+    <normal_rect x="500" y="34" w="425" h="254"/>
+    <hover_rect x="500" y="34" w="425" h="254"/>
+    <click_rect x="50" y="34"  w="425" h="254"/>
+  </Element>
+  
+  <Element> 29 - BUTTON SCROLLBAR VOLUME
+    <type id="1" />
+    <parent id="28"/>
+    <position x="125" y="40"/> 
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="15" h="179" />
+    <normal_rect x="979" y="78" w="15" h="179"/>
+    <hover_rect  x="979" y="78" w="15" h="179"/>
+    <click_rect  x="979" y="78" w="15" h="179"/>
+  </Element>
+
+  <Element> 30 - SLIDER VOLUME
+    <type id="4" />
+    <parent id="29"/>
+    <position x="-5" y="0"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="23" h="15" />
+    <normal_rect x="1030" y="78" w="23" h="15"/>
+    <hover_rect  x="1030" y="78" w="23" h="15"/>
+    <click_rect  x="945" y="78" w="23" h="16"/>
+  </Element>
+
+  <Element> 31 - LABEL VOLUME
+    <type id="2" />
+    <parent id="29"/>
+    <position x="0" y="0"/>
+    <place id="2"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="MUSIC"/>
+    <textB value=""/>
+  </Element>
+  
+  <Element> 32 - BUTTON BACK TO MAIN MENU TRIGGER (SETTINGS)
+    <type id="1" />
+    <parent id="28"/>
+    <position x="35" y="180"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="44" h="44" />
+    <normal_rect x="984" y="676" w="44" h="44"/>
+    <hover_rect x="984" y="676" w="44" h="44"/>
+    <click_rect x="984" y="676" w="44" h="44"/>
+  </Element>
+  
+  <Element> 33 - LABEL WEBSITE
+    <type id="2" />
+    <parent id="8"/>
+    <position x="0" y="0"/>
+    <place id="0"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="WEBSITE"/>
+    <textB value="PLAY"/>
+  </Element>
+
+  <Element> 34 - BUTTON SCROLLBAR VOLUME FX MAIN MENU
+    <type id="1" />
+    <parent id="28"/>
+    <position x="300" y="40"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="15" h="179" />
+    <normal_rect x="979" y="78" w="15" h="179"/>
+    <hover_rect  x="979" y="78" w="15" h="179"/>
+    <click_rect  x="979" y="78" w="15" h="179"/>
+  </Element>
+
+  <Element> 35 - SLIDER VOLUME FX MAIN MENU
+    <type id="4" />
+    <parent id="34"/>
+    <position x="-5" y="0"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="23" h="15" />
+    <normal_rect x="1030" y="78" w="23" h="15"/>
+    <hover_rect  x="1030" y="78" w="23" h="15"/>
+    <click_rect  x="945" y="78" w="23" h="16"/>
+  </Element>
+
+  <Element> 36 - LABEL VOLUME FX MAIN MENU
+    <type id="2" />
+    <parent id="34"/>
+    <position x="0" y="0"/>
+    <place id="2"/>
+    <color r="255" g="255" b="255" a="150" />
+    <textA value="FX"/>
+    <textB value=""/>
+  </Element>
+
+  <Element> 37 - BUTTON SCROLLBAR VOLUME FX IN GAME
+    <type id="1" />
+    <parent id="9"/>
+    <position x="300" y="40"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="15" h="179" />
+    <normal_rect x="979" y="78" w="15" h="179"/>
+    <hover_rect  x="979" y="78" w="15" h="179"/>
+    <click_rect  x="979" y="78" w="15" h="179"/>
+  </Element>
+
+  <Element>  38 - SLIDER VOLUME FX IN GAME
+    <type id="4" />
+    <parent id="37"/>
+    <position x="-5" y="0"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="23" h="15" />
+    <normal_rect x="1030" y="78" w="23" h="15"/>
+    <hover_rect  x="1030" y="78" w="23" h="15"/>
+    <click_rect  x="945" y="78" w="23" h="16"/>
+  </Element>
+
+  <Element> 39 - LABEL VOLUME FX IN GAME
+    <type id="2" />
+    <parent id="37"/>
+    <position x="0" y="0"/>
+    <place id="2"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="FX"/>
+    <textB value=""/>
+  </Element>
+
+  <Element> 40 - BUTTON CONTINUE
+    <type id="1" />
+    <parent id="0"/>
+    <position x="439" y="300"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="236" h="140" />
+    <normal_rect x="696" y="1093" w="236" h="140"/>
+    <hover_rect x="663" y="1232" w="236" h="140"/>
+    <click_rect x="696" y="1093" w="236" h="140"/>
+  </Element>
+
+  <Element>  41 - LABEL CONTINUE MAIN MENU
+    <type id="2" />
+    <parent id="40"/>
+    <position x="0" y="0"/>
+    <place id="4"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="CONTINUE"/>
+    <textB value="CONTINUE"/>
+  </Element>
+
+  <Element> 42 - PANEL LIFE1 HUD
+    <type id="0" />
+    <parent id="1"/>
+    <position x="0" y="-75"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="50" h="50" />
+    <normal_rect x="764" y="761" w="50" h="50"/>
+    <hover_rect  x="764" y="761" w="50" h="50"/>
+    <click_rect  x="764" y="761" w="50" h="50"/>
+  </Element>
+
+  <Element>   43 - PANEL LIFE2 HUD
+    <type id="0" />
+    <parent id="1"/>
+    <position x="75" y="-75"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="50" h="50" />
+    <normal_rect x="764" y="761" w="50" h="50"/>
+    <hover_rect  x="764" y="761" w="50" h="50"/>
+    <click_rect  x="764" y="761" w="50" h="50"/>
+  </Element>
+
+  <Element>  44 - PANEL LIFE3 HUD
+    <type id="0" />
+    <parent id="1"/>
+    <position x="150" y="-75"/>
+    <Texture path="gui/atlas.png"/>
+    <logic_rect w="50" h="50" />
+    <normal_rect x="764" y="761" w="50" h="50"/>
+    <hover_rect  x="764" y="761" w="50" h="50"/>
+    <click_rect  x="764" y="761" w="50" h="50"/>
+  </Element>
+
+  <Element> 45 - LABEL SCORE
+    <type id="2" />
+    <parent id="1"/>
+    <position x="300" y="-75"/>
+    <place id="5"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="SCORE"/>
+    <textB value="SCORE"/>
+  </Element>
+
+  <Element> 46 - LABEL SCORE
+    <type id="2" />
+    <parent id="1"/>
+    <position x="375" y="-75"/>
+    <place id="5"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value=""/>
+    <textB value=""/>
+  </Element>
+
+  <Element> 47 - LABEL TIMER
+    <type id="2" />
+    <parent id="1"/>
+    <position x="500" y="-75"/>
+    <place id="5"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value="TIME"/>
+    <textB value="TIME"/>
+  </Element>
+
+  <Element> 48 - LABEL TIMER
+    <type id="2" />
+    <parent id="1"/>
+    <position x="575" y="-75"/>
+    <place id="5"/>
+    <color r="245" g="245" b="220" a="55" />
+    <textA value=""/>
+    <textB value=""/>
+  </Element>
+  
+</config>

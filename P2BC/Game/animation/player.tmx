@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="277" height="299" tilewidth="1" tileheight="1" nextobjectid="132">
+ <imagelayer name="Image Layer 1">
+  <image source="../textures/sprite_sheet_character.png" width="276" height="298"/>
+ </imagelayer>
+ <objectgroup name="idle right">
+  <object id="6" x="0" y="2" width="23" height="35"/>
+  <object id="12" x="23" y="2" width="23" height="35"/>
+  <object id="13" x="46" y="2" width="23" height="35"/>
+  <object id="14" x="69" y="2" width="23" height="35"/>
+  <object id="15" x="92" y="2" width="23" height="35"/>
+  <object id="16" x="115" y="2" width="23" height="35"/>
+  <object id="17" x="138" y="2" width="23" height="35"/>
+  <object id="18" x="161" y="2" width="23" height="35"/>
+  <object id="19" x="184" y="2" width="23" height="35"/>
+  <object id="20" x="207" y="2" width="23" height="35"/>
+  <object id="21" x="230" y="2" width="23" height="35"/>
+  <object id="25" x="253" y="2" width="23" height="35"/>
+ </objectgroup>
+ <objectgroup name="run right">
+  <object id="121" x="161" y="40" width="23" height="34"/>
+  <object id="124" x="138" y="40" width="23" height="34"/>
+  <object id="126" x="115" y="40" width="23" height="34"/>
+  <object id="127" x="92" y="40" width="23" height="34"/>
+  <object id="128" x="69" y="40" width="23" height="34"/>
+  <object id="129" x="46" y="40" width="23" height="34"/>
+  <object id="130" x="23" y="40" width="23" height="34"/>
+  <object id="131" x="-1" y="40" width="24" height="34"/>
+ </objectgroup>
+ <objectgroup name="jump right">
+  <object id="48" x="0" y="74" width="23" height="37"/>
+ </objectgroup>
+ <objectgroup name="air right">
+  <object id="50" x="23" y="74" width="23" height="37"/>
+ </objectgroup>
+ <objectgroup name="landing right">
+  <object id="51" x="46" y="74" width="23" height="37"/>
+ </objectgroup>
+ <objectgroup name="dead right">
+  <object id="52" x="0" y="111" width="26" height="38"/>
+  <object id="53" x="26" y="111" width="31" height="38"/>
+  <object id="55" x="57" y="111" width="36" height="38"/>
+  <object id="56" x="93" y="111" width="37" height="38"/>
+ </objectgroup>
+ <objectgroup name="idle left">
+  <object id="57" x="0" y="151" width="23" height="35"/>
+  <object id="58" x="23" y="151" width="23" height="35"/>
+  <object id="59" x="46" y="151" width="23" height="35"/>
+  <object id="60" x="69" y="151" width="23" height="35"/>
+  <object id="61" x="92" y="151" width="23" height="35"/>
+  <object id="62" x="115" y="151" width="23" height="35"/>
+  <object id="63" x="138" y="151" width="23" height="35"/>
+  <object id="64" x="161" y="151" width="23" height="35"/>
+  <object id="65" x="184" y="151" width="23" height="35"/>
+  <object id="66" x="207" y="151" width="23" height="35"/>
+  <object id="67" x="230" y="151" width="23" height="35"/>
+  <object id="68" x="253" y="151" width="23" height="35"/>
+ </objectgroup>
+ <objectgroup name="run left">
+  <object id="69" x="92" y="189" width="23" height="34"/>
+  <object id="70" x="115" y="189" width="23" height="34"/>
+  <object id="71" x="138" y="189" width="23" height="34"/>
+  <object id="72" x="161" y="189" width="23" height="34"/>
+  <object id="73" x="184" y="189" width="23" height="34"/>
+  <object id="74" x="207" y="189" width="23" height="34"/>
+  <object id="75" x="230" y="189" width="23" height="34"/>
+  <object id="76" x="253" y="189" width="23" height="34"/>
+ </objectgroup>
+ <objectgroup name="jump left">
+  <object id="79" x="253" y="223" width="23" height="37"/>
+ </objectgroup>
+ <objectgroup name="air left">
+  <object id="81" x="230" y="223" width="23" height="37"/>
+ </objectgroup>
+ <objectgroup name="landing left">
+  <object id="82" x="207" y="223" width="23" height="37"/>
+ </objectgroup>
+ <objectgroup name="dead left">
+  <object id="83" x="250" y="260" width="26" height="38"/>
+  <object id="84" x="219" y="260" width="31" height="38"/>
+  <object id="85" x="183" y="260" width="36" height="38"/>
+  <object id="86" x="146" y="260" width="37" height="38"/>
+ </objectgroup>
+ <objectgroup name="collider">
+  <object id="93" x="0" y="4" width="21" height="33"/>
+ </objectgroup>
+</map>

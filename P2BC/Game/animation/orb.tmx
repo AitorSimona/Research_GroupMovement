@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="67" height="62" tilewidth="1" tileheight="1" nextobjectid="27">
+ <imagelayer name="Image Layer 1">
+  <image source="../textures/pixel_orb.png" width="66" height="61"/>
+ </imagelayer>
+ <objectgroup name="disappear">
+  <object id="2" x="0" y="0" width="11" height="11"/>
+  <object id="4" x="11" y="0" width="12" height="11"/>
+  <object id="5" x="23" y="0" width="11" height="11"/>
+  <object id="26" x="34" y="0" width="11" height="11"/>
+ </objectgroup>
+ <objectgroup name="appear">
+  <object id="19" x="0" y="26" width="12" height="11"/>
+  <object id="24" x="12" y="26" width="11" height="11"/>
+  <object id="25" x="23" y="26" width="11" height="11"/>
+ </objectgroup>
+ <objectgroup name="iddle">
+  <object id="6" x="0" y="11" width="12" height="15"/>
+  <object id="7" x="12" y="11" width="11" height="15"/>
+  <object id="11" x="23" y="11" width="11" height="15"/>
+  <object id="12" x="34" y="11" width="11" height="15"/>
+  <object id="13" x="45" y="11" width="11" height="15"/>
+ </objectgroup>
+</map>
