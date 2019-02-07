@@ -1,207 +1,135 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="p2Log.cpp">
-      <Filter>Toolkit ======</Filter>
+    <ClCompile Include="j1Window.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="j1Audio.cpp">
-      <Filter>Development ======\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="j1EntityManager.cpp">
-      <Filter>Development ======\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="PugiXml\src\pugixml.cpp">
-      <Filter>Development ======\Tools\PuguiXML</Filter>
-    </ClCompile>
-    <ClCompile Include="j1PerfTimer.cpp">
-      <Filter>Development ======\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Timer.cpp">
-      <Filter>Development ======\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Scene.cpp">
-      <Filter>Development ======\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Player.cpp">
-      <Filter>Development ======\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Pathfinding.cpp">
-      <Filter>Development ======\Entities\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Collision.cpp">
-      <Filter>Development ======\Modules\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Map.cpp">
-      <Filter>Development ======\Modules\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Window.cpp">
-      <Filter>Development ======\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Textures.cpp">
-      <Filter>Development ======\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Render.cpp">
-      <Filter>Development ======\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Input.cpp">
-      <Filter>Development ======\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="j1Main.cpp">
-      <Filter>Development ======\Core</Filter>
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
     <ClCompile Include="j1App.cpp">
-      <Filter>Development ======\Core</Filter>
+      <Filter>Desenvolupament  ========</Filter>
     </ClCompile>
-    <ClCompile Include="j1Gui.cpp">
-      <Filter>Development ======\Modules\GUI</Filter>
+    <ClCompile Include="j1Input.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1Fonts.cpp">
-      <Filter>Development ======\Modules\GUI</Filter>
+    <ClCompile Include="j1Main.cpp">
+      <Filter>Desenvolupament  ========</Filter>
     </ClCompile>
-    <ClCompile Include="j1Button.cpp">
-      <Filter>Development ======\Modules\GUI\Elements</Filter>
+    <ClCompile Include="j1Render.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1Label.cpp">
-      <Filter>Development ======\Modules\GUI\Elements</Filter>
+    <ClCompile Include="j1Textures.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1UI_Element.cpp">
-      <Filter>Development ======\Modules\GUI\Elements</Filter>
+    <ClCompile Include="p2Log.cpp">
+      <Filter>Programacio 2 ===========</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Scene.cpp">
+      <Filter>Desenvolupament  ========\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PugiXml\src\pugixml.cpp">
+      <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Map.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Pathfinding.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Timer.cpp">
+      <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="j1PerfTimer.cpp">
+      <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Player.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="p2Log.h">
-      <Filter>Toolkit ======</Filter>
-    </ClInclude>
-    <ClInclude Include="p2Defs.h">
-      <Filter>Toolkit ======</Filter>
-    </ClInclude>
-    <ClInclude Include="p2DynArray.h">
-      <Filter>Toolkit ======</Filter>
-    </ClInclude>
-    <ClInclude Include="p2List.h">
-      <Filter>Toolkit ======</Filter>
-    </ClInclude>
-    <ClInclude Include="p2Point.h">
-      <Filter>Toolkit ======</Filter>
-    </ClInclude>
-    <ClInclude Include="p2SString.h">
-      <Filter>Toolkit ======</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Toolkit ======</Filter>
+    <ClInclude Include="j1Window.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Audio.h">
-      <Filter>Development ======\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1EntityManager.h">
-      <Filter>Development ======\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="PugiXml\src\pugixml.hpp">
-      <Filter>Development ======\Tools\PuguiXML</Filter>
-    </ClInclude>
-    <ClInclude Include="PugiXml\src\pugiconfig.hpp">
-      <Filter>Development ======\Tools\PuguiXML</Filter>
-    </ClInclude>
-    <ClInclude Include="j1PerfTimer.h">
-      <Filter>Development ======\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Timer.h">
-      <Filter>Development ======\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Scene.h">
-      <Filter>Development ======\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Entity.h">
-      <Filter>Development ======\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Player.h">
-      <Filter>Development ======\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="MemLeaks.h">
-      <Filter>Toolkit ======</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Pathfinding.h">
-      <Filter>Development ======\Entities\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Collision.h">
-      <Filter>Development ======\Modules\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Map.h">
-      <Filter>Development ======\Modules\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Window.h">
-      <Filter>Development ======\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Textures.h">
-      <Filter>Development ======\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Render.h">
-      <Filter>Development ======\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Input.h">
-      <Filter>Development ======\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Module.h">
-      <Filter>Development ======\Core</Filter>
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1App.h">
-      <Filter>Development ======\Core</Filter>
+      <Filter>Desenvolupament  ========</Filter>
     </ClInclude>
-    <ClInclude Include="j1Gui.h">
-      <Filter>Development ======\Modules\GUI</Filter>
+    <ClInclude Include="j1Input.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="j1Fonts.h">
-      <Filter>Development ======\Modules\GUI</Filter>
+    <ClInclude Include="j1Module.h">
+      <Filter>Desenvolupament  ========</Filter>
     </ClInclude>
-    <ClInclude Include="j1Button.h">
-      <Filter>Development ======\Modules\GUI\Elements</Filter>
+    <ClInclude Include="j1Render.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="j1Label.h">
-      <Filter>Development ======\Modules\GUI\Elements</Filter>
+    <ClInclude Include="j1Textures.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="j1UI_Element.h">
-      <Filter>Development ======\Modules\GUI\Elements</Filter>
+    <ClInclude Include="p2Defs.h">
+      <Filter>Programacio 2 ===========</Filter>
+    </ClInclude>
+    <ClInclude Include="p2List.h">
+      <Filter>Programacio 2 ===========</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Log.h">
+      <Filter>Programacio 2 ===========</Filter>
+    </ClInclude>
+    <ClInclude Include="p2SString.h">
+      <Filter>Programacio 2 ===========</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Programacio 2 ===========</Filter>
+    </ClInclude>
+    <ClInclude Include="p2DynArray.h">
+      <Filter>Programacio 2 ===========</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Scene.h">
+      <Filter>Desenvolupament  ========\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PugiXml\src\pugiconfig.hpp">
+      <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
+    </ClInclude>
+    <ClInclude Include="PugiXml\src\pugixml.hpp">
+      <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Map.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Pathfinding.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Timer.h">
+      <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="j1PerfTimer.h">
+      <Filter>Desenvolupament  ========\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Player.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Toolkit ======">
-      <UniqueIdentifier>{066ebfea-210c-4950-abdb-e4be201441a6}</UniqueIdentifier>
+    <Filter Include="Programacio 2 ===========">
+      <UniqueIdentifier>{a8bfab6a-5472-4969-943e-861a8b493f08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Development ======">
-      <UniqueIdentifier>{88f14c9c-6921-4884-9bb2-77b9861f9f15}</UniqueIdentifier>
+    <Filter Include="Desenvolupament  ========">
+      <UniqueIdentifier>{cb944693-b9d0-484c-bad2-02d5a7cdbec6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Development ======\Modules">
-      <UniqueIdentifier>{14d4d0f9-574f-49c6-989c-d4dc233884e8}</UniqueIdentifier>
+    <Filter Include="Desenvolupament  ========\Tools">
+      <UniqueIdentifier>{42c748be-4a37-49de-970f-5be811d06b38}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Development ======\Scenes">
-      <UniqueIdentifier>{5a7bc540-8469-4b96-a992-dc9f754a8eb9}</UniqueIdentifier>
+    <Filter Include="Desenvolupament  ========\Scenes">
+      <UniqueIdentifier>{e07660eb-d36f-4cc9-af59-324d31c2f2f6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Development ======\Tools">
-      <UniqueIdentifier>{968bef67-b3ba-4dd3-850a-1f220ebff620}</UniqueIdentifier>
+    <Filter Include="Desenvolupament  ========\Modules">
+      <UniqueIdentifier>{244722d1-90ce-423d-8e7a-556211865a32}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Development ======\Tools\PuguiXML">
-      <UniqueIdentifier>{99710574-958f-424b-ab5a-8d9e255e3dd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Development ======\Entities">
-      <UniqueIdentifier>{b335f5bd-4865-4f72-954e-fe6a6e6d1948}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Development ======\Entities\Tools">
-      <UniqueIdentifier>{88d1341b-c215-4667-990b-77f4369cb308}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Development ======\Modules\Map">
-      <UniqueIdentifier>{af7031fa-5ce9-4741-bcf6-4b7837e0642c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Development ======\Modules\Core">
-      <UniqueIdentifier>{804968cb-3899-44e8-869f-e89f322cb0dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Development ======\Core">
-      <UniqueIdentifier>{945301ed-28bf-4997-8376-26f4bccf0d1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Development ======\Modules\GUI">
-      <UniqueIdentifier>{9d1b09f9-322f-474b-8bfe-7c95361838b9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Development ======\Modules\GUI\Elements">
-      <UniqueIdentifier>{c401341c-32c4-4dc2-98df-5b5a18a150ff}</UniqueIdentifier>
+    <Filter Include="Desenvolupament  ========\Tools\PuguiXML">
+      <UniqueIdentifier>{7cb78d67-17cc-45eb-af97-e2106becce7b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

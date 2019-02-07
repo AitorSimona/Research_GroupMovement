@@ -22,8 +22,7 @@ public:
 
 	// Called each loop iteration
 	bool PreUpdate();
-	bool Update(float dt);
-	bool PostUpdate(float dt);
+	bool PostUpdate();
 
 	// Called before quitting
 	bool CleanUp();
@@ -32,12 +31,13 @@ public:
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 
-	// Blit
+	// Utils
 	void SetViewPort(const SDL_Rect& rect);
 	void ResetViewPort();
 	iPoint ScreenToWorld(int x, int y) const;
 
-	bool Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section = NULL, bool use_camera = true, float speed = 1.0f, double angle = 0, int pivot_x = INT_MAX, int pivot_y = INT_MAX) const;
+	// Draw & Blit
+	bool Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section = NULL, float speed = 1.0f, double angle = 0, int pivot_x = INT_MAX, int pivot_y = INT_MAX) const;
 	bool DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255, bool filled = true, bool use_camera = true) const;
 	bool DrawLine(int x1, int y1, int x2, int y2, Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255, bool use_camera = true) const;
 	bool DrawCircle(int x1, int y1, int redius, Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255, bool use_camera = true) const;
@@ -47,12 +47,10 @@ public:
 
 public:
 
-	SDL_Renderer*	renderer = nullptr;
+	SDL_Renderer*	renderer;
 	SDL_Rect		camera;
 	SDL_Rect		viewport;
 	SDL_Color		background;
-
-	bool Vsync = false;
 };
 
 #endif // __j1RENDER_H__

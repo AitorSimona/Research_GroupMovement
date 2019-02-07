@@ -11,14 +11,9 @@
 #include "j1Audio.h"
 #include "j1Scene.h"
 #include "j1Map.h"
-#include "j1App.h"
-#include "j1Collision.h"
 #include "j1Pathfinding.h"
-#include "j1EntityManager.h"
-#include "j1Fonts.h"
-#include "j1Gui.h"
-
-#include "Brofiler/Brofiler.h"
+#include "j1App.h"
+#include "j1Player.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -32,13 +27,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new j1Audio();
 	scene = new j1Scene();
 	map = new j1Map();
-	coll = new j1Collision();
-	entities = new j1EntityManager();
 	pathfinding = new j1PathFinding();
-	font = new j1Fonts();
-	gui = new j1Gui();
-
-
+	player = new j1Player();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -46,16 +36,10 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(entities);
-	AddModule(coll);
 	AddModule(map);
-	AddModule(pathfinding);
-	AddModule(font);
-	AddModule(gui);
-
-	// scene last
 	AddModule(scene);
-
+	AddModule(pathfinding);
+	AddModule(player);
 
 	// render last to swap buffer
 	AddModule(render);
@@ -95,7 +79,7 @@ bool j1App::Awake()
 
 	bool ret = false;
 		
-	config = LoadConfig(config_file, "config.xml");
+	config = LoadConfig(config_file);
 
 	if(config.empty() == false)
 	{
@@ -107,9 +91,11 @@ bool j1App::Awake()
 
 		framerate_cap = app_config.attribute("framerate_cap").as_uint();
 
-		if (framerate_cap > 0.0f)
+		// TODO 1: Read from config file your framerate cap
+
+		if (framerate_cap > 0)
 		{
-			capped_ms = 1000.0f / framerate_cap;
+			capped_ms = 1000 / framerate_cap;
 		}
 	}
 
@@ -153,9 +139,6 @@ bool j1App::Start()
 // Called each loop iteration
 bool j1App::Update()
 {
-
-	BROFILER_CATEGORY("App_Update", Profiler::Color::AntiqueWhite);
-
 	bool ret = true;
 	PrepareUpdate();
 
@@ -176,13 +159,13 @@ bool j1App::Update()
 }
 
 // ---------------------------------------------
-pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file, const char* path) const
+pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file) const
 {
 	pugi::xml_node ret;
 
-	pugi::xml_parse_result result = config_file.load_file(path);
+	pugi::xml_parse_result result = config_file.load_file("config.xml");
 
-	if (result == NULL)
+	if(result == NULL)
 		LOG("Could not load map xml file config.xml. pugi error: %s", result.description());
 	else
 		ret = config_file.child("config");
@@ -197,32 +180,6 @@ void j1App::PrepareUpdate()
 	last_sec_frame_count++;
 
 	dt = frame_time.ReadSec();
-
-	if (App->scene->Activate_Ingamemenu
-		|| App->scene->Activate_MainMenu
-		|| App->scene->Activate_Credits
-		|| App->scene->Activate_InGameSettings
-		|| App->scene->Activate_MainMenuSettings)
-	{
-		//App->win->SetScale(1);
-		on_GamePause = true;
-		dt = 0.0f;
-		
-	}
-	else
-	{
-		if (scene->taketime == true)
-		{
-			scene->timeBeingPaused.Stop();
-			scene->timeAccumulated = scene->timeBeingPaused.getTotalTimeofPaused();
-			scene->sceneTimer.changePausedtime(scene->timeAccumulated);
-		}
-		App->win->SetScale(2);
-		on_GamePause = false;
-		scene->taketime = false;
-		
-	}
-
 	frame_time.Start();
 }
 
@@ -237,11 +194,13 @@ void j1App::FinishUpdate()
 
 	// Framerate calculations --
 
-	if (last_sec_frame_time.Read() > 1000.0f)
+	// Framerate calculations --
+
+	if (last_sec_frame_time.Read() > 1000)
 	{
 		last_sec_frame_time.Start();
 		prev_last_sec_frame_count = last_sec_frame_count;
-		last_sec_frame_count = 0.0f;
+		last_sec_frame_count = 0;
 	}
 
 	float avg_fps = float(frame_count) / startup_time.ReadSec();
@@ -250,48 +209,15 @@ void j1App::FinishUpdate()
 	uint32 frames_on_last_update = prev_last_sec_frame_count;
 
 	static char title[256];
-	// FPS / average FPS / MS of the last frame (Cap on/off + Vsync on/off)
-	if (cap_on && render->Vsync)
-	{
-		sprintf_s(title, 256, "FPS: %i /Average FPS: %.2f / Ms of the last frame: %u / FPS Cap: True / Vsync: True / Timer:%f ",
-			frames_on_last_update, avg_fps, last_frame_ms, scene->sceneTimer.ReadSec());
-	}
-	else if (cap_on && !render->Vsync)
-	{
-		if (on_GamePause)
-		{
-			sprintf_s(title, 256, "FPS: %i /Average FPS: %.2f / Ms of the last frame: %u / FPS Cap: True / Vsync: False / Timer:%u ",
-				frames_on_last_update, avg_fps, last_frame_ms, scene->timeWhenPaused);
-		}
-		else
-			sprintf_s(title, 256, "FPS: %i /Average FPS: %.2f / Ms of the last frame: %u / FPS Cap: True / Vsync: False / Timer:%f ",
-				frames_on_last_update, avg_fps, last_frame_ms, scene->sceneTimer.ReadSec());
-	}
-	else if (!cap_on && render->Vsync)
-	{
-		sprintf_s(title, 256, "FPS: %i /Average FPS: %.2f / Ms of the last frame: %u / FPS Cap: False / Vsync: True ",
-			frames_on_last_update, avg_fps, last_frame_ms);
-	}
-	else if (!cap_on && !render->Vsync)
-	{
-		sprintf_s(title, 256, "FPS: %i /Average FPS: %.2f / Ms of the last frame: %u / FPS Cap: False / Vsync: False ",
-			frames_on_last_update, avg_fps, last_frame_ms);
-	}
-	else
-	{
-		sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu ",
-			avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
-	}
-
+	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu ",
+		avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
 	App->win->SetTitle(title);
 
 	if (capped_ms > 0 && last_frame_ms < capped_ms)
 	{
 		j1PerfTimer t;
-		if (cap_on)
-			SDL_Delay(capped_ms - last_frame_ms);
-		//Debug purpose
-		//LOG("We waited for %d milliseconds and got back in %f", capped_ms - last_frame_ms, t.ReadMs());
+		SDL_Delay(capped_ms - last_frame_ms);
+		LOG("We waited for %d milliseconds and got back in %f", capped_ms - last_frame_ms, t.ReadMs());
 	}
 }
 
@@ -333,6 +259,9 @@ bool j1App::DoUpdate()
 			continue;
 		}
 
+		// TODO 5: send dt as an argument to all updates
+		// you will need to update module parent class
+		// and all modules that use update
 		ret = item->data->Update(dt);
 	}
 
@@ -354,7 +283,7 @@ bool j1App::PostUpdate()
 			continue;
 		}
 
-		ret = item->data->PostUpdate(dt);
+		ret = item->data->PostUpdate();
 	}
 
 	return ret;
@@ -364,7 +293,6 @@ bool j1App::PostUpdate()
 bool j1App::CleanUp()
 {
 	PERF_START(ptimer);
-
 	bool ret = true;
 	p2List_item<j1Module*>* item;
 	item = modules.end;
@@ -407,24 +335,12 @@ const char* j1App::GetOrganization() const
 }
 
 // Load / Save
-bool j1App::LoadGame(const char* file)
+void j1App::LoadGame(const char* file)
 {
-	bool ret = true;
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list
-	load_game.create("save_game.xml");
-
-	pugi::xml_document data;
-	pugi::xml_node root;
-
-	pugi::xml_parse_result result = data.load_file(load_game.GetString());
-	if (result == NULL)
-	{
-		ret = false;
-	}
 	want_to_load = true;
-	
-	return ret;
+	//load_game.create("%s%s", fs->GetSaveDirectory(), file);
 }
 
 // ---------------------------------------
@@ -446,7 +362,7 @@ void j1App::GetSaveGames(p2List<p2SString>& list_to_fill) const
 bool j1App::LoadGameNow()
 {
 	bool ret = false;
-	
+
 	load_game.create("save_game.xml");
 
 	pugi::xml_document data;
@@ -476,11 +392,7 @@ bool j1App::LoadGameNow()
 			LOG("...loading process interrupted with error on module %s", (item != NULL) ? item->data->name.GetString() : "unknown");
 	}
 	else
-	{
 		LOG("Could not parse game state xml file %s. pugi error: %s", load_game.GetString(), result.description());
-		ret = false;
-	}
-		
 
 	want_to_load = false;
 	return ret;
@@ -494,7 +406,7 @@ bool j1App::SavegameNow() const
 
 	LOG("Saving Game State to %s...", save_game.GetString());
 
-	// xml object where we will store all data
+	// xml object were we will store all data
 	pugi::xml_document data;
 	pugi::xml_node root;
 	
@@ -508,7 +420,7 @@ bool j1App::SavegameNow() const
 		item = item->next;
 	}
 
-	if(ret == true)
+	if (ret == true)
 	{
 		data.save_file(save_game.GetString());
 		LOG("... finished saving", save_game.GetString());

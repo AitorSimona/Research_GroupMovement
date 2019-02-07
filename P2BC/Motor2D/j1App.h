@@ -15,12 +15,8 @@ class j1Textures;
 class j1Audio;
 class j1Scene;
 class j1Map;
-class j1Collision;
 class j1PathFinding;
-class j1EntityManager;
-class j1Fonts;
-class j1Gui;
-
+class j1Player;
 
 class j1App
 {
@@ -47,22 +43,20 @@ public:
 	// Add a new module to handle
 	void AddModule(j1Module* module);
 
-	
-
 	// Exposing some properties for reading
 	int GetArgc() const;
 	const char* GetArgv(int index) const;
 	const char* GetTitle() const;
 	const char* GetOrganization() const;
 
-	bool LoadGame(const char* file);
+	void LoadGame(const char* file);
 	void SaveGame(const char* file) const;
 	void GetSaveGames(p2List<p2SString>& list_to_fill) const;
 
-	// Load config file
-	pugi::xml_node LoadConfig(pugi::xml_document&, const char * path) const;
-
 private:
+
+	// Load config file
+	pugi::xml_node LoadConfig(pugi::xml_document&) const;
 
 	// Call modules before each loop iteration
 	void PrepareUpdate();
@@ -86,37 +80,27 @@ private:
 public:
 
 	// Modules
-	j1Window*			win = nullptr;
-	j1Input*			input = nullptr;
-	j1Render*			render = nullptr;
-	j1Textures*			tex = nullptr;
-	j1Audio*			audio = nullptr;
-	j1Scene*			scene = nullptr;
-	j1Map*				map = nullptr;
-	j1Collision*        coll = nullptr;
-	j1PathFinding*		pathfinding = nullptr;
-	j1EntityManager*    entities = nullptr;
-	j1Fonts*			font = NULL;
-	j1Gui*				gui = NULL;
-
-
-	uint32              framerate_cap;
-	float			    capped_ms = -1.0f;
-	bool                cap_on = true;
-	bool on_GamePause = false;
+	j1Window*			win = NULL;
+	j1Input*			input = NULL;
+	j1Render*			render = NULL;
+	j1Textures*			tex = NULL;
+	j1Audio*			audio = NULL;
+	j1Scene*			scene = NULL;
+	j1Map*				map = NULL;
+	j1PathFinding*		pathfinding = NULL;
+	j1Player*           player = NULL;
 
 private:
 
 	p2List<j1Module*>	modules;
-	int					argc = NULL;
+	int					argc;
 	char**				args;
 
 	p2SString			title;
 	p2SString			organization;
 
-	mutable bool		want_to_load = false;
 	mutable bool		want_to_save = false;
-	
+	bool				want_to_load = false;
 	p2SString			load_game;
 	mutable p2SString	save_game;
 
@@ -128,8 +112,10 @@ private:
 	uint32				last_sec_frame_count = 0;
 	uint32				prev_last_sec_frame_count = 0;
 	float				dt = 0.0f;
+	int					capped_ms = -1;
+	int              framerate_cap;
 };
 
-extern j1App* App; 
+extern j1App* App; // No student is asking me about that ... odd :-S
 
 #endif

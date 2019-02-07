@@ -5,9 +5,14 @@
 #include "p2Point.h"
 #include "p2DynArray.h"
 
-#define DEFAULT_PATH_LENGTH 50 
+#define DEFAULT_PATH_LENGTH 50
 #define INVALID_WALK_CODE 255
 
+// --------------------------------------------------
+// Recommended reading:
+// Intro: http://www.raywenderlich.com/4946/introduction-to-a-pathfinding
+// Details: http://theory.stanford.edu/~amitp/GameProgramming/
+// --------------------------------------------------
 
 class j1PathFinding : public j1Module
 {
@@ -60,7 +65,7 @@ struct PathNode
 {
 	// Convenient constructors
 	PathNode();
-	PathNode(int g, int h, const iPoint& pos, const PathNode* parent, uint diagonal);
+	PathNode(int g, int h, const iPoint& pos, const PathNode* parent);
 	PathNode(const PathNode& node);
 
 	// Fills a list (PathList) of all valid adjacent pathnodes
@@ -75,7 +80,6 @@ struct PathNode
 	int h;
 	iPoint pos;
 	const PathNode* parent; // needed to reconstruct the path in the end
-	uint diagonal;
 };
 
 // ---------------------------------------------------------------------

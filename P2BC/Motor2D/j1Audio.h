@@ -32,38 +32,6 @@ public:
 	// Play a previously loaded WAV
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
-	//Modify Volume
-
-	void ChangeVolume_music(float value);
-	void ChangeVolume_fx(float value);
-
-	//Load & Save audio data
-
-	bool Save(pugi::xml_node&config) const;
-	bool Load(pugi::xml_node&config);
-
-	p2SString musicfolder =nullptr;
-	p2SString fxfolder = nullptr;
-	p2List<p2SString*>	SongNamesList;
-
-	float VolumeChanger_music=0.0;
-	float VolumeChanger_fx=0.0;
-
-	bool testbool = false;
-	p2SString fxDeath = nullptr;
-	p2SString fxJump = nullptr;
-	p2SString fxdoubleJump = nullptr;
-	p2SString fxbuttonpop = nullptr;
-	p2SString fxorb = nullptr;
-	p2SString fxenemydeath = nullptr;
-
-	unsigned int deathfx = NULL;
-	unsigned int jumpfx = NULL;
-	unsigned int doublejumpfx = NULL;
-	unsigned int buttonpopfx = NULL;
-	unsigned int orbfx = NULL;
-	unsigned int enemydeathfx = NULL;
-
 private:
 
 	_Mix_Music*			music = NULL;

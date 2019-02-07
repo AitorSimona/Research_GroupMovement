@@ -50,49 +50,6 @@ bool j1Audio::Awake(pugi::xml_node& config)
 		ret = true;
 	}
 
-	
-	//Path names for volume modifier's nodes
-
-	musicfolder = config.child("music").child_value("folder");
-	fxfolder = config.child("fx").child_value("folder");
-
-	VolumeChanger_music = config.child("music").child("VolumeChanger_music").attribute("value").as_float();
-	VolumeChanger_fx = config.child("fx").child("VolumeChanger_fx").attribute("value").as_float();
-
-	fxDeath = config.child("fx").child("sound").attribute("death").as_string();
-	fxJump = config.child("fx").child("sound").attribute("jump").as_string();
-	fxdoubleJump = config.child("fx").child("sound").attribute("doubleJump").as_string();
-	fxbuttonpop = config.child("fx").child("sound").attribute("buttonpop").as_string();
-	fxorb = config.child("fx").child("sound").attribute("orb").as_string();
-	fxenemydeath = config.child("fx").child("sound").attribute("enemydeath").as_string();
-
-	p2SString deathSound ("%s%s", fxfolder.GetString(), fxDeath.GetString());
-	deathfx = LoadFx(deathSound.GetString());
-
-	p2SString enemydeathSound("%s%s", fxfolder.GetString(), fxenemydeath.GetString());
-	enemydeathfx = LoadFx(enemydeathSound.GetString());
-
-	p2SString jumpSound("%s%s", fxfolder.GetString(), fxJump.GetString());
-	jumpfx = LoadFx(jumpSound.GetString());
-
-	p2SString doublejumpSound("%s%s", fxfolder.GetString(), fxdoubleJump.GetString());
-	doublejumpfx = LoadFx(doublejumpSound.GetString());
-
-	p2SString buttonpopSound("%s%s", fxfolder.GetString(), fxbuttonpop.GetString());
-	buttonpopfx = LoadFx(buttonpopSound.GetString());
-
-	p2SString orbSound("%s%s", fxfolder.GetString(), fxorb.GetString());
-	orbfx = LoadFx(orbSound.GetString());
-
-	pugi::xml_node Music;
-	for (Music = config.child("music").child("song"); Music && ret; Music = Music.next_sibling("song"))
-	{
-		p2SString* SongName = new p2SString();
-
-		SongName->create(Music.attribute("name").as_string());
-		SongNamesList.add(SongName);
-	}
-
 	return ret;
 }
 
@@ -110,25 +67,8 @@ bool j1Audio::CleanUp()
 	}
 
 	p2List_item<Mix_Chunk*>* item;
-	item = fx.start;
-		
-	while (item != NULL)
-	{
+	for(item = fx.start; item != NULL; item = item->next)
 		Mix_FreeChunk(item->data);
-		item = item->next;
-	}
-	fx.clear();
-
-
-	p2List_item<p2SString*>* item2;
-	item2 = SongNamesList.start;
-
-	while (item2 != NULL)
-	{
-		RELEASE(item2->data);
-		item2 = item2->next;
-	}
-	SongNamesList.clear();
 
 	fx.clear();
 
@@ -143,8 +83,6 @@ bool j1Audio::CleanUp()
 bool j1Audio::PlayMusic(const char* path, float fade_time)
 {
 	bool ret = true;
-
-	Mix_VolumeMusic(SDL_MIX_MAXVOLUME*VolumeChanger_music);
 
 	if(!active)
 		return false;
@@ -183,7 +121,6 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 		}
 		else
 		{
-
 			if(Mix_PlayMusic(music, -1) < 0)
 			{
 				LOG("Cannot play in music %s. Mix_GetError(): %s", path, Mix_GetError());
@@ -229,83 +166,7 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 
 	if(id > 0 && id <= fx.count())
 	{
-		Mix_VolumeChunk(fx[id - 1], SDL_MIX_MAXVOLUME * VolumeChanger_fx);
 		Mix_PlayChannel(-1, fx[id - 1], repeat);
-	}
-
-	return ret;
-}
-
-void j1Audio::ChangeVolume_music(float value)
-{
-	// value is an int from 0 to a 100
-	value = value / 100;
-
-	VolumeChanger_music += value;
-
-	//We make sure we use a number from 0 to 1
-	if (VolumeChanger_music < 0)
-		VolumeChanger_music = 0;
-
-	if (VolumeChanger_music > 1)
-		VolumeChanger_music = 1;
-
-	Mix_VolumeMusic(128 * VolumeChanger_music);
-
-}
-
-void j1Audio::ChangeVolume_fx(float value)
-{
-	// value is an int from 0 to a 100, we need it to be from 0 to 1
-	value = value / 100;
-
-	VolumeChanger_fx += value;
-
-	//We make sure we use a number from 0 to 1
-	if (VolumeChanger_fx < 0)
-		VolumeChanger_fx = 0;
-
-	if (VolumeChanger_fx > 1)
-		VolumeChanger_fx = 1;
-
-	p2List_item <Mix_Chunk*> *chunkitem;
-
-	for (chunkitem = fx.start; chunkitem != NULL; chunkitem = chunkitem->next)
-	{
-		Mix_VolumeChunk(chunkitem->data, 128 * VolumeChanger_fx);
-	}
-
-}
-
-bool j1Audio::Save(pugi::xml_node &config) const
-{
-	bool ret = true;
-
-	config.append_child("VolumeChanger_music").append_attribute("value") = VolumeChanger_music;
-	config.append_child("VolumeChanger_fx").append_attribute("value") = VolumeChanger_fx;
-
-
-	return ret;
-}
-
-bool j1Audio::Load(pugi::xml_node &config)
-{
-	bool ret = true;
-
-	VolumeChanger_music = config.child("VolumeChanger_music").attribute("value").as_float();
-
-	VolumeChanger_fx = config.child("VolumeChanger_fx").attribute("value").as_float();
-
-	if (testbool == true)
-		LOG("nice");
-
-	ret = Mix_VolumeMusic(128 * VolumeChanger_music);
-
-	p2List_item <Mix_Chunk*> *chunkitem;
-
-	for (chunkitem = fx.start; chunkitem != NULL && ret != NULL; chunkitem = chunkitem->next)
-	{
-		ret = Mix_VolumeChunk(chunkitem->data, 128 * VolumeChanger_fx);
 	}
 
 	return ret;

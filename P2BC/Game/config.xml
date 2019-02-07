@@ -1,8 +1,8 @@
 <!-- Config file for the game -->
 
 <config>
-  <app framerate_cap="30">
-    <title>orBit_v1.0</title>
+  <app framerate_cap="60">
+    <title>Game Development Testbed</title>
     <organization>UPC</organization>
   </app>
 	
@@ -18,99 +18,17 @@
     <fullscreen_window value="false"/>
   </window>
 
-  <gui>
-    <atlas file="gui/atlas.png"/>
-    <logo file="gui/logo.png"/>
-  </gui>
-
   <file_system>
     <path>data.zip</path>
   </file_system>
 
   <map>
     <folder>maps/</folder>
-    <collision1 red="583" magenta="582" yellow="581" green="580" square="585"/>
-    <collision2 red="949" magenta="948" yellow="947" green="946" square="951"/>
-    <parallax speed="0.5" speed2="1.5"/>
-    <offset offset="-160"/>
   </map>
 
   <scene>
-    <map_name name="stage1_TiledV017.tmx"/>
-    <map_name name="stage2_TiledV017.tmx"/>
-    <startcamera1 x="-586" y="0"  />
-    <startcamera2 x="0" y="0"  />
-    <areaofcollision value="100" />
+    <map_name path="iso_walk.tmx"/>
+    <map_name path="iso.tmx"/>
   </scene>
-
-  <audio>
-    <music>
-      <folder>audio/music/</folder>
-      <song name="stage1.ogg"/>
-      <song name="stage2.ogg"/>
-      <song name="Main_Menu.ogg"/>
-      <VolumeChanger_music value="1.0"/>
-    </music>
-    <fx>
-      <folder>audio/fx/</folder>
-      <VolumeChanger_fx value="1.0"/>
-      <sound enemydeath="others/enemy-death.wav" orb ="others/star.wav" death="others/hurt.wav" doubleJump="doublejump.wav" jump="jump.wav" buttonpop="pop_button.wav"/>
-    </fx>
-  </audio>
-
-  <entities>
-
-
-  <player>
-    <folder>animation/player.tmx</folder>
-    <texture>textures/sprite_sheet_character.png</texture>
-    <collider x="5" y="4" width="15" height="34"/>
-    <Velocity x="35.0" y="0.0" jump_force="350.0"/>
-    <gravity value="29.4"/>
-  </player>
-   
-     <slime>
-         <folder>animation/enemies.tmx</folder>
-         <texture>textures/monster.png</texture>
-         <collider x="21" y="17" width="10" height="20"/>
-         <animationspeed value="7.5"/>
-         <areaofaction value="150"/>
-         <Velocity x="50.0" y="0.0" initalVx="50.0"/>
-         <printingoffset x="8" y="1"/>
-         <colliding_offset value="5" />
-         <gravity value="-100.0"/>
-         <entityID value1="4" value2="5"/>
-     
-     </slime>
-    
-   <bat>
-         <folder>animation/enemies.tmx</folder>
-         <texture>textures/monster.png</texture>
-         <collider x="31" y="7" width="18" height="12"/>
-         <animationspeed value="10.0"/>
-         <areaofaction value="100"/>
-         <Velocity x="50" y="25" initalVx="50.0"/>
-         <printingoffset x="8" y="5"/>
-         <colliding_offset value="5" />
-         <gravity value="-4.0"/>
-         <entityID value1="2" value2="3"/>
-
-
-   </bat>
-    
-  <orb>
-         <folder>animation/orb.tmx</folder>
-         <texture>textures/pixel_orb.png</texture>
-         <collider x="0" y="11" width="12" height="15"/>
-         <animationspeed value="3.0"/>
-         <areaofaction value="100"/>
-         <printingoffset x="8" y="5"/>
-         <colliding_offset value="5" />
-         <entityID value1="6" value2="7" value3="8"/>
-
-
-   </orb>
-  
-  </entities>
 
 </config>

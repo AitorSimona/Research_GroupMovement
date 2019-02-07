@@ -1,3 +1,8 @@
+// ----------------------------------------------------
+// j1PerfTimer.cpp
+// Slow timer with microsecond precision
+// ----------------------------------------------------
+
 #include "j1PerfTimer.h"
 #include "SDL\include\SDL_timer.h"
 
@@ -6,7 +11,7 @@ uint64 j1PerfTimer::frequency = 0;
 // ---------------------------------------------
 j1PerfTimer::j1PerfTimer()
 {
-	if (frequency == 0)
+	if(frequency == 0)
 		frequency = SDL_GetPerformanceFrequency();
 
 	Start();
@@ -29,3 +34,5 @@ uint64 j1PerfTimer::ReadTicks() const
 {
 	return SDL_GetPerformanceCounter() - started_at;
 }
+
+

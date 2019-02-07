@@ -2,7 +2,6 @@
 #define __j1INPUT_H__
 
 #include "j1Module.h"
-#include "p2SString.h"
 
 //#define NUM_KEYS 352
 #define NUM_MOUSE_BUTTONS 5
@@ -69,21 +68,14 @@ public:
 	void GetMousePosition(int &x, int &y);
 	void GetMouseMotion(int& x, int& y);
 
-	//text input
-	void StartTextInput();
-	void StopTextInput();
-
-	p2SString inputtext;
 private:
 	bool		windowEvents[WE_COUNT];
-	j1KeyState*	keyboard= nullptr;
+	j1KeyState*	keyboard;
 	j1KeyState	mouse_buttons[NUM_MOUSE_BUTTONS];
-	int			mouse_motion_x = NULL;
-	int			mouse_motion_y = NULL;
-	int			mouse_x = NULL;
-	int			mouse_y = NULL;
-
-	bool mouse_moving = false;
+	int			mouse_motion_x;
+	int			mouse_motion_y;
+	int			mouse_x;
+	int			mouse_y;
 };
 
 #endif // __j1INPUT_H__
