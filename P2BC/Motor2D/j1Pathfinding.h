@@ -65,7 +65,7 @@ struct PathNode
 {
 	// Convenient constructors
 	PathNode();
-	PathNode(int g, int h, const iPoint& pos, const PathNode* parent);
+	PathNode(int g, int h, const iPoint& pos, const PathNode* parent, const bool diagonal);
 	PathNode(const PathNode& node);
 
 	// Fills a list (PathList) of all valid adjacent pathnodes
@@ -76,10 +76,12 @@ struct PathNode
 	int CalculateF(const iPoint& destination);
 
 	// -----------
-	int g;
-	int h;
-	iPoint pos;
+	float g = 0;
+	float h = 0;
+	iPoint pos = { 0, 0 };
 	const PathNode* parent; // needed to reconstruct the path in the end
+	bool diagonal = false;
+
 };
 
 // ---------------------------------------------------------------------
