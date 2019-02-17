@@ -2,7 +2,7 @@
 #define __j1SCENE_H__
 
 #include "j1Module.h"
-#include "p2List.h"
+#include <vector>
 
 struct SDL_Texture;
 
@@ -43,8 +43,9 @@ public:
 
 private:
 	SDL_Texture* debug_tex;
-	p2List <p2SString*> StageList;
-
+	//p2List <p2SString*> StageList;
+	//std::list <p2SString*> StageList;
+	std::vector <p2SString*> StageList;
 };
 
 #endif // __j1SCENE_H__

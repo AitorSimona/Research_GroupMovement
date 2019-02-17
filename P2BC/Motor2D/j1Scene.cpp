@@ -28,7 +28,8 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	for (pugi::xml_node stage = config.child("map_name"); stage; stage = stage.next_sibling("map_name"))
 	{
 		p2SString* StageName = new p2SString(stage.attribute("path").as_string());
-		StageList.add(StageName);
+		//StageList.add(StageName);
+		StageList.push_back(StageName);
 	}
 
 	return ret;
@@ -50,7 +51,7 @@ bool j1Scene::ChangeMap(int destination_map_id)
 {
 	App->map->CleanUp();
 
-	if(App->map->Load(StageList.At(destination_map_id)->data->GetString()))
+	if(App->map->Load(StageList.at(destination_map_id)->GetString()))
 	{
 		SetWalkabilityMap();
 	}
@@ -63,7 +64,7 @@ bool j1Scene::Start()
 {
 	// --- Loading map ---
 
-	if(App->map->Load(StageList.start->data->GetString()) == true)
+	if(App->map->Load(StageList.front()->GetString()) == true)
 	{
 		SetWalkabilityMap();
 	}
@@ -177,7 +178,7 @@ bool j1Scene::CleanUp()
 {
 	LOG("Freeing scene");
 
-	p2List_item <p2SString*>* item = StageList.start;
+	/*p2List_item <p2SString*>* item = StageList.start;
 
 	while (item)
 	{
@@ -185,7 +186,9 @@ bool j1Scene::CleanUp()
 		item = item->next;
 	}
 
-	StageList.clear();
+	StageList.clear();*/
+
+	std::vector<p2SString*>().swap(StageList);
 
 	return true;
 }
