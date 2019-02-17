@@ -12,7 +12,7 @@
 
 j1Scene::j1Scene() : j1Module()
 {
-	name.create("scene");
+	name.assign("scene");
 }
 
 // Destructor
@@ -27,7 +27,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 
 	for (pugi::xml_node stage = config.child("map_name"); stage; stage = stage.next_sibling("map_name"))
 	{
-		p2SString* StageName = new p2SString(stage.attribute("path").as_string());
+		std::string* StageName = new std::string(stage.attribute("path").as_string());
 		//StageList.add(StageName);
 		StageList.push_back(StageName);
 	}
@@ -51,7 +51,7 @@ bool j1Scene::ChangeMap(int destination_map_id)
 {
 	App->map->CleanUp();
 
-	if(App->map->Load(StageList.at(destination_map_id)->GetString()))
+	if(App->map->Load(StageList.at(destination_map_id)->data()))
 	{
 		SetWalkabilityMap();
 	}
@@ -64,7 +64,7 @@ bool j1Scene::Start()
 {
 	// --- Loading map ---
 
-	if(App->map->Load(StageList.front()->GetString()) == true)
+	if(App->map->Load(StageList.front()->data()) == true)
 	{
 		SetWalkabilityMap();
 	}
@@ -134,11 +134,12 @@ bool j1Scene::Update(float dt)
 	int x, y;
 	App->input->GetMousePosition(x, y);
 	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
-	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
+	/*std::string title;
+	title.assign("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
 					App->map->data.width, App->map->data.height,
 					App->map->data.tile_width, App->map->data.tile_height,
 					App->map->data.tilesets.size(),
-					map_coordinates.x, map_coordinates.y);
+					map_coordinates.x, map_coordinates.y);*/
 
 	//App->win->SetTitle(title.GetString());
 
@@ -178,17 +179,7 @@ bool j1Scene::CleanUp()
 {
 	LOG("Freeing scene");
 
-	/*p2List_item <p2SString*>* item = StageList.start;
-
-	while (item)
-	{
-		RELEASE(item->data);
-		item = item->next;
-	}
-
-	StageList.clear();*/
-
-	std::vector<p2SString*>().swap(StageList);
+	std::vector<std::string*>().swap(StageList);
 
 	return true;
 }

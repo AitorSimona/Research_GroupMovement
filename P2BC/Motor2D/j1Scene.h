@@ -43,9 +43,8 @@ public:
 
 private:
 	SDL_Texture* debug_tex;
-	//p2List <p2SString*> StageList;
-	//std::list <p2SString*> StageList;
-	std::vector <p2SString*> StageList;
+
+	std::vector <std::string*> StageList;
 };
 
 #endif // __j1SCENE_H__
