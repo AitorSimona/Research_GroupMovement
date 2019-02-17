@@ -2,7 +2,7 @@
 #define __j1MAP_H__
 
 #include "PugiXml/src/pugixml.hpp"
-#include "p2List.h"
+#include <list>
 #include "p2Point.h"
 #include "j1Module.h"
 
@@ -17,13 +17,13 @@ struct Properties
 
 	~Properties()
 	{
-		p2List_item<Property*>* item;
-		item = list.start;
+		std::list<Property*>::const_iterator item;
+		item = list.begin();
 
-		while(item != NULL)
+		while(item != list.end())
 		{
-			RELEASE(item->data);
-			item = item->next;
+			delete *item;
+			item++;
 		}
 
 		list.clear();
@@ -31,7 +31,7 @@ struct Properties
 
 	int Get(const char* name, int default_value = 0) const;
 
-	p2List<Property*>	list;
+	std::list <Property*>	list;
 };
 
 // ----------------------------------------------------
@@ -48,7 +48,7 @@ struct MapLayer
 
 	~MapLayer()
 	{
-		RELEASE(data);
+		RELEASE_ARRAY(data);
 	}
 
 	inline uint Get(int x, int y) const
@@ -93,8 +93,8 @@ struct MapData
 	int					tile_height = 0;
 	SDL_Color			background_color;
 	MapTypes			type;
-	p2List<TileSet*>	tilesets;
-	p2List<MapLayer*>	layers;
+	std::list <TileSet*>	tilesets;
+	std::list <MapLayer*>	layers;
 };
 
 // ----------------------------------------------------

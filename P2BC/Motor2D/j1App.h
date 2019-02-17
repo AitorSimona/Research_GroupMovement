@@ -6,7 +6,6 @@
 #include "j1Timer.h"
 #include "PugiXml\src\pugixml.hpp"
 #include <list>
-#include "p2List.h"
 
 // Modules
 class j1Window;

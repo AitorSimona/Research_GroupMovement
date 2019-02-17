@@ -137,7 +137,7 @@ bool j1Scene::Update(float dt)
 	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
 					App->map->data.width, App->map->data.height,
 					App->map->data.tile_width, App->map->data.tile_height,
-					App->map->data.tilesets.count(),
+					App->map->data.tilesets.size(),
 					map_coordinates.x, map_coordinates.y);
 
 	//App->win->SetTitle(title.GetString());
@@ -151,11 +151,11 @@ bool j1Scene::Update(float dt)
 
 	App->render->Blit(debug_tex, p.x, p.y);
 
-	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
+	const std::vector<iPoint>* path = App->pathfinding->GetLastPath();
 
-	for(uint i = 0; i < path->Count(); ++i)
+	for(uint i = 0; i < path->size(); ++i)
 	{
-		iPoint pos = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+		iPoint pos = App->map->MapToWorld(path->at(i).x, path->at(i).y);
 		App->render->Blit(debug_tex, pos.x, pos.y);
 	}
 
