@@ -10,6 +10,8 @@
 #include "j1PathFinding.h"
 #include "j1Scene.h"
 
+#include "Brofiler/Brofiler.h"
+
 j1Scene::j1Scene() : j1Module()
 {
 	name.assign("scene");
@@ -78,6 +80,8 @@ bool j1Scene::Start()
 bool j1Scene::PreUpdate()
 {
 
+	BROFILER_CATEGORY("Scene_Pre_Update", Profiler::Color::BlanchedAlmond);
+
 	// debug pathfing ------------------
 	static iPoint origin;
 	static bool origin_selected = false;
@@ -107,6 +111,8 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+	BROFILER_CATEGORY("Scene_Update", Profiler::Color::Crimson);
+
 	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		App->LoadGame("save_game.xml");
 
@@ -116,7 +122,7 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 		ChangeMap(1);
 
-	// TODO 6: Make the camera movement independent of framerate
+	//Make the camera movement independent of framerate
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 		App->render->camera.y += ceil(150.0*dt);
 
@@ -166,6 +172,8 @@ bool j1Scene::Update(float dt)
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
+	BROFILER_CATEGORY("Scene_Post_Update", Profiler::Color::Aquamarine);
+
 	bool ret = true;
 
 	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)

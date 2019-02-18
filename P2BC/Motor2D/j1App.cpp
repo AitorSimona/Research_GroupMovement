@@ -15,6 +15,8 @@
 #include "j1App.h"
 #include "j1Player.h"
 
+#include "Brofiler/Brofiler.h"
+
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 {
@@ -91,7 +93,7 @@ bool j1App::Awake()
 
 		framerate_cap = app_config.attribute("framerate_cap").as_uint();
 
-		// TODO 1: Read from config file your framerate cap
+		//Read from config file your framerate cap
 
 		if (framerate_cap > 0)
 		{
@@ -141,6 +143,9 @@ bool j1App::Start()
 // Called each loop iteration
 bool j1App::Update()
 {
+
+	BROFILER_CATEGORY("App_Update", Profiler::Color::AntiqueWhite);
+
 	bool ret = true;
 	PrepareUpdate();
 
