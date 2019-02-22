@@ -1,73 +1,103 @@
 #include "j1Player.h"
 #include "p2Log.h"
+#include "j1App.h"
+#include "j1Textures.h"
+#include "j1Render.h"
+#include "j1Input.h"
+#include "j1Map.h"
+#include "j1Scene.h"
+#include "j1Window.h"
+#include "j1EntityManager.h"
+#include "j1Audio.h"
+#include <time.h>
 
-j1Player::j1Player()
+j1Player::j1Player() : j1Entity("player", entity_type::PLAYER)
 {
 }
 
 j1Player::~j1Player()
 {
-}
 
-bool j1Player::Awake()
-{
-	logic_updates_per_second = 10.0;
-	update_s_cycle = 1.0f / (float)logic_updates_per_second;
-
-	return true;
 }
 
 bool j1Player::Start()
 {
+	LOG("--- Loading player ---");
 
-	logic_updates_per_second = 10.0;
-	update_s_cycle = 1.0f / (float)logic_updates_per_second;
+	// --- Current Player Position ---
+	position.x = rand() % 300;
+	position.y = rand() % 300;
+
+	Future_position.x = position.x;
+	Future_position.y = position.y;
+
+	entitycollrect.x = 56;
+	entitycollrect.y = 12;
+	entitycollrect.w = 16;
+	entitycollrect.h = 32;
+
+	const char * stri = "textures/spritesheet.png";
+	// --- Entity Spritesheet ---
+	if (spritesheet == nullptr)
+		spritesheet = App->tex->Load(stri);
+
+	// --- Entity Velocity ---
+	Velocity.x = 5;
+	Velocity.y = 0;
+
+	//-- active ----
+	active = true;
+
 
 	return true;
 }
 
-bool j1Player::PreUpdate()
+void j1Player::UpdateEntityMovement(float dt)
 {
 
-	do_logic = false;
-
-
-	return true;
+	
 }
 
-bool j1Player::UpdateTick(float dt)
-{
-	frame_count++;
-
-	return true;
-}
 
 bool j1Player::Update(float dt)
 {
-	accumulated_time += dt;
+	// --- LOGIC --------------------
 
-	if (accumulated_time >= update_s_cycle)
-	{
-		do_logic = true;
-	}
-
-	if (do_logic == true)
-	{
-		UpdateTick(dt);
-		//LOG("Did logic step after %f", accumulated_time);
-		//LOG("frame_Count: %i", frame_count);
-		accumulated_time = 0.0f;
-	}
-
+	
 	return true;
 }
 
-bool j1Player::PostUpdate()
+bool j1Player::PostUpdate(float dt)
 {
-	return true;
+	bool ret = true;
+
+	// --- Blitting player ---
+	App->render->Blit(spritesheet, position.x, position.y, &entitycollrect);
+	// ---------------------- //
+
+	return ret;
 }
+
 
 bool j1Player::CleanUp()
 {
+	App->tex->UnLoad(spritesheet);
+
 	return true;
 }
+
+void j1Player::FixedUpdate(float dt)
+{
+	// --- Update we do every frame ---
+
+	PostUpdate(dt);
+
+}
+
+void j1Player::LogicUpdate(float dt)
+{
+	// --- Update we may not do every frame ---
+
+	Update(dt);
+}
+

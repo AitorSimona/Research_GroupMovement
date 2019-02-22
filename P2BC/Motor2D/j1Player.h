@@ -3,38 +3,39 @@
 
 #include "j1Module.h"
 #include "p2Point.h"
+#include "j1Entity.h"
 
 struct SDL_Texture;
 
-class j1Player :public j1Module
+class j1Player :public j1Entity
 {
 public:
 
 	j1Player();
 	~j1Player();
 
-	// Called before render is available
-	bool Awake();
-
-	// Called before the first frame
 	bool Start();
-
-	// Called before all Updates
-	bool PreUpdate();
-
-	bool UpdateTick(float dt);
+	bool Update(float dt);
+	bool PostUpdate(float dt);
+	bool CleanUp();
 
 	// Called each loop iteration
-	bool Update(float dt);
+	void FixedUpdate(float dt);
 
-	// Called before all Updates
-	bool PostUpdate();
+	// Called each logic iteration
+	void LogicUpdate(float dt);
 
-	// Called before quitting
-	bool CleanUp();
+	void UpdateEntityMovement(float dt);
 
 
 public:
+	// --- NEW APPROACH VARIABLES ---
+
+	float Accumulative_pos_Right = 0;
+	float Accumulative_pos_Left = 0;
+	float Accumulative_pos_Up = 0;
+	float Accumulative_pos_Down = 0;
+	fPoint Future_position = { 0,0 };
 	bool				do_logic = false;
 	int					logic_updates_per_second = 0;
 	float				update_s_cycle = 0;

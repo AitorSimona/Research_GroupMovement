@@ -22,7 +22,7 @@ public:
 
 	// Called each loop iteration
 	bool PreUpdate();
-	bool PostUpdate();
+	bool PostUpdate(float dt);
 
 	// Called before quitting
 	bool CleanUp();
@@ -47,7 +47,7 @@ public:
 
 public:
 
-	SDL_Renderer*	renderer;
+	SDL_Renderer*	renderer = nullptr;
 	SDL_Rect		camera;
 	SDL_Rect		viewport;
 	SDL_Color		background;

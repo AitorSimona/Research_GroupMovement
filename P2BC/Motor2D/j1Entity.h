@@ -6,18 +6,7 @@
 #include "PugiXml\src\pugixml.hpp"
 #include <string>
 
-
 class j1EntityManager;
-
-enum entity_state
-{
-	IDLE = 0,
-	RIGHT,
-	LEFT,
-	JUMPING,
-	FALLING,
-	FLYING
-};
 
 enum class entity_type
 {
@@ -70,7 +59,7 @@ public:
 public:
 
 	// --- Basic ---
-	std::string			name = nullptr;
+	std::string			name;
 	fPoint			position = { 0,0 };
 	fPoint          Velocity = { 0,0 };
 
@@ -79,7 +68,6 @@ public:
 
 	// --- Entity ---
 	entity_type  entitytype;
-	entity_state entitystate;
 
 	//--- Active or inactive ----
 	bool active = false;

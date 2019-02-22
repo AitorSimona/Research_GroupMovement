@@ -9,6 +9,8 @@
 #include "j1Map.h"
 #include "j1PathFinding.h"
 #include "j1Scene.h"
+#include "j1EntityManager.h"
+#include "j1Player.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -73,6 +75,13 @@ bool j1Scene::Start()
 
 	debug_tex = App->tex->Load("maps/path2.png");
 
+	// --- Creating entity  ---
+	player = (j1Player*)App->manager->CreateEntity("player", entity_type::PLAYER);
+	player2 = (j1Player*)App->manager->CreateEntity("player2", entity_type::PLAYER);
+	player3 = (j1Player*)App->manager->CreateEntity("player3", entity_type::PLAYER);
+	player4 = (j1Player*)App->manager->CreateEntity("player4", entity_type::PLAYER);
+
+
 	return true;
 }
 
@@ -124,16 +133,16 @@ bool j1Scene::Update(float dt)
 
 	//Make the camera movement independent of framerate
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-		App->render->camera.y += ceil(150.0*dt);
+		App->render->camera.y += ceil(350.0*dt);
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-		App->render->camera.y -= ceil(150.0*dt);
+		App->render->camera.y -= ceil(350.0*dt);
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		App->render->camera.x += ceil(150.0*dt);
+		App->render->camera.x += ceil(350.0*dt);
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		App->render->camera.x -= ceil(150.0*dt);
+		App->render->camera.x -= ceil(350.0*dt);
 
 	App->map->Draw();
 
@@ -170,7 +179,7 @@ bool j1Scene::Update(float dt)
 }
 
 // Called each loop iteration
-bool j1Scene::PostUpdate()
+bool j1Scene::PostUpdate(float dt)
 {
 	BROFILER_CATEGORY("Scene_Post_Update", Profiler::Color::Aquamarine);
 
