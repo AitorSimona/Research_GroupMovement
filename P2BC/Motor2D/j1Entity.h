@@ -22,6 +22,8 @@ struct entity_info
 	// --- Collider data ---
 	iPoint Size = { 0,0 };
 
+	bool IsSelected = false;
+
 };
 
 class j1Entity

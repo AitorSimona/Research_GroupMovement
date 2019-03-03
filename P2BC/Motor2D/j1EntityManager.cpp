@@ -122,6 +122,42 @@ j1Entity* const j1EntityManager::CreateEntity(entity_type entitytype, entity_inf
 	return(entity);
 }
 
+void j1EntityManager::SelectEntities_inRect(SDL_Rect SRect)
+{
+	std::list<j1Entity*>::iterator entity = entities.begin();
+	SDL_Rect entityrect = { 0,0,0,0 };
+
+	while (entity != entities.end())
+	{
+		 entityrect = { (int)(*entity)->info.position.x, (int)(*entity)->info.position.y, (*entity)->info.Size.x, (*entity)->info.Size.y };
+
+		 // --- Check entity's rect against the given SRect, select it if overlap is positive ---
+		 if (SDL_HasIntersection(&entityrect, &SRect))
+			 (*entity)->info.IsSelected = true;
+		 else
+			 (*entity)->info.IsSelected = false;
+
+		 entity++;
+	}
+
+}
+
+void j1EntityManager::CreateGroup()
+{
+	Group.ClearGroup();
+
+	std::list<j1Entity*>::iterator entity = entities.begin();
+
+	while (entity != entities.end())
+	{
+		if ((*entity)->info.IsSelected)
+			Group.addUnit(*entity);
+
+		entity++;
+	}
+
+}
+
 
 
 

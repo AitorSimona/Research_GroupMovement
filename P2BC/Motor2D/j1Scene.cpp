@@ -240,8 +240,13 @@ void j1Scene::RectangleSelection()
 
 		// --- Check for Units in the rectangle, select them ---
 
+		App->manager->SelectEntities_inRect(SRect);
+
 		//LOG("rect is x%i y%i w%i h%i", SRect.x, SRect.y, SRect.w, SRect.h);
 	}
+
+	else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP)
+		App->manager->CreateGroup();
 
 }
 

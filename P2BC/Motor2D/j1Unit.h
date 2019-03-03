@@ -1,5 +1,5 @@
-#ifndef __Unit_H__
-#define __Unit_H__
+#ifndef __j1Unit_H__
+#define __j1Unit_H__
 
 #include "j1Entity.h"
 #include "SDL\include\SDL.h"
@@ -45,4 +45,4 @@ private:
 	UnitState state = UnitState::State_Idle;
 };
 
-#endif //__Entity_H__
+#endif //__j1Unit_H__
