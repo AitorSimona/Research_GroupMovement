@@ -37,7 +37,7 @@ public:
 	UnitState GetUnitState() const;
 
 	// --- Draw circle to indicate SelectedUnits ---
-	void DrawCircle();
+	void DrawQuad();
 
 public:
 

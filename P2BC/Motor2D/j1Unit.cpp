@@ -12,7 +12,7 @@ void j1Unit::FixedUpdate(float dt)
 	const SDL_Rect unit_rect { 0,0, info.Size.x, info.Size.y };
 
 	if (info.IsSelected)
-		DrawCircle();
+		DrawQuad();
 
 	App->render->Blit(App->manager->sprite, info.position.x, info.position.y, &unit_rect);
 }
@@ -45,7 +45,7 @@ UnitState j1Unit::GetUnitState() const
 	return state;
 }
 
-void j1Unit::DrawCircle()
+void j1Unit::DrawQuad()
 {
 	const SDL_Rect entityrect = { info.position.x,  info.position.y,  info.Size.x,  info.Size.y };
 	App->render->DrawQuad(entityrect, unitinfo.color.r, unitinfo.color.g, unitinfo.color.b, unitinfo.color.a,false);
