@@ -42,6 +42,8 @@ public:
 	// Change current map
 	bool ChangeMap(int destination_map_id);
 
+	iPoint mouse_pos = { 0,0 };
+
 private:
 	SDL_Texture* debug_tex;
 

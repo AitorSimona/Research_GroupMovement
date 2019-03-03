@@ -7,6 +7,8 @@
 #include "j1App.h"
 #include "j1EntityManager.h"
 #include "Brofiler/Brofiler.h"
+#include "j1Unit.h"
+#include "j1Entity.h"
 
 j1EntityManager::j1EntityManager() : j1Module()
 {
@@ -53,22 +55,8 @@ bool j1EntityManager::Update(float dt)
 {
 	BROFILER_CATEGORY("EntityManager_Update", Profiler::Color::Chocolate);
 
-	//accumulated_time += dt;
-
-	//if (accumulated_time >= update_ms_cycle)
-	//{
-	//	do_logic = true;
-	//}
-
 	if (dt<update_ms_cycle*1.25f && dt > 0.0f)
 		UpdateEntity(dt);
-
-	//if (do_logic == true)
-	//{
-	//	LOG("Did logic step after %f", accumulated_time);
-	//	accumulated_time = 0.0f;
-	//	do_logic = false;
-	//}
 
 	return true;
 }
@@ -79,11 +67,8 @@ void j1EntityManager::UpdateEntity(float dt)
 
 	while (entity != entities.end())
 	{
-		/*if (do_logic == true)
-		{*/
 		(*entity)->LogicUpdate(dt);
-		//}
-
+	
 		++entity;
 	}
 }
@@ -123,14 +108,14 @@ bool j1EntityManager::CleanUp()
 }
 
 // Create a new empty entity
-j1Entity* const j1EntityManager::CreateEntity(const char* entname, entity_type entitytype)
+j1Entity* const j1EntityManager::CreateEntity(entity_type entitytype, entity_info entityinfo, UnitInfo unitinfo)
 {
 	j1Entity* entity = nullptr;
 
 	switch (entitytype)
 	{
-	case entity_type::PLAYER:
-		entity = (j1Entity*) new j1Player();
+	case entity_type::UNIT:
+		entity = (j1Entity*) new j1Unit(entityinfo,unitinfo);
 		break;
 	}
 

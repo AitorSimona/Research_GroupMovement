@@ -2,24 +2,34 @@
 #define __J1ENTITY_H__
 
 #include "p2Point.h"
-#include "SDL\include\SDL.h"
-#include "PugiXml\src\pugixml.hpp"
-#include <string>
 
 class j1EntityManager;
+struct SDL_Texture;
 
 enum class entity_type
 {
-	PLAYER,
+	NONE,
+	UNIT,
+	MAX
+};
+
+struct entity_info
+{
+	// --- Basic ---
+	fPoint			position = { 0,0 };
+	int          Speed = 0;
+
+	// --- Collider data ---
+	iPoint Size = { 0,0 };
+
 };
 
 class j1Entity
 {
 public:
 
-	j1Entity(const char* entname, entity_type entitytype) : manager(NULL), entitytype(entitytype)
+	j1Entity(entity_type entitytype, entity_info info) : manager(NULL), entitytype(entitytype), info(info)
 	{
-		name.assign(entname);
 	}
 
 	void Init(j1EntityManager* manager)
@@ -28,16 +38,6 @@ public:
 	}
 
 	virtual bool Start()
-	{
-		return true;
-	}
-
-	virtual bool Load(pugi::xml_node&)
-	{
-		return true;
-	}
-
-	virtual bool Save(pugi::xml_node&) const
 	{
 		return true;
 	}
@@ -58,16 +58,9 @@ public:
 
 public:
 
-	// --- Basic ---
-	std::string			name;
-	fPoint			position = { 0,0 };
-	fPoint          Velocity = { 0,0 };
-
-	// --- Collider data ---
-	SDL_Rect entitycollrect = { 0,0,0,0 };
-
 	// --- Entity ---
 	entity_type  entitytype;
+	entity_info info;
 
 	//--- Active or inactive ----
 	bool active = false;
@@ -75,6 +68,7 @@ public:
 	// --- Spritesheet ---
 	SDL_Texture* spritesheet = nullptr;
 
+	// --- Manager pointer ---
 	j1EntityManager*	manager = nullptr;
 };
 

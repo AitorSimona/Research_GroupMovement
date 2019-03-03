@@ -10,7 +10,6 @@
 #include "j1PathFinding.h"
 #include "j1Scene.h"
 #include "j1EntityManager.h"
-#include "j1Player.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -75,13 +74,6 @@ bool j1Scene::Start()
 
 	debug_tex = App->tex->Load("maps/path2.png");
 
-	// --- Creating entity  ---
-	player = (j1Player*)App->manager->CreateEntity("player", entity_type::PLAYER);
-	player2 = (j1Player*)App->manager->CreateEntity("player2", entity_type::PLAYER);
-	player3 = (j1Player*)App->manager->CreateEntity("player3", entity_type::PLAYER);
-	player4 = (j1Player*)App->manager->CreateEntity("player4", entity_type::PLAYER);
-
-
 	return true;
 }
 
@@ -102,6 +94,7 @@ bool j1Scene::PreUpdate()
 
 	if(App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
 	{
+		mouse_pos = p;
 		if(origin_selected == true)
 		{
 			App->pathfinding->CreatePath(origin, p);

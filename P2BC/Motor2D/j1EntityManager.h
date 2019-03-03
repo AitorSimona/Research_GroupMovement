@@ -6,11 +6,12 @@
 #define __J1ENTITYMANAGER_H__
 
 #include "j1Module.h"
-#include "j1Entity.h"
-#include "j1Player.h"
 #include <list>
 
 class j1Entity;
+enum class entity_type;
+struct entity_info;
+struct UnitInfo;
 
 //#define DEFAULT_LOGIC_PER_SECOND 60
 
@@ -38,16 +39,12 @@ public:
 	bool CleanUp();
 
 	// --- Entities management ---
-	j1Entity * const CreateEntity(const char* entname, entity_type entitytype);
+	j1Entity * const CreateEntity(entity_type entitytype, entity_info entityinfo, UnitInfo unitinfo);
 
 public:
 
 	std::list <j1Entity*>	entities;
-	bool				do_logic;
-	int					logic_updates_per_second = 0;
 	float				update_ms_cycle = 0;
-	float				accumulated_time = 0;
-
 };
 
 #endif // __J1ENTITYMANAGER_H__
