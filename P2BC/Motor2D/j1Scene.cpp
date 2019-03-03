@@ -102,10 +102,15 @@ bool j1Scene::PreUpdate()
 	App->input->GetMousePosition(x, y);
 	iPoint p = App->render->ScreenToWorld(x, y);
 	p = App->map->WorldToMap(p.x, p.y);
+	mouse_pos.x = x;
+	mouse_pos.y = y;
+
+	//App->map->Draw();
+
+	//LOG("mouse_pos %i %i", mouse_pos.x, mouse_pos.y);
 
 	if(App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
 	{
-		mouse_pos = p;
 		if(origin_selected == true)
 		{
 			App->pathfinding->CreatePath(origin, p);
@@ -179,6 +184,10 @@ bool j1Scene::Update(float dt)
 		App->render->Blit(debug_tex, pos.x, pos.y);
 	}
 
+	// --- Calling Selection Rectangle Tool ---
+
+	RectangleSelection();
+
 	return true;
 }
 
@@ -203,5 +212,36 @@ bool j1Scene::CleanUp()
 	std::vector<std::string*>().swap(StageList);
 
 	return true;
+}
+
+void j1Scene::RectangleSelection()
+{
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+		rectangle_origin = mouse_pos;
+
+	else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+		// --- Rectangle size ---
+		int width = mouse_pos.x - rectangle_origin.x;
+		int height = mouse_pos.y - rectangle_origin.y;
+
+		// --- Draw Rectangle ---
+		SDL_Rect SRect = { rectangle_origin.x, rectangle_origin.y, width, height };
+		App->render->DrawQuad(SRect, 255, 255, 255, 255, false);
+
+		// --- Once we get to the negative side of SRect numbers must be adjusted ---
+		if (width < 0) {
+			SRect.x = mouse_pos.x;
+			SRect.w *= -1;
+		}
+		if (height < 0) {
+			SRect.y = mouse_pos.y;
+			SRect.h *= -1;
+		}
+
+		// --- Check for Units in the rectangle, select them ---
+
+		//LOG("rect is x%i y%i w%i h%i", SRect.x, SRect.y, SRect.w, SRect.h);
+	}
+
 }
 

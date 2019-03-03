@@ -34,6 +34,8 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void RectangleSelection();
+
 public:
 
 	// Set new Walkability map
@@ -43,6 +45,7 @@ public:
 	bool ChangeMap(int destination_map_id);
 
 	iPoint mouse_pos = { 0,0 };
+	iPoint rectangle_origin = { 0,0 };
 
 private:
 	SDL_Texture* debug_tex;
