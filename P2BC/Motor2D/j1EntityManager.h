@@ -12,6 +12,7 @@ class j1Entity;
 enum class entity_type;
 struct entity_info;
 struct UnitInfo;
+struct SDL_Texture;
 
 //#define DEFAULT_LOGIC_PER_SECOND 60
 
@@ -45,6 +46,7 @@ public:
 
 	std::list <j1Entity*>	entities;
 	float				update_ms_cycle = 0;
+	SDL_Texture* sprite = nullptr;
 };
 
 #endif // __J1ENTITYMANAGER_H__

@@ -10,6 +10,8 @@
 #include "j1PathFinding.h"
 #include "j1Scene.h"
 #include "j1EntityManager.h"
+#include "j1Entity.h"
+#include "j1Unit.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -31,7 +33,6 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	for (pugi::xml_node stage = config.child("map_name"); stage; stage = stage.next_sibling("map_name"))
 	{
 		std::string* StageName = new std::string(stage.attribute("path").as_string());
-		//StageList.add(StageName);
 		StageList.push_back(StageName);
 	}
 
@@ -73,6 +74,16 @@ bool j1Scene::Start()
 	}
 
 	debug_tex = App->tex->Load("maps/path2.png");
+
+	// --- Create Entity ---
+
+	entity_info tmp;
+	tmp.position = { 100,100 };
+	tmp.Size = { 24,32 };
+	tmp.Speed = 10;
+
+	UnitInfo infotmp;
+	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
 
 	return true;
 }

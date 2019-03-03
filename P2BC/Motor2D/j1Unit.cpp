@@ -1,4 +1,7 @@
 #include "j1Unit.h"
+#include "j1App.h"
+#include "j1Render.h"
+#include "j1EntityManager.h"
 
 j1Unit::j1Unit(entity_info entityinfo, UnitInfo unitinfo):j1Entity(entity_type::UNIT,entityinfo)
 {
@@ -6,6 +9,8 @@ j1Unit::j1Unit(entity_info entityinfo, UnitInfo unitinfo):j1Entity(entity_type::
 
 void j1Unit::FixedUpdate(float dt)
 {
+	const SDL_Rect unit_rect { 0,0, info.Size.x, info.Size.y };
+	App->render->Blit(App->manager->sprite, info.position.x, info.position.y, &unit_rect);
 }
 
 void j1Unit::LogicUpdate(float dt)

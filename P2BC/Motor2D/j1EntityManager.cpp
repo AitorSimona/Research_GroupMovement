@@ -9,6 +9,7 @@
 #include "Brofiler/Brofiler.h"
 #include "j1Unit.h"
 #include "j1Entity.h"
+#include "j1Textures.h"
 
 j1EntityManager::j1EntityManager() : j1Module()
 {
@@ -25,11 +26,7 @@ bool j1EntityManager::Awake(pugi::xml_node& config)
 {
 	LOG("Setting up Entity manager");
 	bool ret = true;
-	//logic_updates_per_second = DEFAULT_LOGIC_PER_SECOND;
-	//update_ms_cycle = 1.0f / (float)logic_updates_per_second;
 	update_ms_cycle = 1.0f / (float)App->framerate_cap;
-
-	// ---------------------
 
 	return ret;
 }
@@ -39,6 +36,9 @@ bool j1EntityManager::Start()
 {
 	LOG("start j1EntityManager");
 	bool ret = true;
+
+	sprite = App->tex->Load("textures/spritesheet.png");
+
 	return ret;
 }
 
@@ -46,8 +46,6 @@ bool j1EntityManager::Start()
 bool j1EntityManager::PreUpdate()
 {
 	BROFILER_CATEGORY("EntityManager_Pre_Update", Profiler::Color::Chartreuse);
-
-	//do_logic = false;
 	return true;
 }
 
@@ -119,7 +117,6 @@ j1Entity* const j1EntityManager::CreateEntity(entity_type entitytype, entity_inf
 		break;
 	}
 
-	entity->Init(this);
 	entity->Start();
 	entities.push_back(entity);
 	return(entity);

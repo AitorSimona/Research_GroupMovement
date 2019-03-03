@@ -28,13 +28,8 @@ class j1Entity
 {
 public:
 
-	j1Entity(entity_type entitytype, entity_info info) : manager(NULL), entitytype(entitytype), info(info)
+	j1Entity(entity_type entitytype, entity_info info) : entitytype(entitytype), info(info)
 	{
-	}
-
-	void Init(j1EntityManager* manager)
-	{
-		this->manager = manager;
 	}
 
 	virtual bool Start()
@@ -67,9 +62,6 @@ public:
 
 	// --- Spritesheet ---
 	SDL_Texture* spritesheet = nullptr;
-
-	// --- Manager pointer ---
-	j1EntityManager*	manager = nullptr;
 };
 
 #endif // __J1ENTITY_H__
