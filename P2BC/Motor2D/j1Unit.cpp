@@ -10,6 +10,10 @@ j1Unit::j1Unit(entity_info entityinfo, UnitInfo unitinfo):j1Entity(entity_type::
 void j1Unit::FixedUpdate(float dt)
 {
 	const SDL_Rect unit_rect { 0,0, info.Size.x, info.Size.y };
+
+	if (info.IsSelected)
+		DrawCircle();
+
 	App->render->Blit(App->manager->sprite, info.position.x, info.position.y, &unit_rect);
 }
 
@@ -39,6 +43,12 @@ void j1Unit::SetUnitState(UnitState unitState)
 UnitState j1Unit::GetUnitState() const
 {
 	return state;
+}
+
+void j1Unit::DrawCircle()
+{
+	const SDL_Rect entityrect = { info.position.x,  info.position.y,  info.Size.x,  info.Size.y };
+	App->render->DrawQuad(entityrect, unitinfo.color.r, unitinfo.color.g, unitinfo.color.b, unitinfo.color.a,false);
 }
 
 // --- UnitInfo Constructors and Destructor ---

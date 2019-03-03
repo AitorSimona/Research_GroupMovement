@@ -32,3 +32,4 @@ void j1Group::ClearGroup()
 {
 	Units.clear();
 }
+

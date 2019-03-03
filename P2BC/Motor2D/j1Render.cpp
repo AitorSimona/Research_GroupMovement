@@ -44,11 +44,17 @@ bool j1Render::Awake(pugi::xml_node& config)
 	}
 	else
 	{
-		camera.w = App->win->screen_surface->w;
-		camera.h = App->win->screen_surface->h;
+		camera.w = App->win->screen_surface->w / App->win->GetScale();
+		camera.h = App->win->screen_surface->h / App->win->GetScale();
 		camera.x = 0;
 		camera.y = 0;
 	}
+
+	uint width = 0, height = 0;
+	App->win->GetWindowSize(width, height);
+
+	SDL_RenderSetLogicalSize(renderer, width, height);
+
 
 	return ret;
 }

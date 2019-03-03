@@ -23,6 +23,7 @@ public:
 	// --- Clear Group ---
 	void ClearGroup();
 
+
 private:
 
 	iPoint goal = { 0,0 };

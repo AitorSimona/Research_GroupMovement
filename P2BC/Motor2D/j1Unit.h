@@ -36,6 +36,9 @@ public:
 	void SetUnitState(UnitState unitState);
 	UnitState GetUnitState() const;
 
+	// --- Draw circle to indicate SelectedUnits ---
+	void DrawCircle();
+
 public:
 
 	UnitInfo unitinfo;
