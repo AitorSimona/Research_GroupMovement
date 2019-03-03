@@ -50,7 +50,10 @@
       <Filter>Desenvolupament  ========\Modules\Entities</Filter>
     </ClCompile>
     <ClCompile Include="j1Group.cpp">
-      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+      <Filter>Desenvolupament  ========\Modules\Entities\GroupMovement</Filter>
+    </ClCompile>
+    <ClCompile Include="j1MovementManager.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\GroupMovement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,7 +118,10 @@
       <Filter>Desenvolupament  ========\Modules\Entities</Filter>
     </ClInclude>
     <ClInclude Include="j1Group.h">
-      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+      <Filter>Desenvolupament  ========\Modules\Entities\GroupMovement</Filter>
+    </ClInclude>
+    <ClInclude Include="j1MovementManager.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\GroupMovement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +148,9 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\Modules\Entities">
       <UniqueIdentifier>{58b35b52-46a8-44db-89cc-f7b1b24de37d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Modules\Entities\GroupMovement">
+      <UniqueIdentifier>{6193aa3c-1cb5-4a07-b8a7-445481e84670}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
