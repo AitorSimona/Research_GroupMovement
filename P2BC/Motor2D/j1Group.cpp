@@ -33,3 +33,8 @@ void j1Group::ClearGroup()
 	Units.clear();
 }
 
+int j1Group::GetSize()
+{
+	return Units.size();
+}
+

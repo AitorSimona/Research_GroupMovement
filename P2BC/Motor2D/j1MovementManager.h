@@ -19,6 +19,10 @@ public:
 	// --- Called before quitting ---
 	bool CleanUp();
 
+	// --- GroupMovement Tools ---
+	void SelectEntities_inRect(SDL_Rect SRect);
+	void CreateGroup();
+
 private:
 
 	std::list <j1Group*>	Groups;

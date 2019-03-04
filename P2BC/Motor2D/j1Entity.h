@@ -5,6 +5,7 @@
 
 class j1EntityManager;
 struct SDL_Texture;
+class j1Group;
 
 enum class entity_type
 {
@@ -64,6 +65,8 @@ public:
 
 	// --- Spritesheet ---
 	SDL_Texture* spritesheet = nullptr;
+
+	j1Group * current_group = nullptr;
 };
 
 #endif // __J1ENTITY_H__

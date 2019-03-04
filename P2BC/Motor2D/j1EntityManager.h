@@ -41,11 +41,6 @@ public:
 	// --- Entities management ---
 	j1Entity * const CreateEntity(entity_type entitytype, entity_info entityinfo, UnitInfo unitinfo);
 
-	// --- GroupMovement Tools ---
-
-	void SelectEntities_inRect(SDL_Rect SRect);
-	void CreateGroup();
-
 public:
 
 	std::list <j1Entity*>	entities;

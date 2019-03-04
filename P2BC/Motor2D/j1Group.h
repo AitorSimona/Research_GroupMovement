@@ -23,9 +23,11 @@ public:
 	// --- Clear Group ---
 	void ClearGroup();
 
+	// --- Getters ---
+	int GetSize();
+
 
 private:
-
 	iPoint goal = { 0,0 };
 	std::list <j1Entity*> Units;
 };

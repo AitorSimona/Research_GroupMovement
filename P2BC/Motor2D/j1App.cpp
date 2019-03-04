@@ -14,6 +14,7 @@
 #include "j1Pathfinding.h"
 #include "j1App.h"
 #include "j1EntityManager.h"
+#include "j1MovementManager.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -31,6 +32,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	map = new j1Map();
 	pathfinding = new j1PathFinding();
 	manager = new j1EntityManager();
+	Mmanager = new j1MovementManager();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -42,6 +44,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(pathfinding);
 	AddModule(manager);
+	AddModule(Mmanager);
 
 	// render last to swap buffer
 	AddModule(render);

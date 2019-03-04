@@ -9,9 +9,10 @@
 #include "j1Map.h"
 #include "j1PathFinding.h"
 #include "j1Scene.h"
-#include "j1EntityManager.h"
 #include "j1Entity.h"
 #include "j1Unit.h"
+#include "j1EntityManager.h"
+#include "j1MovementManager.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -239,13 +240,13 @@ void j1Scene::RectangleSelection()
 
 		// --- Check for Units in the rectangle, select them ---
 
-		App->manager->SelectEntities_inRect(SRect);
+		App->Mmanager->SelectEntities_inRect(SRect);
 
 		//LOG("rect is x%i y%i w%i h%i", SRect.x, SRect.y, SRect.w, SRect.h);
 	}
 
 	else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP)
-		App->manager->CreateGroup();
+		App->Mmanager->CreateGroup();
 
 }
 

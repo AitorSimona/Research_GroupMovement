@@ -2,6 +2,7 @@
 #include "j1App.h"
 #include "j1Render.h"
 #include "j1EntityManager.h"
+#include "j1Group.h"
 
 j1Unit::j1Unit(entity_info entityinfo, UnitInfo unitinfo):j1Entity(entity_type::UNIT,entityinfo)
 {
