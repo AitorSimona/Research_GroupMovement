@@ -101,6 +101,8 @@ void j1MovementManager::Move(j1Group * group, float dt)
 {
 	std::list <j1Entity*>::const_iterator unit = group->Units.begin();
 
+	LOG("On Move Function");
+
 	while (unit != group->Units.end())
 	{
 

@@ -216,10 +216,13 @@ bool j1Scene::CleanUp()
 
 void j1Scene::RectangleSelection()
 {
+	rectangle_width = mouse_pos.x - rectangle_origin.x;
+	rectangle_height = mouse_pos.y - rectangle_origin.y;
+
 	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
 		rectangle_origin = mouse_pos;
 
-	else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+	else if (std::abs(rectangle_width) >= RECT_MIN_AREA && std::abs(rectangle_height) >= RECT_MIN_AREA && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
 		// --- Rectangle size ---
 		int width = mouse_pos.x - rectangle_origin.x;
 		int height = mouse_pos.y - rectangle_origin.y;
@@ -247,6 +250,7 @@ void j1Scene::RectangleSelection()
 
 	else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP)
 		App->Mmanager->CreateGroup();
+	
 
 }
 

@@ -25,7 +25,6 @@ struct entity_info
 	iPoint Size = { 0,0 };
 
 	bool IsSelected = false;
-
 };
 
 class j1Entity

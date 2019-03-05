@@ -42,14 +42,17 @@ int j1Group::GetSize()
 	return Units.size();
 }
 
-bool j1Group::CheckForMovementRequest(float dt)
+void j1Group::CheckForMovementRequest(float dt)
 {
 	if ((*Units.begin())->info.IsSelected)
 	{
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
 			App->Mmanager->Move(this,dt);
 	}
+}
 
-	return true;
+bool j1Group::IsGroupLead(j1Entity * entity)
+{
+	return (*Units.begin()) == entity;
 }
 

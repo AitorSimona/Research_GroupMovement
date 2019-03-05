@@ -30,7 +30,10 @@ public:
 	int GetSize();
 
 	// --- Check Movement Request ---
-	bool CheckForMovementRequest(float dt);
+	void CheckForMovementRequest(float dt);
+
+	// --- Enquiries ---
+	bool IsGroupLead(j1Entity* entity);
 
 
 private:

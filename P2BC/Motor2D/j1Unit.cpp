@@ -3,6 +3,7 @@
 #include "j1Render.h"
 #include "j1EntityManager.h"
 #include "j1Textures.h"
+#include "j1Group.h"
 
 j1Unit::j1Unit(entity_info entityinfo, UnitInfo unitinfo):j1Entity(entity_type::UNIT,entityinfo)
 {
@@ -20,6 +21,11 @@ void j1Unit::FixedUpdate(float dt)
 
 void j1Unit::LogicUpdate(float dt)
 {
+	if (this->current_group != nullptr)
+	{
+		if (current_group->IsGroupLead(this))
+			current_group->CheckForMovementRequest(dt);
+	}
 }
 
 void j1Unit::StateMachine()

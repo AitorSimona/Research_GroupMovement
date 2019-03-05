@@ -7,6 +7,8 @@
 struct SDL_Texture;
 class j1Player;
 
+#define RECT_MIN_AREA 5
+
 class j1Scene : public j1Module
 {
 public:
@@ -46,6 +48,8 @@ public:
 
 	iPoint mouse_pos = { 0,0 };
 	iPoint rectangle_origin = { 0,0 };
+	int rectangle_width = 0;
+	int rectangle_height = 0;
 
 private:
 	SDL_Texture* debug_tex;
