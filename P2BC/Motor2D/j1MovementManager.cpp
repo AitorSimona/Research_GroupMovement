@@ -94,7 +94,7 @@ void j1MovementManager::CreateGroup()
 	else
 		delete group;
 
-	LOG("Groups size %i", Groups.size());
+//	LOG("Groups size %i", Groups.size());
 }
 
 void j1MovementManager::Move(j1Group * group, float dt)

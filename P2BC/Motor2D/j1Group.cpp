@@ -46,7 +46,7 @@ void j1Group::CheckForMovementRequest(float dt)
 {
 	if ((*Units.begin())->info.IsSelected)
 	{
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN)
 			App->Mmanager->Move(this,dt);
 	}
 }
