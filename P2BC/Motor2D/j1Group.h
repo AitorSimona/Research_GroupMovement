@@ -1,13 +1,16 @@
 #ifndef __j1Group_H__
 #define __j1Group_H__
 
-#include "j1Entity.h"
-#include "SDL\include\SDL.h"
 #include <list>
+#include "p2Point.h"
+
+class j1Entity;
+
 
 class j1Group 
 {
 public:
+	friend class j1MovementManager;
 
 	j1Group();
 	~j1Group();
@@ -25,6 +28,9 @@ public:
 
 	// --- Getters ---
 	int GetSize();
+
+	// --- Check Movement Request ---
+	bool CheckForMovementRequest(float dt);
 
 
 private:

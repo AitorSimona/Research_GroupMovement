@@ -1,4 +1,8 @@
+#include "j1Entity.h"
 #include "j1Group.h"
+#include "j1MovementManager.h"
+#include "j1App.h"
+#include "j1Input.h"
 
 j1Group::j1Group()
 {
@@ -36,5 +40,16 @@ void j1Group::ClearGroup()
 int j1Group::GetSize()
 {
 	return Units.size();
+}
+
+bool j1Group::CheckForMovementRequest(float dt)
+{
+	if ((*Units.begin())->info.IsSelected)
+	{
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+			App->Mmanager->Move(this,dt);
+	}
+
+	return true;
 }
 

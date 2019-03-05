@@ -1,3 +1,5 @@
+#include "j1Entity.h"
+#include "j1Group.h"
 #include "j1MovementManager.h"
 #include "j1App.h"
 #include "j1EntityManager.h" 
@@ -57,6 +59,7 @@ void j1MovementManager::CreateGroup()
 	bool Validgroup = false;
 
 	j1Group* group = new j1Group;
+
 	std::list<j1Entity*>::iterator entity = App->manager->entities.begin();
 
 	while (entity != App->manager->entities.end())
@@ -92,4 +95,53 @@ void j1MovementManager::CreateGroup()
 		delete group;
 
 	LOG("Groups size %i", Groups.size());
+}
+
+void j1MovementManager::Move(j1Group * group, float dt)
+{
+	std::list <j1Entity*>::const_iterator unit = group->Units.begin();
+
+	while (unit != group->Units.end())
+	{
+
+		switch ((*unit)->UnitMovementState)
+		{
+
+		case MovementState::MovementState_NoState:
+
+			// --- On call to Move, Units will request a path to the destination ---
+
+			// --- If any other unit of the group has the same goal, change the goal tile ---
+
+			break;
+
+		case MovementState::MovementState_Wait:
+
+			// --- Whenever the unit faces an obstacle of any type during a scheduled path, overcome it ---
+
+			break;
+
+		case MovementState::MovementState_FollowPath:
+
+			// --- If a path is created, the unit will start following it ---
+
+			break;
+
+		case MovementState::MovementState_NextStep:
+
+			// --- If a path is being followed, the unit will get the next tile in the path and advance ---
+
+			break;
+
+		case MovementState::MovementState_DestinationReached:
+
+			// --- The unit reaches the end of the path, thus stopping and returning to NoState ---
+
+			break;
+		}
+
+		unit++;
+
+	}
+
 }

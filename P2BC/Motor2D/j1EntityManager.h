@@ -7,7 +7,6 @@
 
 #include "j1Module.h"
 #include <list>
-#include "j1Group.h"
 
 class j1Entity;
 enum class entity_type;
@@ -46,11 +45,6 @@ public:
 	std::list <j1Entity*>	entities;
 	float				update_ms_cycle = 0;
 	SDL_Texture* sprite = nullptr;
-
-
-private:
-
-	j1Group Group;
 };
 
 #endif // __J1ENTITYMANAGER_H__

@@ -2,10 +2,11 @@
 #define __J1ENTITY_H__
 
 #include "p2Point.h"
+#include "j1MovementManager.h"
 
-class j1EntityManager;
 struct SDL_Texture;
 class j1Group;
+
 
 enum class entity_type
 {
@@ -66,7 +67,10 @@ public:
 	// --- Spritesheet ---
 	SDL_Texture* spritesheet = nullptr;
 
+	// --- Group Movement stuff ---
 	j1Group * current_group = nullptr;
+	MovementState UnitMovementState = MovementState::MovementState_NoState;
 };
+
 
 #endif // __J1ENTITY_H__

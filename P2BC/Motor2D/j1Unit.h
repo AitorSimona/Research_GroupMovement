@@ -1,8 +1,8 @@
 #ifndef __j1Unit_H__
 #define __j1Unit_H__
 
-#include "j1Entity.h"
 #include "SDL\include\SDL.h"
+#include "j1Entity.h"
 
 struct SDL_Color;
 

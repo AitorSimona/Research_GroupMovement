@@ -1,9 +1,21 @@
 #ifndef __J1MOVEMENTMANAGER_H__
 #define __J1MOVEMENTMANAGER_H__
 
+
+#include "SDL\include\SDL.h"
 #include "j1Module.h"
 #include <list>
-#include "j1Group.h"
+
+enum class MovementState
+{
+	MovementState_NoState,
+	MovementState_Wait,
+	MovementState_FollowPath,
+	MovementState_NextStep,
+	MovementState_DestinationReached
+};
+
+class j1Group;
 
 class j1MovementManager : public j1Module
 {
@@ -19,9 +31,12 @@ public:
 	// --- Called before quitting ---
 	bool CleanUp();
 
-	// --- GroupMovement Tools ---
+	// --- Group Tools ---
 	void SelectEntities_inRect(SDL_Rect SRect);
 	void CreateGroup();
+
+	// --- Move Unit ---
+	void Move(j1Group* unit, float dt);
 
 private:
 
