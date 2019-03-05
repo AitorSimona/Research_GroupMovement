@@ -22,9 +22,9 @@ void j1Group::removeUnit(j1Entity * unit_toremove)
 	Units.remove(unit_toremove);
 }
 
-bool j1Group::SetGoal(iPoint goal)
+void j1Group::SetGoal(iPoint goal)
 {
-	return false;
+	this->goal = goal;
 }
 
 const iPoint j1Group::GetGoal()

@@ -20,7 +20,7 @@ public:
 	void removeUnit(j1Entity* unit_toremove);
 
 	// --- Goal ---
-	bool SetGoal(iPoint goal);
+	void SetGoal(iPoint goal);
     const iPoint GetGoal();
 
 	// --- Clear Group ---

@@ -85,11 +85,11 @@ bool j1Scene::Start()
 
 	UnitInfo infotmp;
 	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 100,200 };
+	tmp.position = { 50,175 };
 	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 100,300 };
+	tmp.position = { 350,275 };
 	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 100,400 };
+	tmp.position = { 250,400 };
 	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
 
 	return true;
