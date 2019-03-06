@@ -98,7 +98,6 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
-
 	BROFILER_CATEGORY("Scene_Pre_Update", Profiler::Color::BlanchedAlmond);
 
 	// debug pathfing ------------------
@@ -257,6 +256,5 @@ void j1Scene::RectangleSelection()
 	else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP)
 		App->Mmanager->CreateGroup();
 	
-
 }
 

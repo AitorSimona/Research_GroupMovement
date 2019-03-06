@@ -3,6 +3,7 @@
 
 #include "p2Point.h"
 #include "j1MovementManager.h"
+#include <vector>
 
 struct SDL_Texture;
 class j1Group;
@@ -25,6 +26,10 @@ struct entity_info
 	iPoint Size = { 0,0 };
 
 	bool IsSelected = false;
+
+	// --- Path to follow ---
+	const std::vector <iPoint>* Current_path;
+
 };
 
 class j1Entity

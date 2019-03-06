@@ -4,6 +4,8 @@
 #include "j1App.h"
 #include "j1EntityManager.h" 
 #include "p2Log.h"
+#include "j1Pathfinding.h"
+#include "j1Scene.h"
 
 j1MovementManager::j1MovementManager()
 {
@@ -105,6 +107,9 @@ void j1MovementManager::Move(j1Group * group, float dt)
 
 	while (unit != group->Units.end())
 	{
+		iPoint Entityposition;
+		Entityposition.x = (*unit)->info.position.x;
+		Entityposition.y = (*unit)->info.position.y;
 
 		switch ((*unit)->UnitMovementState)
 		{
@@ -112,6 +117,8 @@ void j1MovementManager::Move(j1Group * group, float dt)
 		case MovementState::MovementState_NoState:
 
 			// --- On call to Move, Units will request a path to the destination ---
+			App->pathfinding->CreatePath(Entityposition, App->scene->mouse_pos);
+			(*unit)->info.Current_path = App->pathfinding->GetLastPath();
 
 			// --- If any other unit of the group has the same goal, change the goal tile ---
 
