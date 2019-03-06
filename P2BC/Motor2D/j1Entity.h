@@ -28,7 +28,8 @@ struct entity_info
 	bool IsSelected = false;
 
 	// --- Path to follow ---
-	const std::vector <iPoint>* Current_path;
+	std::vector <iPoint> Current_path;
+	iPoint next_tile = { 0,0 };
 
 };
 

@@ -6,6 +6,7 @@
 #include "p2Log.h"
 #include "j1Pathfinding.h"
 #include "j1Scene.h"
+#include "j1Map.h"
 
 j1MovementManager::j1MovementManager()
 {
@@ -105,11 +106,19 @@ void j1MovementManager::Move(j1Group * group, float dt)
 
 	LOG("On Move Function");
 
+	iPoint Map_Entityposition;
+
+	// --- We get the map coords of the mouse ---
+	iPoint Map_mouseposition;
+	Map_mouseposition = App->map->WorldToMap((int)App->scene->mouse_pos.x, (int)App->scene->mouse_pos.y);
+
+
 	while (unit != group->Units.end())
 	{
-		iPoint Entityposition;
-		Entityposition.x = (*unit)->info.position.x;
-		Entityposition.y = (*unit)->info.position.y;
+		// --- We Get the map coords of the Entity ---
+		Map_Entityposition.x = (*unit)->info.position.x;
+		Map_Entityposition.y = (*unit)->info.position.y;
+		Map_Entityposition = App->map->WorldToMap(Map_Entityposition.x, Map_Entityposition.y);
 
 		switch ((*unit)->UnitMovementState)
 		{
@@ -117,8 +126,10 @@ void j1MovementManager::Move(j1Group * group, float dt)
 		case MovementState::MovementState_NoState:
 
 			// --- On call to Move, Units will request a path to the destination ---
-			App->pathfinding->CreatePath(Entityposition, App->scene->mouse_pos);
-			(*unit)->info.Current_path = App->pathfinding->GetLastPath();
+			App->pathfinding->CreatePath(Map_Entityposition, Map_mouseposition);
+			(*unit)->info.Current_path = *App->pathfinding->GetLastPath();
+
+			(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
 
 			// --- If any other unit of the group has the same goal, change the goal tile ---
 
@@ -138,7 +149,19 @@ void j1MovementManager::Move(j1Group * group, float dt)
 
 		case MovementState::MovementState_NextStep:
 
-			// --- If a path is being followed, the unit will get the next tile in the path and advance ---
+			// --- If a path is being followed, the unit will get the next tile in the path ---
+
+			if ((*unit)->info.Current_path.size() > 0)
+			{
+				(*unit)->info.next_tile = (*unit)->info.Current_path.front();
+				(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
+
+				(*unit)->UnitMovementState = MovementState::MovementState_FollowPath;
+			}
+			else
+			{
+				(*unit)->UnitMovementState = MovementState::MovementState_DestinationReached;
+			}
 
 			break;
 
@@ -154,3 +177,4 @@ void j1MovementManager::Move(j1Group * group, float dt)
 	}
 
 }
+
