@@ -134,10 +134,12 @@ void j1MovementManager::Move(j1Group * group, float dt)
 
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && (*unit)->info.IsSelected)
 			{
-				App->pathfinding->CreatePath(Map_Entityposition, Map_mouseposition);
-				(*unit)->info.Current_path = *App->pathfinding->GetLastPath();
+				if (App->pathfinding->CreatePath(Map_Entityposition, Map_mouseposition) != -1)
+				{
+					(*unit)->info.Current_path = *App->pathfinding->GetLastPath();
 
-				(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
+					(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
+				}
 			}
 
 			// --- If any other unit of the group has the same goal, change the goal tile ---
