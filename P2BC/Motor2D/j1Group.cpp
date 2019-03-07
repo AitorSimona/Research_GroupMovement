@@ -44,11 +44,7 @@ int j1Group::GetSize()
 
 void j1Group::CheckForMovementRequest(float dt)
 {
-	if ((*Units.begin())->info.IsSelected)
-	{
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN)
-			App->Mmanager->Move(this,dt);
-	}
+ 	App->Mmanager->Move(this,dt);
 }
 
 bool j1Group::IsGroupLead(j1Entity * entity)

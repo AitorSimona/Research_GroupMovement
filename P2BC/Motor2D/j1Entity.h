@@ -21,6 +21,7 @@ struct entity_info
 	// --- Basic ---
 	fPoint			position = { 0,0 };
 	int          Speed = 0;
+	fPoint DirectionVector = { 0,0 };
 
 	// --- Collider data ---
 	iPoint Size = { 0,0 };
@@ -30,6 +31,7 @@ struct entity_info
 	// --- Path to follow ---
 	std::vector <iPoint> Current_path;
 	iPoint next_tile = { 0,0 };
+
 
 };
 

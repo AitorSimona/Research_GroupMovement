@@ -7,6 +7,7 @@
 #include "j1Pathfinding.h"
 #include "j1Scene.h"
 #include "j1Map.h"
+#include "j1Input.h"
 
 j1MovementManager::j1MovementManager()
 {
@@ -112,6 +113,9 @@ void j1MovementManager::Move(j1Group * group, float dt)
 	iPoint Map_mouseposition;
 	Map_mouseposition = App->map->WorldToMap((int)App->scene->mouse_pos.x, (int)App->scene->mouse_pos.y);
 
+	fPoint distanceToNextTile;
+	iPoint next_tile_world;
+	float DirectDistance;
 
 	while (unit != group->Units.end())
 	{
@@ -126,10 +130,14 @@ void j1MovementManager::Move(j1Group * group, float dt)
 		case MovementState::MovementState_NoState:
 
 			// --- On call to Move, Units will request a path to the destination ---
-			App->pathfinding->CreatePath(Map_Entityposition, Map_mouseposition);
-			(*unit)->info.Current_path = *App->pathfinding->GetLastPath();
 
-			(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN)
+			{
+				App->pathfinding->CreatePath(Map_Entityposition, Map_mouseposition);
+				(*unit)->info.Current_path = *App->pathfinding->GetLastPath();
+
+				(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
+			}
 
 			// --- If any other unit of the group has the same goal, change the goal tile ---
 
@@ -144,6 +152,78 @@ void j1MovementManager::Move(j1Group * group, float dt)
 		case MovementState::MovementState_FollowPath:
 
 			// --- If a path is created, the unit will start following it ---
+
+			next_tile_world = App->map->MapToWorld((*unit)->info.next_tile.x, (*unit)->info.next_tile.y);
+
+			distanceToNextTile = { (float)next_tile_world.x - (*unit)->info.position.x,(float)next_tile_world.y - (*unit)->info.position.y };
+
+			DirectDistance = sqrtf(pow(distanceToNextTile.x, 2.0f) + pow(distanceToNextTile.y, 2.0f));
+
+			LOG("Next tile pos : x = %i y= %i", next_tile_world.x, next_tile_world.y);
+
+			// --- We want a vector to update the unit's direction ---
+			if (DirectDistance > 0.0f)
+			{
+				distanceToNextTile.x /= DirectDistance;
+				distanceToNextTile.y /= DirectDistance;
+			}
+
+			(*unit)->info.DirectionVector.x = distanceToNextTile.x;
+			(*unit)->info.DirectionVector.y = distanceToNextTile.y;
+
+			// --- Now we Apply the unit's Speed and the dt to the Distance we need to advance  ---
+			distanceToNextTile.x *= (*unit)->info.Speed*dt;
+			distanceToNextTile.y *= (*unit)->info.Speed*dt;
+
+			(*unit)->info.position.x += distanceToNextTile.x;
+			(*unit)->info.position.y += distanceToNextTile.y;
+
+
+			// --- If we reach the next tile, get next tile ---
+			if ((*unit)->info.DirectionVector.x >= 0) // --- Moving to the Right
+			{
+				if ((*unit)->info.DirectionVector.y >= 0) // --- Moving Down
+				{
+					if ((*unit)->info.position.x >= (*unit)->info.next_tile.x
+						&& (*unit)->info.position.y >= (*unit)->info.next_tile.y)
+					{
+						(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
+					}
+				}
+				else // --- Moving Up
+				{
+					if ((*unit)->info.position.x >= (*unit)->info.next_tile.x
+						&& (*unit)->info.position.y <= (*unit)->info.next_tile.y)
+					{
+						(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
+					}
+				}
+			}
+			else // --- Moving to the Left
+			{
+				if ((*unit)->info.DirectionVector.y >= 0) // --- Moving Down
+				{
+					if ((*unit)->info.position.x <= (*unit)->info.next_tile.x
+						&& (*unit)->info.position.y >= (*unit)->info.next_tile.y)
+					{
+						(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
+					}
+				}
+				else // --- Moving Up
+				{
+					if ((*unit)->info.position.x <= (*unit)->info.next_tile.x
+						&& (*unit)->info.position.y <= (*unit)->info.next_tile.y)
+					{
+						(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
+					}
+				}
+			}
+
+			if ((*unit)->UnitMovementState == MovementState::MovementState_NextStep)
+			{
+				(*unit)->info.position.x = next_tile_world.x;
+				(*unit)->info.position.y = next_tile_world.y;
+			}
 
 			break;
 
@@ -168,6 +248,11 @@ void j1MovementManager::Move(j1Group * group, float dt)
 		case MovementState::MovementState_DestinationReached:
 
 			// --- The unit reaches the end of the path, thus stopping and returning to NoState ---
+
+			(*unit)->info.DirectionVector.x = 0.0f;
+			(*unit)->info.DirectionVector.y = 0.0f;
+
+			(*unit)->UnitMovementState = MovementState::MovementState_NoState;
 
 			break;
 		}

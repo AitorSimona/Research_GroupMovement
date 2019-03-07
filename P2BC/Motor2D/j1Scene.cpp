@@ -81,7 +81,7 @@ bool j1Scene::Start()
 	entity_info tmp;
 	tmp.position = { 100,100 };
 	tmp.Size = { 24,32 };
-	tmp.Speed = 10;
+	tmp.Speed = 100;
 
 	UnitInfo infotmp;
 	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
@@ -114,19 +114,19 @@ bool j1Scene::PreUpdate()
 
 	//LOG("mouse_pos %i %i", mouse_pos.x, mouse_pos.y);
 
-	if(App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-	{
-		if(origin_selected == true)
-		{
-			App->pathfinding->CreatePath(origin, p);
-			origin_selected = false;
-		}
-		else
-		{
-			origin = p;
-			origin_selected = true;
-		}
-	}
+	//if(App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+	//{
+	//	if(origin_selected == true)
+	//	{
+	//		App->pathfinding->CreatePath(origin, p);
+	//		origin_selected = false;
+	//	}
+	//	else
+	//	{
+	//		origin = p;
+	//		origin_selected = true;
+	//	}
+	//}
 
 	return true;
 }
