@@ -116,6 +116,7 @@ void j1MovementManager::Move(j1Group * group, float dt)
 	fPoint distanceToNextTile;
 	iPoint next_tile_world;
 	float DirectDistance;
+	fPoint tmp;
 
 	while (unit != group->Units.end())
 	{
@@ -131,7 +132,7 @@ void j1MovementManager::Move(j1Group * group, float dt)
 
 			// --- On call to Move, Units will request a path to the destination ---
 
-			if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN)
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && (*unit)->info.IsSelected)
 			{
 				App->pathfinding->CreatePath(Map_Entityposition, Map_mouseposition);
 				(*unit)->info.Current_path = *App->pathfinding->GetLastPath();
@@ -175,54 +176,22 @@ void j1MovementManager::Move(j1Group * group, float dt)
 			distanceToNextTile.x *= (*unit)->info.Speed*dt;
 			distanceToNextTile.y *= (*unit)->info.Speed*dt;
 
-			(*unit)->info.position.x += distanceToNextTile.x;
-			(*unit)->info.position.y += distanceToNextTile.y;
+			// --- must change thisvar name ---
+			tmp.x = next_tile_world.x;
+			tmp.y = next_tile_world.y;
 
-
-			// --- If we reach the next tile, get next tile ---
-			if ((*unit)->info.DirectionVector.x >= 0) // --- Moving to the Right
-			{
-				if ((*unit)->info.DirectionVector.y >= 0) // --- Moving Down
-				{
-					if ((*unit)->info.position.x >= (*unit)->info.next_tile.x
-						&& (*unit)->info.position.y >= (*unit)->info.next_tile.y)
-					{
-						(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
-					}
-				}
-				else // --- Moving Up
-				{
-					if ((*unit)->info.position.x >= (*unit)->info.next_tile.x
-						&& (*unit)->info.position.y <= (*unit)->info.next_tile.y)
-					{
-						(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
-					}
-				}
-			}
-			else // --- Moving to the Left
-			{
-				if ((*unit)->info.DirectionVector.y >= 0) // --- Moving Down
-				{
-					if ((*unit)->info.position.x <= (*unit)->info.next_tile.x
-						&& (*unit)->info.position.y >= (*unit)->info.next_tile.y)
-					{
-						(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
-					}
-				}
-				else // --- Moving Up
-				{
-					if ((*unit)->info.position.x <= (*unit)->info.next_tile.x
-						&& (*unit)->info.position.y <= (*unit)->info.next_tile.y)
-					{
-						(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
-					}
-				}
-			}
-
-			if ((*unit)->UnitMovementState == MovementState::MovementState_NextStep)
+			if ((*unit)->info.position.DistanceTo(tmp) < 3)
 			{
 				(*unit)->info.position.x = next_tile_world.x;
 				(*unit)->info.position.y = next_tile_world.y;
+
+				(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
+			}
+
+			else
+			{
+				(*unit)->info.position.x += distanceToNextTile.x;
+				(*unit)->info.position.y += distanceToNextTile.y;
 			}
 
 			break;
