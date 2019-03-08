@@ -37,7 +37,7 @@ public:
 
 
 private:
-	iPoint goal = { 0,0 };
+	iPoint last_goal = { 0,0 };
 	std::list <j1Entity*> Units;
 };
 

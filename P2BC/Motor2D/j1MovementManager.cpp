@@ -143,13 +143,15 @@ void j1MovementManager::Move(j1Group * group, float dt)
 				{
 					(*unit)->info.Current_path = *App->pathfinding->GetLastPath();
 					(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
+					(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
 
 					(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
 				}
 			}
 
-
 			// --- If any other unit of the group has the same goal, change the goal tile ---
+
+
 
 			break;
 

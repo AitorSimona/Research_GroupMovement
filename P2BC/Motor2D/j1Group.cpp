@@ -24,12 +24,12 @@ void j1Group::removeUnit(j1Entity * unit_toremove)
 
 void j1Group::SetGoal(iPoint goal)
 {
-	this->goal = goal;
+	this->last_goal = goal;
 }
 
 const iPoint j1Group::GetGoal()
 {
-	return goal;
+	return last_goal;
 }
 
 void j1Group::ClearGroup()
