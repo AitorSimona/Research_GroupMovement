@@ -79,7 +79,7 @@ bool j1Scene::Start()
 	// --- Create Entity ---
 
 	entity_info tmp;
-	tmp.position = { 100,100 };
+	tmp.position = { 100,125 };
 	tmp.Size = { 24,32 };
 	tmp.Speed = 100;
 

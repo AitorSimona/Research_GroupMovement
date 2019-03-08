@@ -125,6 +125,11 @@ void j1MovementManager::Move(j1Group * group, float dt)
 		Map_Entityposition.y = (*unit)->info.position.y;
 		Map_Entityposition = App->map->WorldToMap(Map_Entityposition.x, Map_Entityposition.y);
 
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && (*unit)->info.IsSelected)
+		{
+			(*unit)->UnitMovementState = MovementState::MovementState_NoState;
+		}
+
 		switch ((*unit)->UnitMovementState)
 		{
 
@@ -137,10 +142,12 @@ void j1MovementManager::Move(j1Group * group, float dt)
 				if (App->pathfinding->CreatePath(Map_Entityposition, Map_mouseposition) != -1)
 				{
 					(*unit)->info.Current_path = *App->pathfinding->GetLastPath();
+					(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
 
 					(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
 				}
 			}
+
 
 			// --- If any other unit of the group has the same goal, change the goal tile ---
 
