@@ -31,6 +31,7 @@ public:
 	// --- Enquiries ---
 	bool IsGroupLead(j1Entity* entity);
 	void SetUnitGoalTile(j1Entity* entity);
+	bool FindFreeAdjacents(iPoint * base_tile);
 
 private:
 	std::list <j1Entity*> Units;

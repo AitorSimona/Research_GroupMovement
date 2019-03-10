@@ -46,13 +46,32 @@ void j1Group::SetUnitGoalTile(j1Entity* entity)
 {
 	std::list <j1Entity*>::const_iterator it = Units.begin();
 
+	bool Goal_found = false;
+
 	while (it != Units.end())
 	{
+		if (*it == entity)
+			continue;
 
+		Goal_found = FindFreeAdjacents(&(*it)->info.goal_tile);
+
+		if (Goal_found)
+			break;
 
 		it++;
 	}
 
 
+}
+
+bool j1Group::FindFreeAdjacents(iPoint * base_tile)
+{
+	bool ret = false;
+
+	// --- Check if any adjacent tile to the base_tile is free ---
+
+
+
+	return ret;
 }
 
