@@ -22,16 +22,6 @@ void j1Group::removeUnit(j1Entity * unit_toremove)
 	Units.remove(unit_toremove);
 }
 
-void j1Group::SetGoal(iPoint goal)
-{
-	this->last_goal = goal;
-}
-
-const iPoint j1Group::GetGoal()
-{
-	return last_goal;
-}
-
 void j1Group::ClearGroup()
 {
 	Units.clear();
@@ -50,5 +40,19 @@ void j1Group::CheckForMovementRequest(float dt)
 bool j1Group::IsGroupLead(j1Entity * entity)
 {
 	return (*Units.begin()) == entity;
+}
+
+void j1Group::SetUnitGoalTile(j1Entity* entity)
+{
+	std::list <j1Entity*>::const_iterator it = Units.begin();
+
+	while (it != Units.end())
+	{
+
+
+		it++;
+	}
+
+
 }
 

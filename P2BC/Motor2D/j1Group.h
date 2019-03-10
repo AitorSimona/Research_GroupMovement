@@ -19,10 +19,6 @@ public:
 	void addUnit(j1Entity* unit_toadd);
 	void removeUnit(j1Entity* unit_toremove);
 
-	// --- Goal ---
-	void SetGoal(iPoint goal);
-    const iPoint GetGoal();
-
 	// --- Clear Group ---
 	void ClearGroup();
 
@@ -34,10 +30,9 @@ public:
 
 	// --- Enquiries ---
 	bool IsGroupLead(j1Entity* entity);
-
+	void SetUnitGoalTile(j1Entity* entity);
 
 private:
-	iPoint last_goal = { 0,0 };
 	std::list <j1Entity*> Units;
 };
 

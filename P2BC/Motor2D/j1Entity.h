@@ -31,7 +31,7 @@ struct entity_info
 	// --- Path to follow ---
 	std::vector <iPoint> Current_path;
 	iPoint next_tile = { 0,0 };
-
+	iPoint goal_tile = { 0,0 };
 
 };
 
