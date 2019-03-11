@@ -8,6 +8,7 @@
 #include "j1Scene.h"
 #include "j1Map.h"
 #include "j1Input.h"
+#include "Brofiler\Brofiler.h"
 
 j1MovementManager::j1MovementManager()
 {
@@ -40,6 +41,8 @@ bool j1MovementManager::CleanUp()
 
 void j1MovementManager::SelectEntities_inRect(SDL_Rect SRect)
 {
+	BROFILER_CATEGORY("GroupMovement::SelectEntities_inRect", Profiler::Color::DarkOliveGreen);
+
 	std::list<j1Entity*>::iterator entity = App->manager->entities.begin();
 	SDL_Rect entityrect = { 0,0,0,0 };
 
@@ -60,6 +63,8 @@ void j1MovementManager::SelectEntities_inRect(SDL_Rect SRect)
 
 void j1MovementManager::CreateGroup()
 {
+	BROFILER_CATEGORY("GroupMovement::CreateGroup", Profiler::Color::GhostWhite);
+
 	bool Validgroup = false;
 
 	j1Group* group = new j1Group;
@@ -103,6 +108,8 @@ void j1MovementManager::CreateGroup()
 
 void j1MovementManager::Move(j1Group * group, float dt)
 {
+	BROFILER_CATEGORY("GroupMovement::Move", Profiler::Color::Gold);
+
 	std::list <j1Entity*>::const_iterator unit = group->Units.begin();
 
 	LOG("On Move Function");

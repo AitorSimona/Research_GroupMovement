@@ -91,7 +91,22 @@ bool j1Scene::Start()
 	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
 	tmp.position = { 250,400 };
 	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-
+	tmp.position = { 250,450 };
+	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
+	tmp.position = { 400,300 };
+	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
+	tmp.position = { 400,275 };
+	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
+	tmp.position = { 400,325 };
+	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
+	tmp.position = { 4250,325 };
+	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
+	tmp.position = { 450,300 };
+	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
+	tmp.position = { 475,275 };
+	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
+	tmp.position = { 500,325 };
+	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
 	return true;
 }
 
