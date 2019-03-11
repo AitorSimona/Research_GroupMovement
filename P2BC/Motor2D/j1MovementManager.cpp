@@ -137,22 +137,29 @@ void j1MovementManager::Move(j1Group * group, float dt)
 
 			// --- On call to Move, Units will request a path to the destination ---
 
-	
-			if (group->IsGroupLead((*unit)) == false)
-			{
-				// --- If any other unit of the group has the same goal, change the goal tile ---
-
-			}
-
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && (*unit)->info.IsSelected)
 			{
-				if (App->pathfinding->CreatePath(Map_Entityposition, Map_mouseposition) != -1)
+				
+				if (group->IsGroupLead((*unit)) == false)
+				{
+					// --- If any other unit of the group has the same goal, change the goal tile ---
+					group->SetUnitGoalTile((*unit));
+				}
+				else
+				{	
+					// --- Clear previous path request occupied goal tiles ---
+					group->CleanOccupiedlist();
+					(*unit)->info.goal_tile = Map_mouseposition;
+					group->Occupied_tiles.push_back(&(*unit)->info.goal_tile);
+				}
+
+				if (App->pathfinding->CreatePath(Map_Entityposition,(*unit)->info.goal_tile) != -1)
 				{
 					(*unit)->info.Current_path = *App->pathfinding->GetLastPath();
 					(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
 					(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
 
-					(*unit)->info.goal_tile = *(*unit)->info.Current_path.end();
+					//(*unit)->info.goal_tile = *(*unit)->info.Current_path.end();
 					(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
 				}
 			}

@@ -15,12 +15,14 @@ public:
 	j1Group();
 	~j1Group();
 
-	// --- Add/Remove Units ---
+	// --- Add/Remove ---
 	void addUnit(j1Entity* unit_toadd);
 	void removeUnit(j1Entity* unit_toremove);
+	void AddTiletoOccupied(iPoint to_add);
 
-	// --- Clear Group ---
+	// --- Clear Stuff ---
 	void ClearGroup();
+	void CleanOccupiedlist();
 
 	// --- Getters ---
 	int GetSize();
@@ -32,9 +34,13 @@ public:
 	bool IsGroupLead(j1Entity* entity);
 	void SetUnitGoalTile(j1Entity* entity);
 	bool FindFreeAdjacents(iPoint * base_tile);
+	bool IsTileFree(iPoint* adjacent);
 
 private:
+	iPoint last_goal = { 0,0 };
+
 	std::list <j1Entity*> Units;
+	std::list <iPoint*> Occupied_tiles;
 };
 
 #endif //__j1Group_H__
