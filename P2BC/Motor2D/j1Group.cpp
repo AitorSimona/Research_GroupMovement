@@ -155,7 +155,7 @@ bool j1Group::FindFreeAdjacents(iPoint * base_tile)
 	}
 
 	// west
-	cell.create(base_tile->x - 1, base_tile->y + 1);
+	cell.create(base_tile->x - 1, base_tile->y);
 	if (App->pathfinding->IsWalkable(cell) && IsTileFree(&cell))
 	{
 		ret = true;

@@ -153,7 +153,7 @@ void j1MovementManager::Move(j1Group * group, float dt)
 					group->Occupied_tiles.push_back(&(*unit)->info.goal_tile);
 				}
 
-				if (App->pathfinding->CreatePath(Map_Entityposition,(*unit)->info.goal_tile) != -1)
+				if (App->pathfinding->CreatePath(Map_Entityposition, (*unit)->info.goal_tile) != -1)
 				{
 					(*unit)->info.Current_path = *App->pathfinding->GetLastPath();
 					(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
@@ -162,6 +162,8 @@ void j1MovementManager::Move(j1Group * group, float dt)
 					//(*unit)->info.goal_tile = *(*unit)->info.Current_path.end();
 					(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
 				}
+				else
+					stop_iteration = true;
 			}
 
 			break;
@@ -245,6 +247,13 @@ void j1MovementManager::Move(j1Group * group, float dt)
 
 			(*unit)->UnitMovementState = MovementState::MovementState_NoState;
 
+			break;
+		}
+
+
+		if (stop_iteration)
+		{
+			stop_iteration = false;
 			break;
 		}
 

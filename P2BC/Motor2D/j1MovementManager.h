@@ -41,6 +41,7 @@ public:
 private:
 
 	std::list <j1Group*>	Groups;
+	bool stop_iteration = false;
 };
 
 #endif // __J1MOVEMENTMANAGER_H__
