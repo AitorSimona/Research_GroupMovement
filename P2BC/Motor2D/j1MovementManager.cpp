@@ -148,7 +148,7 @@ void j1MovementManager::Move(j1Group * group, float dt)
 				else
 				{	
 					// --- Clear previous path request occupied goal tiles ---
-					group->CleanOccupiedlist();
+					group->ClearOccupiedlist();
 					(*unit)->info.goal_tile = Map_mouseposition;
 					group->Occupied_tiles.push_back(&(*unit)->info.goal_tile);
 				}

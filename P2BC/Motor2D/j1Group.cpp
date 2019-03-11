@@ -36,17 +36,8 @@ void j1Group::ClearGroup()
 	Units.clear();
 }
 
-void j1Group::CleanOccupiedlist()
+void j1Group::ClearOccupiedlist()
 {
-	//std::list <iPoint*>::const_iterator it = Occupied_tiles.begin();
-
-	//while (it != Occupied_tiles.end() && *it)
-	//{
-	//	delete *it;
-
-	//	it++;
-	//}
-
 	Occupied_tiles.clear();
 }
 
@@ -74,7 +65,10 @@ void j1Group::SetUnitGoalTile(j1Entity* entity)
 	while (it != Units.end())
 	{
 		if (*it == entity)
+		{
+			it++;
 			continue;
+		}
 
 		Goal_found = FindFreeAdjacents(&(*it)->info.goal_tile);
 
@@ -188,7 +182,6 @@ bool j1Group::IsTileFree(iPoint* adjacent)
 	}
 
 	AddTiletoOccupied(*adjacent);
-	/*Occupied_tiles.push_back(&adjacent);*/
 
 	return true;
 }

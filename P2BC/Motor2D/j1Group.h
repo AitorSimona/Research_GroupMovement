@@ -22,7 +22,7 @@ public:
 
 	// --- Clear Stuff ---
 	void ClearGroup();
-	void CleanOccupiedlist();
+	void ClearOccupiedlist();
 
 	// --- Getters ---
 	int GetSize();
