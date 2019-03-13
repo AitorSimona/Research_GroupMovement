@@ -103,7 +103,7 @@ void j1MovementManager::CreateGroup()
 	else
 		delete group;
 
-//	LOG("Groups size %i", Groups.size());
+    //LOG("Groups size %i", Groups.size());
 }
 
 void j1MovementManager::Move(j1Group * group, float dt)
@@ -115,15 +115,15 @@ void j1MovementManager::Move(j1Group * group, float dt)
 	LOG("On Move Function");
 
 	iPoint Map_Entityposition;
+	fPoint distanceToNextTile;
+	iPoint next_tile_world;
+	float DirectDistance;
+	fPoint to_fPoint;
 
 	// --- We get the map coords of the mouse ---
 	iPoint Map_mouseposition;
 	Map_mouseposition = App->map->WorldToMap((int)App->scene->mouse_pos.x, (int)App->scene->mouse_pos.y);
 
-	fPoint distanceToNextTile;
-	iPoint next_tile_world;
-	float DirectDistance;
-	fPoint tmp;
 
 	while (unit != group->Units.end())
 	{
@@ -132,10 +132,6 @@ void j1MovementManager::Move(j1Group * group, float dt)
 		Map_Entityposition.y = (*unit)->info.position.y;
 		Map_Entityposition = App->map->WorldToMap(Map_Entityposition.x, Map_Entityposition.y);
 
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && (*unit)->info.IsSelected)
-		{
-			(*unit)->UnitMovementState = MovementState::MovementState_NoState;
-		}
 
 		switch ((*unit)->UnitMovementState)
 		{
@@ -166,7 +162,6 @@ void j1MovementManager::Move(j1Group * group, float dt)
 					(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
 					(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
 
-					//(*unit)->info.goal_tile = *(*unit)->info.Current_path.end();
 					(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
 				}
 				else
@@ -191,27 +186,24 @@ void j1MovementManager::Move(j1Group * group, float dt)
 
 			DirectDistance = sqrtf(pow(distanceToNextTile.x, 2.0f) + pow(distanceToNextTile.y, 2.0f));
 
-			LOG("Next tile pos : x = %i y= %i", next_tile_world.x, next_tile_world.y);
+			//LOG("Next tile pos : x = %i y= %i", next_tile_world.x, next_tile_world.y);
 
-			// --- We want a vector to update the unit's direction ---
+			// --- We want a vector to update the unit's direction/position ---
 			if (DirectDistance > 0.0f)
 			{
 				distanceToNextTile.x /= DirectDistance;
 				distanceToNextTile.y /= DirectDistance;
 			}
 
-			(*unit)->info.DirectionVector.x = distanceToNextTile.x;
-			(*unit)->info.DirectionVector.y = distanceToNextTile.y;
-
 			// --- Now we Apply the unit's Speed and the dt to the Distance we need to advance  ---
 			distanceToNextTile.x *= (*unit)->info.Speed*dt;
 			distanceToNextTile.y *= (*unit)->info.Speed*dt;
 
-			// --- must change thisvar name ---
-			tmp.x = next_tile_world.x;
-			tmp.y = next_tile_world.y;
+			// --- We convert an iPoint to fPoint for comparing purposes ---
+			to_fPoint.x = next_tile_world.x;
+			to_fPoint.y = next_tile_world.y;
 
-			if ((*unit)->info.position.DistanceTo(tmp) < 3)
+			if ((*unit)->info.position.DistanceTo(to_fPoint) < 3)
 			{
 				(*unit)->info.position.x = next_tile_world.x;
 				(*unit)->info.position.y = next_tile_world.y;
@@ -248,9 +240,6 @@ void j1MovementManager::Move(j1Group * group, float dt)
 		case MovementState::MovementState_DestinationReached:
 
 			// --- The unit reaches the end of the path, thus stopping and returning to NoState ---
-
-			(*unit)->info.DirectionVector.x = 0.0f;
-			(*unit)->info.DirectionVector.y = 0.0f;
 
 			(*unit)->UnitMovementState = MovementState::MovementState_NoState;
 
