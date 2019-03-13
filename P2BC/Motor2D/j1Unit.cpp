@@ -12,50 +12,26 @@ j1Unit::j1Unit(entity_info entityinfo, UnitInfo unitinfo):j1Entity(entity_type::
 
 void j1Unit::FixedUpdate(float dt)
 {
-	const SDL_Rect unit_rect { 0,0, info.Size.x, info.Size.y };
+	const SDL_Rect unit_rect { 0,0, Entityinfo.Size.x, Entityinfo.Size.y };
 
 	if (info.IsSelected)
 		DrawQuad();
 
-	App->render->Blit(App->manager->sprite, info.position.x + App->map->data.tile_width / 4, info.position.y + App->map->data.tile_height / 4, &unit_rect);
+	App->render->Blit(App->manager->sprite, Entityinfo.position.x + App->map->data.tile_width / 4, Entityinfo.position.y + App->map->data.tile_height / 4, &unit_rect);
 }
 
 void j1Unit::LogicUpdate(float dt)
 {
-	if (this->current_group != nullptr)
+	if (this->info.current_group != nullptr)
 	{
-		if (current_group->IsGroupLead(this))
-			current_group->CheckForMovementRequest(dt);
+		if (info.current_group->IsGroupLead(this))
+			info.current_group->CheckForMovementRequest(dt);
 	}
-}
-
-void j1Unit::StateMachine()
-{
-	switch (state)
-	{
-	case UnitState::State_Idle:
-
-		break;
-
-	case UnitState::State_Moving:
-
-		break;
-	}
-}
-
-void j1Unit::SetUnitState(UnitState unitState)
-{
-	state = unitState;
-}
-
-UnitState j1Unit::GetUnitState() const
-{
-	return state;
 }
 
 void j1Unit::DrawQuad()
 {
-	const SDL_Rect entityrect = { info.position.x + App->map->data.tile_width / 4,  info.position.y + App->map->data.tile_height / 4,  info.Size.x,  info.Size.y };
+	const SDL_Rect entityrect = { Entityinfo.position.x + App->map->data.tile_width / 4,  Entityinfo.position.y + App->map->data.tile_height / 4,  Entityinfo.Size.x,  Entityinfo.Size.y };
 	App->render->DrawQuad(entityrect, unitinfo.color.r, unitinfo.color.g, unitinfo.color.b, unitinfo.color.a,false);
 }
 

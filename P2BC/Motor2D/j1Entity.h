@@ -4,10 +4,9 @@
 #include "p2Point.h"
 #include "j1MovementManager.h"
 #include <vector>
+#include "j1Group.h"
 
 struct SDL_Texture;
-class j1Group;
-
 
 enum class entity_type
 {
@@ -21,25 +20,17 @@ struct entity_info
 	// --- Basic ---
 	fPoint			position = { 0,0 };
 	int          Speed = 0;
-	fPoint DirectionVector = {0,0};
 
 	// --- Collider data ---
 	iPoint Size = { 0,0 };
-
-	bool IsSelected = false;
-
-	// --- Path to follow ---
-	std::vector <iPoint> Current_path;
-	iPoint next_tile = { 0,0 };
-	iPoint goal_tile = { 0,0 };
-
 };
+
 
 class j1Entity
 {
 public:
 
-	j1Entity(entity_type entitytype, entity_info info) : entitytype(entitytype), info(info)
+	j1Entity(entity_type entitytype, entity_info info) : entitytype(entitytype), Entityinfo(info)
 	{
 	}
 
@@ -66,17 +57,14 @@ public:
 
 	// --- Entity ---
 	entity_type  entitytype;
-	entity_info info;
+	entity_info  Entityinfo;
+	Group_Unit info;
 
 	//--- Active or inactive ----
 	bool active = false;
 
 	// --- Spritesheet ---
 	SDL_Texture* spritesheet = nullptr;
-
-	// --- Group Movement stuff ---
-	j1Group * current_group = nullptr;
-	MovementState UnitMovementState = MovementState::MovementState_NoState;
 };
 
 

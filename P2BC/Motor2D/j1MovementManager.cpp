@@ -48,7 +48,7 @@ void j1MovementManager::SelectEntities_inRect(SDL_Rect SRect)
 
 	while (entity != App->manager->entities.end())
 	{
-		entityrect = { (int)(*entity)->info.position.x, (int)(*entity)->info.position.y, (*entity)->info.Size.x, (*entity)->info.Size.y };
+		entityrect = { (int)(*entity)->Entityinfo.position.x, (int)(*entity)->Entityinfo.position.y, (*entity)->Entityinfo.Size.x, (*entity)->Entityinfo.Size.y };
 
 		// --- Check entity's rect against the given SRect, select it if overlap is positive ---
 		if (SDL_HasIntersection(&entityrect, &SRect))
@@ -81,17 +81,17 @@ void j1MovementManager::CreateGroup()
 			Validgroup = true;
 
 			// --- Remove the entity from a previous group if any is found ---
-			if ((*entity)->current_group != nullptr)
+			if ((*entity)->info.current_group != nullptr)
 			{
-				(*entity)->current_group->removeUnit(*entity);
+				(*entity)->info.current_group->removeUnit(*entity);
 
-				if ((*entity)->current_group->GetSize() == 0)
-					Groups.remove((*entity)->current_group);
+				if ((*entity)->info.current_group->GetSize() == 0)
+					Groups.remove((*entity)->info.current_group);
 			}
 
 			// --- Add the entity to the new group, update its current group pointer ---
 			group->addUnit(*entity);
-			(*entity)->current_group = group;
+			(*entity)->info.current_group = group;
 		}
 
 		entity++;
@@ -128,12 +128,12 @@ void j1MovementManager::Move(j1Group * group, float dt)
 	while (unit != group->Units.end())
 	{
 		// --- We Get the map coords of the Entity ---
-		Map_Entityposition.x = (*unit)->info.position.x;
-		Map_Entityposition.y = (*unit)->info.position.y;
+		Map_Entityposition.x = (*unit)->Entityinfo.position.x;
+		Map_Entityposition.y = (*unit)->Entityinfo.position.y;
 		Map_Entityposition = App->map->WorldToMap(Map_Entityposition.x, Map_Entityposition.y);
 
 
-		switch ((*unit)->UnitMovementState)
+		switch ((*unit)->info.UnitMovementState)
 		{
 
 		case MovementState::MovementState_NoState:
@@ -162,7 +162,7 @@ void j1MovementManager::Move(j1Group * group, float dt)
 					(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
 					(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
 
-					(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
+					(*unit)->info.UnitMovementState = MovementState::MovementState_NextStep;
 				}
 				else
 					stop_iteration = true;
@@ -182,7 +182,7 @@ void j1MovementManager::Move(j1Group * group, float dt)
 
 			next_tile_world = App->map->MapToWorld((*unit)->info.next_tile.x, (*unit)->info.next_tile.y);
 
-			distanceToNextTile = { (float)next_tile_world.x - (*unit)->info.position.x,(float)next_tile_world.y - (*unit)->info.position.y };
+			distanceToNextTile = { (float)next_tile_world.x - (*unit)->Entityinfo.position.x,(float)next_tile_world.y - (*unit)->Entityinfo.position.y };
 
 			DirectDistance = sqrtf(pow(distanceToNextTile.x, 2.0f) + pow(distanceToNextTile.y, 2.0f));
 
@@ -196,25 +196,25 @@ void j1MovementManager::Move(j1Group * group, float dt)
 			}
 
 			// --- Now we Apply the unit's Speed and the dt to the Distance we need to advance  ---
-			distanceToNextTile.x *= (*unit)->info.Speed*dt;
-			distanceToNextTile.y *= (*unit)->info.Speed*dt;
+			distanceToNextTile.x *= (*unit)->Entityinfo.Speed*dt;
+			distanceToNextTile.y *= (*unit)->Entityinfo.Speed*dt;
 
 			// --- We convert an iPoint to fPoint for comparing purposes ---
 			to_fPoint.x = next_tile_world.x;
 			to_fPoint.y = next_tile_world.y;
 
-			if ((*unit)->info.position.DistanceTo(to_fPoint) < 3)
+			if ((*unit)->Entityinfo.position.DistanceTo(to_fPoint) < 3)
 			{
-				(*unit)->info.position.x = next_tile_world.x;
-				(*unit)->info.position.y = next_tile_world.y;
+				(*unit)->Entityinfo.position.x = next_tile_world.x;
+				(*unit)->Entityinfo.position.y = next_tile_world.y;
 
-				(*unit)->UnitMovementState = MovementState::MovementState_NextStep;
+				(*unit)->info.UnitMovementState = MovementState::MovementState_NextStep;
 			}
 
 			else
 			{
-				(*unit)->info.position.x += distanceToNextTile.x;
-				(*unit)->info.position.y += distanceToNextTile.y;
+				(*unit)->Entityinfo.position.x += distanceToNextTile.x;
+				(*unit)->Entityinfo.position.y += distanceToNextTile.y;
 			}
 
 			break;
@@ -228,11 +228,11 @@ void j1MovementManager::Move(j1Group * group, float dt)
 				(*unit)->info.next_tile = (*unit)->info.Current_path.front();
 				(*unit)->info.Current_path.erase((*unit)->info.Current_path.begin());
 
-				(*unit)->UnitMovementState = MovementState::MovementState_FollowPath;
+				(*unit)->info.UnitMovementState = MovementState::MovementState_FollowPath;
 			}
 			else
 			{
-				(*unit)->UnitMovementState = MovementState::MovementState_DestinationReached;
+				(*unit)->info.UnitMovementState = MovementState::MovementState_DestinationReached;
 			}
 
 			break;
@@ -241,7 +241,7 @@ void j1MovementManager::Move(j1Group * group, float dt)
 
 			// --- The unit reaches the end of the path, thus stopping and returning to NoState ---
 
-			(*unit)->UnitMovementState = MovementState::MovementState_NoState;
+			(*unit)->info.UnitMovementState = MovementState::MovementState_NoState;
 
 			break;
 		}

@@ -32,20 +32,12 @@ public:
 	// Called each logic iteration
 	void LogicUpdate(float dt);
 
-	void StateMachine();
-	void SetUnitState(UnitState unitState);
-	UnitState GetUnitState() const;
-
 	// --- Draw circle to indicate SelectedUnits ---
 	void DrawQuad();
 
 public:
 
 	UnitInfo unitinfo;
-
-private:
-
-	UnitState state = UnitState::State_Idle;
 };
 
 #endif //__j1Unit_H__

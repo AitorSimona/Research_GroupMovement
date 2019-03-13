@@ -43,4 +43,19 @@ private:
 	std::list <iPoint*> Occupied_tiles;
 };
 
+struct Group_Unit
+{
+	bool IsSelected = false;
+
+	// --- Path to follow ---
+	std::vector <iPoint> Current_path;
+	iPoint next_tile = { 0,0 };
+	iPoint goal_tile = { 0,0 };
+
+	// --- Group Movement stuff ---
+	j1Group * current_group = nullptr;
+	MovementState UnitMovementState = MovementState::MovementState_NoState;
+};
+
+
 #endif //__j1Group_H__
