@@ -19,10 +19,6 @@ void j1Unit::FixedUpdate(float dt)
 		DrawQuad();
 
 	App->render->Blit(App->manager->sprite, Entityinfo.position.x + App->map->data.tile_width / 3, Entityinfo.position.y + App->map->data.tile_height / 2, &unit_rect);
-
-	/*iPoint goal_world = App->map->MapToWorld(this->info.goal_tile.x, this->info.goal_tile.y);
-
-	App->render->Blit(App->scene->debug_tex2,goal_world.x, goal_world.y);*/
 }
 
 void j1Unit::LogicUpdate(float dt)

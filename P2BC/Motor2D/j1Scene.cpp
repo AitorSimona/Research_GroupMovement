@@ -126,24 +126,6 @@ bool j1Scene::PreUpdate()
 	p = App->map->WorldToMap(p.x, p.y);
 	mouse_pos = App->render->ScreenToWorld(x, y);
 
-	//App->map->Draw();
-
-	//LOG("mouse_pos %i %i", mouse_pos.x, mouse_pos.y);
-
-	//if(App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-	//{
-	//	if(origin_selected == true)
-	//	{
-	//		App->pathfinding->CreatePath(origin, p);
-	//		origin_selected = false;
-	//	}
-	//	else
-	//	{
-	//		origin = p;
-	//		origin_selected = true;
-	//	}
-	//}
-
 	return true;
 }
 
@@ -177,16 +159,6 @@ bool j1Scene::Update(float dt)
 	App->map->Draw();
 
 	int x, y;
-	/*App->input->GetMousePosition(x, y);
-	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
-	std::string title;
-	title = ("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
-					App->map->data.width, App->map->data.height,
-					App->map->data.tile_width, App->map->data.tile_height,
-					App->map->data.tilesets.size(),
-					map_coordinates.x, map_coordinates.y);
-
-	App->win->SetTitle(title.data());*/
 
 	// Debug pathfinding ------------------------------
 	App->input->GetMousePosition(x, y);
@@ -195,14 +167,6 @@ bool j1Scene::Update(float dt)
 	p = App->map->MapToWorld(p.x, p.y);
 
 	App->render->Blit(debug_tex, p.x, p.y);
-
-	/*const std::vector<iPoint>* path = App->pathfinding->GetLastPath();
-
-	for(uint i = 0; i < path->size(); ++i)
-	{
-		iPoint pos = App->map->MapToWorld(path->at(i).x, path->at(i).y);
-		App->render->Blit(debug_tex, pos.x, pos.y);
-	}*/
 
 	// --- Calling Selection Rectangle Tool ---
 
