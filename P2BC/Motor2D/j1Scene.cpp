@@ -75,12 +75,13 @@ bool j1Scene::Start()
 	}
 
 	debug_tex = App->tex->Load("maps/path2.png");
+	debug_tex2 = App->tex->Load("maps/path.png");
 
 	// --- Create Entity ---
 
 	entity_info tmp;
 	tmp.position = { 100,125 };
-	tmp.Size = { 24,32 };
+	tmp.Size = { 24,24 };
 	tmp.Speed = 100;
 
 	UnitInfo infotmp;
@@ -176,27 +177,26 @@ bool j1Scene::Update(float dt)
 	App->map->Draw();
 
 	int x, y;
-	App->input->GetMousePosition(x, y);
+	/*App->input->GetMousePosition(x, y);
 	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
-	/*std::string title;
-	title.assign("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
+	std::string title;
+	title = ("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
 					App->map->data.width, App->map->data.height,
 					App->map->data.tile_width, App->map->data.tile_height,
 					App->map->data.tilesets.size(),
-					map_coordinates.x, map_coordinates.y);*/
+					map_coordinates.x, map_coordinates.y);
 
-	//App->win->SetTitle(title.GetString());
+	App->win->SetTitle(title.data());*/
 
 	// Debug pathfinding ------------------------------
-	//int x, y;
-	/*App->input->GetMousePosition(x, y);
+	App->input->GetMousePosition(x, y);
 	iPoint p = App->render->ScreenToWorld(x, y);
 	p = App->map->WorldToMap(p.x, p.y);
 	p = App->map->MapToWorld(p.x, p.y);
 
 	App->render->Blit(debug_tex, p.x, p.y);
 
-	const std::vector<iPoint>* path = App->pathfinding->GetLastPath();
+	/*const std::vector<iPoint>* path = App->pathfinding->GetLastPath();
 
 	for(uint i = 0; i < path->size(); ++i)
 	{

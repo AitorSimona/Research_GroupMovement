@@ -50,6 +50,7 @@ public:
 	iPoint rectangle_origin = { 0,0 };
 	int rectangle_width = 0;
 	int rectangle_height = 0;
+	SDL_Texture* debug_tex2;
 
 private:
 	SDL_Texture* debug_tex;

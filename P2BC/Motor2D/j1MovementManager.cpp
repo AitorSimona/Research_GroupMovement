@@ -9,6 +9,7 @@
 #include "j1Map.h"
 #include "j1Input.h"
 #include "Brofiler\Brofiler.h"
+#include "j1Render.h"
 
 j1MovementManager::j1MovementManager()
 {
@@ -119,6 +120,7 @@ void j1MovementManager::Move(j1Group * group, float dt)
 	iPoint next_tile_world;
 	float DirectDistance;
 	fPoint to_fPoint;
+	iPoint goal_world;
 
 	// --- We get the map coords of the mouse ---
 	iPoint Map_mouseposition;
@@ -132,7 +134,9 @@ void j1MovementManager::Move(j1Group * group, float dt)
 		Map_Entityposition.y = (*unit)->Entityinfo.position.y;
 		Map_Entityposition = App->map->WorldToMap(Map_Entityposition.x, Map_Entityposition.y);
 
-
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT) == KEY_DOWN && (*unit)->info.IsSelected)
+			(*unit)->info.UnitMovementState = MovementState::MovementState_NoState;
+		
 		switch ((*unit)->info.UnitMovementState)
 		{
 
@@ -216,6 +220,10 @@ void j1MovementManager::Move(j1Group * group, float dt)
 				(*unit)->Entityinfo.position.x += distanceToNextTile.x;
 				(*unit)->Entityinfo.position.y += distanceToNextTile.y;
 			}
+			
+
+			goal_world = App->map->MapToWorld((*unit)->info.goal_tile.x, (*unit)->info.goal_tile.y);
+			App->render->Blit(App->scene->debug_tex2, goal_world.x, goal_world.y);
 
 			break;
 

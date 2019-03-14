@@ -218,9 +218,13 @@ void j1App::FinishUpdate()
 	uint32 last_frame_ms = frame_time.Read();
 	uint32 frames_on_last_update = prev_last_sec_frame_count;
 
+	int x, y;
+	App->input->GetMousePosition(x, y);
+	iPoint mouse_map_pos = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
+
 	static char title[256];
-	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu ",
-		avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
+	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %u Last dt: %.3f Mouse Position : %d,%d ",
+		avg_fps, last_frame_ms, dt, mouse_map_pos.x, mouse_map_pos.y);
 	App->win->SetTitle(title);
 
 	if (capped_ms > 0 && last_frame_ms < capped_ms)
