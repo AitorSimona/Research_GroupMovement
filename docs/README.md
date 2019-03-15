@@ -38,4 +38,12 @@ As you may be infering already, we have a big problem, our A* will take too much
 
 Our new keypoint: **How do we move units from one position to another?**
 
-## 
+## Movement in Groups
+
+I hope you have a clear idea of our main objectives now, If I were to sum up what I explained in the last two sections ...
+
+Our main keypoint: **How do we move units from one position to another, while keeping them organised, in a structured way?**
+
+## Many Games Approach to Group Movement
+
+
