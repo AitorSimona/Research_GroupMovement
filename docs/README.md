@@ -73,6 +73,8 @@ Take a look at the following video to see a more accurate view of SC2 Flowfield 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/iHuFCnYnP9A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+_Supreme Commander 2's Flowfield showdown_
+
 ### Others
 
 I have read that Planetary Annhilation also uses SC2 Flowfield tech, while other old games like Age of Empires seem to use a modification of A*, sadly couldn't find anything on games like the Total War series or the Wargame Series which I like a lot, but as I said information like this is rarely shared in the industry.
@@ -95,7 +97,7 @@ In 1986 Craig Reynolds, a software engineer, expert in artificial life and compu
 
 "I called the generic simulated flocking creatures boids. The basic flocking model consists of three simple steering behaviors which describe how an individual boid maneuvers based on the positions and velocities of its nearby flockmates".
 
-Boids three Steering behaviours as defined by Craig Reynolds himself, which together are defined as **flocking**:
+Boids three Steering behaviours as defined by Craig Reynolds himself, which together are defined as **flocking (swarm)**:
 
 Separation: steer to avoid crowding local flockmates.
 
@@ -146,3 +148,51 @@ Wow, right? He defined lots of rules to enforce behaviours into groups, he himse
 
 I'm not going to go one by one explaining each single behaviour since I haven't programmed them and we would extend this way too much, but if you are interested you can use this link: [Steering Behaviours](https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-leader-following--gamedev-10810) to gain a better understanding of some of them. Fernando Bevilacqua has some very good visuals to support the explanation.
   
+### Pathfinding 
+
+
+#### A* implementations
+
+Many games use as a baseline for pathfinding implementations of the well-known A* tile-based algorithm (old Age of Empires, Starcraft). These games did not have to deal with as many individuals as later sequels and new ips, so it was not much of a problem.  
+
+#### Flow Field
+
+A modern way of doing pathfinding when managing large groups of individuals, a Flow Field/Vector Field consists of a set of directional vectors that are directed towards the destination while avoiding static obstacles. These vectors are set each in a node of the navigation graph, and are used by individuals to steer towards the goal. Flow fields are very useful with large groups in small maps, but they suffer on big maps if not optimized. An idea would be to issue a flow field request only for those nodes in your graph that are on the way to the destination, or use a local flow field for each individual and then merge it into a group flow field (Supreme Commander 2). I am no expert in the matter, so I won't go deeply into it. In the following video you can see the basic functioning of a Flow Field. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=Bspb9g9nTto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+#### Navigation Mesh
+
+Pathfinding algorithms/solutions work with graphs, wo if you have a graph of an immense number of small tiles and you issue an A* path you will have some serious performance problems. A key to most pathfinding implementations is to use a customized Navigation Mesh, which means a custom graph. 
+
+Instead of having the regular tiles defined by the map, you can divide the map in zones, polygons, bigger tiles, so when issuing an A* request the algorithm only navigates a few tiles instead of thousands, significantly improving performance. SC2 uses a nav mesh, and has a hierarchical division of the graph, runs A* through the highest level (less nodes), traveling through tile "portals" and then issues a flow field request for the ones needed. I will leave a link to the method in the bottom of this webpage, check it if you are interested.
+
+## My Take
+
+Well, here we are! I hope you are still around, now that the topic has been properly introduced (I hope) let's head to a very simple implementation of Group Movement. Our goal is simple, handle the creation of groups, based on some entities/individuals and have them move from A to B. This implementation lets units overlap on the way to the destination, but organizes them at the end, so each entity/individual is on a different tile than the others, keeping a simple formation. 
+
+We could fit this implementation in the **Flow-based approach** since we care about the group and not about every single individual.
+
+To do so we will need 4 utilities:
+
+* Pathfinding Module
+* Group Class & Unit Structure
+* Movement Manager Module
+
+The first one, the pathfinding module, is already implemented to serve the purpose of this research, it consists of a very basic implementation of A* that will allow us to issue a path request from A to B.
+
+### Group Class & Unit Structure
+
+In order to manage entities we will create a class and a struct.
+
+The Unit Structure: It contains information about the path to follow, the unit's state, a pointer to the group on which the unit is currently assigned and a boolean to know if the unit is selected
+
+IMG
+
+_The Unit Structure_
+
+The Group Class: It contains a list of the individuals/units that are in the group, methods to control the list, adding/removal/clear and more methods dedicated to units movement.
+
+IMG
+
+_The Group Class_
