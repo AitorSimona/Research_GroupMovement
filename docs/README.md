@@ -57,7 +57,9 @@ The other games present in this conference were Heroes on the Move from nStigate
  
 <img src="Images/GDC_talk_link.jpg" width="400"><br>
 
-_Click on the image above to see the full GDC 2011 talk_ 
+[GDC_2011_AiNavigation](https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not)
+
+_Click on the link above to see the full GDC 2011 talk_ 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F6h0-uW4JZI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
