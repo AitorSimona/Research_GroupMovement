@@ -13,6 +13,8 @@ So what is Group Movement?
 
 Group Movement: Moving multiple units at the same time through complex terrain, while taking into account the relationships between the units that are part of the group.
 
+***
+
 Wow, such a generic definition, don't you think? Let us expand it a bit. We are speaking about two big things here...
 
 * Groups
@@ -44,9 +46,12 @@ I hope you have a clear idea of our main objectives now, If I were to sum up wha
 
 Our main keypoint: **How do we move units from one position to another, while keeping them organised, in a structured way?**
 
+***
+
 ## Many Games Approach to Group Movement
 
 As always, it is not easy to find this kind of information, technical aspects of games, revenue... I was able to find a decent piece of info looking into the GDC vault, specifically into 2011 conferences. Does it ring a bell, 2011? A famous RTS launched very close to that date...
+
 ***
 
 ### Starcraft II
@@ -54,7 +59,7 @@ As always, it is not easy to find this kind of information, technical aspects of
 Bingo! Blizzard's Starcraft 2 launched the 27th of July 2010, and in the next GDC James Anhalt (Lead Software Engineer at Blizzard) shed some light on Starcraft 2's tech. He goes into group movement stuff, such as Steering behaviours which I will mention later. 
 The other games present in this conference were Heroes on the Move from nStigate Games and Dragon Age Origins from Bioware. They all went deep into pathfinding too, apart from our main topic. It is not strange, since dealing with pathfinding is one of the biggest headaches of the RTS genre.
 
-_Click to see the full GDC 2011 talk:  [GDC 2011](https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not)
+Click to see the full GDC 2011 talk:  [GDC 2011](https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F6h0-uW4JZI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -73,5 +78,25 @@ Take a look at the following video to see a more accurate view of SC2 Flowfield 
 ### Others
 
 I have read that Planetary Annhilation also uses SC2 Flowfield tech, while other old games like Age of Empires seem to use a modification of A*, sadly couldn't find anything on games like the Total War series or the Wargame Series which I like a lot, but as I said information like this is rarely shared in the industry.
+
+***
+
+## How do we approach Group Movement?
+
+Now that the topic has already been slightly introduced, let's look more deeply into the matter beign discussed.
+
+In Crowd-based simulations we can differentiate 3 approaches:
+
+* Flow-based: The crowd as a whole rather than its components. Individuals are equal and behavioural factors are heavily reduced
+* Entity-based: All movements are determined by some global laws enforced to the individuals of the group
+* Agent-based: Autonomous intelligent individuals. Action-reaction is local to each individual based on a set of rules.
+
+Behavioural factors, rules, laws... Very similar wording, right? Indeed, they all refer to the same concept, called Steering behaviours.
+
+In 1986 Craig Reynolds, a software engineer, made a computer model that simulated coordinated animal motion, such as the movement of bird flocks and fish schools. In his words:
+
+"I called the generic simulated flocking creatures boids. The basic flocking model consists of three simple steering behaviors which describe how an individual boid maneuvers based on the positions and velocities its nearby flockmates".
+
+
 
 
