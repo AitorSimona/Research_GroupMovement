@@ -51,7 +51,7 @@ As always, it is not easy to find this kind of information, technical aspects of
 ### Starcraft II
 
 Bingo! Blizzard's Starcraft 2 launched the 27th of July 2010, and in the next GDC James Anhalt (Lead Software Engineer at Blizzard) shed some light on Starcraft 2's tech. He goes into group movement stuff, such as Steering behaviours which I will mention later. 
-The other games present in this conference were Heroes on the Move from nStigate Games and Dragon Age Origins from Bioware. They all went deep into pathfinding too, apart from our main topic. It is not strange, since as I mentioned dealing with pathfinding is one of the biggest headaches of the RTS genre.
+The other games present in this conference were Heroes on the Move from nStigate Games and Dragon Age Origins from Bioware. They all went deep into pathfinding too, apart from our main topic. It is not strange, since dealing with pathfinding is one of the biggest headaches of the RTS genre.
 
 <a href="https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not" >![GDC_talk](https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/GDC_talk_link.png)</a>
 
