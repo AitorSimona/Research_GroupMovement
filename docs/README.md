@@ -159,7 +159,7 @@ Many games use as a baseline for pathfinding implementations of the well-known A
 
 A modern way of doing pathfinding when managing large groups of individuals, a Flow Field/Vector Field consists of a set of directional vectors that are directed towards the destination while avoiding static obstacles. These vectors are set each in a node of the navigation graph, and are used by individuals to steer towards the goal. Flow fields are very useful with large groups in small maps, but they suffer on big maps if not optimized. An idea would be to issue a flow field request only for those nodes in your graph that are on the way to the destination, or use a local flow field for each individual and then merge it into a group flow field (Supreme Commander 2). I am no expert in the matter, so I won't go deeply into it. In the following video you can see the basic functioning of a Flow Field. 
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=Bspb9g9nTto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Bspb9g9nTto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### Navigation Mesh
 
