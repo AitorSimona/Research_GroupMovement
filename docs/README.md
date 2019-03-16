@@ -54,13 +54,14 @@ As always, it is not easy to find this kind of information, technical aspects of
 
 Bingo! Blizzard's Starcraft 2 launched the 27th of July 2010, and in the next GDC James Anhalt (Lead Software Engineer at Blizzard) shed some light on Starcraft 2's tech. He goes into group movement stuff, such as Steering behaviours which I will mention later. 
 The other games present in this conference were Heroes on the Move from nStigate Games and Dragon Age Origins from Bioware. They all went deep into pathfinding too, apart from our main topic. It is not strange, since dealing with pathfinding is one of the biggest headaches of the RTS genre.
+ 
+<img src="Images/GDC_talk_link.jpg" width="400"><br>
 
-<a href="https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not" rel="some text" >![GDC_2011](https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/GDC_talk_link.jpg)</a>
-
-_Click on the image above to see the full GDC 2011 talk_  [GDC 2011](https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not)
+_Click on the image above to see the full GDC 2011 talk_ 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F6h0-uW4JZI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+_Starcraft's 2 Crowd Movement_
 
 ### Supreme Commander II
 
@@ -96,19 +97,19 @@ Boids three Steering behaviours as defined by Craig Reynolds himself, which toge
 
 Separation: steer to avoid crowding local flockmates.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/separation.jpg"></p>
+<img src="Images/separation.jpg" ><br>
 
 Alignment: steer towards the average heading of local flockmates.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/alignment.jpg"></p>
+<img src="Images/alignment.jpg" ><br>
 
 Cohesion: steer to move toward the average position of local flockmates.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/cohesion.jpg"></p>
+<img src="Images/cohesion.jpg" ><br>
 
 The boids also have a region on which they have influence over neighboring boids, this region is defined by an angle and distance, building a spherical field around each boid.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/neighborhood.jpg"></p>
+<img src="Images/neighborhood.jpg" ><br>
 
 _All images above are property of Craig Reynolds, his web's link is at the bottom of this webpage_
 
