@@ -173,7 +173,7 @@ Instead of having the regular tiles defined by the map, you can divide the map i
 
 Well, here we are! I hope you are still around, now that the topic has been properly introduced (I hope) let's head to a very simple implementation of Group Movement. Our goal is simple, handle the creation of groups, based on some entities/individuals and have them move from A to B. This implementation lets units overlap on the way to the destination, but organizes them at the end, so each entity/individual is on a different tile than the others, keeping a simple formation. 
 
-We could fit this implementation in the **Flow-based approach** since we care about the group and not about every single individual.
+We could fit this implementation in the **Flow-based approach** since we care about the group and not about every single individual. 
 
 To do so we will need 4 utilities:
 
@@ -198,3 +198,17 @@ The Group Class: It contains a list of the individuals/units that are in the gro
 <img src="Images/group_class.jpg" ><br>
 
 _The Group Class_
+
+### The Movement Manager
+
+Whenever an individual is ordered to move, a state-machine will tke control of the individual's movement. It has 5 states, which are the following:
+
+1. MovementState_NoState: 
+2.	MovementState_Wait: 
+3.	MovementState_FollowPath:
+4. MovementState_NextStep:
+5. MovementState_DestinationReached:
+
+<img src="Images/MovementStates.jpg" ><br>
+
+
