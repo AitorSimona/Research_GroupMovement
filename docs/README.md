@@ -13,7 +13,6 @@ So what is Group Movement?
 
 Group Movement: Moving multiple units at the same time through complex terrain, while taking into account the relationships between the units that are part of the group.
 
-***
 
 Wow, such a generic definition, don't you think? Let us expand it a bit. We are speaking about two big things here...
 
@@ -52,7 +51,6 @@ Our main keypoint: **How do we move units from one position to another, while ke
 
 As always, it is not easy to find this kind of information, technical aspects of games, revenue... I was able to find a decent piece of info looking into the GDC vault, specifically into 2011 conferences. Does it ring a bell, 2011? A famous RTS launched very close to that date...
 
-***
 
 ### Starcraft II
 
@@ -63,7 +61,6 @@ Click to see the full GDC 2011 talk:  [GDC 2011](https://www.gdcvault.com/play/1
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F6h0-uW4JZI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-***
 
 ### Supreme Commander II
 
@@ -72,8 +69,6 @@ Quite a big name too. In this case Supreme Commander departs from antoher way to
 Take a look at the following video to see a more accurate view of SC2 Flowfield and crowd movement, narrated by Chris Taylor from Gas Powered Games.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/iHuFCnYnP9A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-***
 
 ### Others
 
@@ -93,10 +88,57 @@ In Crowd-based simulations we can differentiate 3 approaches:
 
 Behavioural factors, rules, laws... Very similar wording, right? Indeed, they all refer to the same concept, called Steering behaviours.
 
-In 1986 Craig Reynolds, a software engineer, made a computer model that simulated coordinated animal motion, such as the movement of bird flocks and fish schools. In his words:
+In 1986 Craig Reynolds, a software engineer, expert in artificial life and computer graphics, made a computer model that simulated coordinated animal motion, such as the movement of bird flocks and fish schools. In his words:
 
-"I called the generic simulated flocking creatures boids. The basic flocking model consists of three simple steering behaviors which describe how an individual boid maneuvers based on the positions and velocities its nearby flockmates".
+"I called the generic simulated flocking creatures boids. The basic flocking model consists of three simple steering behaviors which describe how an individual boid maneuvers based on the positions and velocities of its nearby flockmates".
 
+Boids three Steering behaviours as defined by Craig Reynolds himself, which together are defined as **flocking**:
 
+Separation: steer to avoid crowding local flockmates.
 
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/separation.gif"></p>
 
+Alignment: steer towards the average heading of local flockmates.
+
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/alignment.gif"></p>
+
+Cohesion: steer to move toward the average position of local flockmates.
+
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/cohesion.gif"></p>
+
+The boids also have a region on which they have influence over neighboring boids, this region is defined by an angle and distance, building a spherical field around each boid.
+
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/neighborhood.gif"></p>
+
+_All images are property of Craig Reynolds, his web's link is at the bottom of this page_
+
+So we could define this steering behaviours as **a set of rules that regulate the relationship between individuals of a group**.
+
+### Steering Behaviours
+
+So, how many rules can we set to keep our units moving in a structured way? As defined by Craig Reynolds...
+
+* Simple behaviors for individuals and pairs:
+
+  * Seek and Flee
+  * Pursue and Evade
+  * Wander
+  * Arrival
+  * Obstacle Avoidance
+  * Containment
+  * Wall Following
+  * Path Following
+  * Flow Field Following
+  
+* Combined behaviors and groups:
+
+  * Crowd Path Following
+  * Leader Following
+  * Unaligned Collision Avoidance
+  * Queuing (at a doorway)
+  * Flocking (combining: separation, alignment, cohesion)
+  
+Wow, right? He defined lots of rules to enforce behaviours into groups, he himself as a precursor to everything videogames have been implementing ever since. 
+
+I'm not going to go one by one explaining each single behaviour since I haven't programmed them and we would extend this way too much, but if you are interested you can use this [Steering Behaviours](https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-leader-following--gamedev-10810) to gain a better understanding of some of them. Fernando Bevilacqua has some very good visuals to support the explanation.
+  
