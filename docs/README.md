@@ -55,7 +55,9 @@ As always, it is not easy to find this kind of information, technical aspects of
 Bingo! Blizzard's Starcraft 2 launched the 27th of July 2010, and in the next GDC James Anhalt (Lead Software Engineer at Blizzard) shed some light on Starcraft 2's tech. He goes into group movement stuff, such as Steering behaviours which I will mention later. 
 The other games present in this conference were Heroes on the Move from nStigate Games and Dragon Age Origins from Bioware. They all went deep into pathfinding too, apart from our main topic. It is not strange, since dealing with pathfinding is one of the biggest headaches of the RTS genre.
 
-Click to see the full GDC 2011 talk:  [GDC 2011](https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not)
+<a href="https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not" rel="some text" >![GDC_2011](https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/GDC_talk_link.jpg)</a>
+
+_Click on the image above to see the full GDC 2011 talk_  [GDC 2011](https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F6h0-uW4JZI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -94,23 +96,21 @@ Boids three Steering behaviours as defined by Craig Reynolds himself, which toge
 
 Separation: steer to avoid crowding local flockmates.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/separation.png"></p>
-
-![Separation](https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/separation.png)
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/separation.jpg"></p>
 
 Alignment: steer towards the average heading of local flockmates.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/alignment.png"></p>
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/alignment.jpg"></p>
 
 Cohesion: steer to move toward the average position of local flockmates.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/cohesion.png"></p>
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/cohesion.jpg"></p>
 
 The boids also have a region on which they have influence over neighboring boids, this region is defined by an angle and distance, building a spherical field around each boid.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/neighborhood.png"></p>
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/neighborhood.jpg"></p>
 
-_All images are property of Craig Reynolds, his web's link is at the bottom of this page_
+_All images above are property of Craig Reynolds, his web's link is at the bottom of this webpage_
 
 So we could define this steering behaviours as **a set of rules that regulate the relationship between individuals of a group**.
 By Craig Reynolds himself: _"the ability to navigate around their world in a life-like and improvisational manner."_
