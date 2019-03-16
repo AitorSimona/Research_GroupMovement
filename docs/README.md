@@ -96,6 +96,8 @@ Separation: steer to avoid crowding local flockmates.
 
 <p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/separation.png"></p>
 
+![Separation](https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/separation.png)
+
 Alignment: steer towards the average heading of local flockmates.
 
 <p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/alignment.png"></p>
