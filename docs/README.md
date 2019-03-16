@@ -159,13 +159,15 @@ Many games use as a baseline for pathfinding implementations of the well-known A
 
 A modern way of doing pathfinding when managing large groups of individuals, a Flow Field/Vector Field consists of a set of directional vectors that are directed towards the destination while avoiding static obstacles. These vectors are set each in a node of the navigation graph, and are used by individuals to steer towards the goal. Flow fields are very useful with large groups in small maps, but they suffer on big maps if not optimized. An idea would be to issue a flow field request only for those nodes in your graph that are on the way to the destination, or use a local flow field for each individual and then merge it into a group flow field (Supreme Commander 2). I am no expert in the matter, so I won't go deeply into it. In the following video you can see the basic functioning of a Flow Field. 
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=Bspb9g9nTto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Bspb9g9nTto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### Navigation Mesh
 
 Pathfinding algorithms/solutions work with graphs, wo if you have a graph of an immense number of small tiles and you issue an A* path you will have some serious performance problems. A key to most pathfinding implementations is to use a customized Navigation Mesh, which means a custom graph. 
 
 Instead of having the regular tiles defined by the map, you can divide the map in zones, polygons, bigger tiles, so when issuing an A* request the algorithm only navigates a few tiles instead of thousands, significantly improving performance. SC2 uses a nav mesh, and has a hierarchical division of the graph, runs A* through the highest level (less nodes), traveling through tile "portals" and then issues a flow field request for the ones needed. I will leave a link to the method in the bottom of this webpage, check it if you are interested.
+
+***
 
 ## My Take
 
@@ -187,12 +189,12 @@ In order to manage entities we will create a class and a struct.
 
 The Unit Structure: It contains information about the path to follow, the unit's state, a pointer to the group on which the unit is currently assigned and a boolean to know if the unit is selected
 
-IMG
+<img src="Images/Unit_struct.jpg" ><br>
 
 _The Unit Structure_
 
 The Group Class: It contains a list of the individuals/units that are in the group, methods to control the list, adding/removal/clear and more methods dedicated to units movement.
 
-IMG
+<img src="Images/group_class.jpg" ><br>
 
 _The Group Class_
