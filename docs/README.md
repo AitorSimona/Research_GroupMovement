@@ -53,8 +53,20 @@ As always, it is not easy to find this kind of information, technical aspects of
 Bingo! Blizzard's Starcraft 2 launched the 27th of July 2010, and in the next GDC James Anhalt (Lead Software Engineer at Blizzard) shed some light on Starcraft 2's tech. He goes into group movement stuff, such as Steering behaviours which I will mention later. 
 The other games present in this conference were Heroes on the Move from nStigate Games and Dragon Age Origins from Bioware. They all went deep into pathfinding too, apart from our main topic. It is not strange, since dealing with pathfinding is one of the biggest headaches of the RTS genre.
 
-<a href="https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not" rel="some text" >![GDC](https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/GDC_talk_link.png)</a>
-
-_Click on the image above to watch the full GDC conference_
+_Click to see the full GDC 2011 talk:  https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not_
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F6h0-uW4JZI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Supreme Commander II
+
+Quite a big name too. In this case Supreme Commander departs from antoher way to approach crowd behaviours, pathfinding. They use a modern way of pathfinding called "Flow Field", also known as Vector Field or Force Field to others. I won't go into detail since it is related to pathfinding but in SC2 they base their group movement on this technique.
+
+Take a look at the following video to see a more accurate view of SC2 Flowfield and crowd movement, narrated by Chris Taylor from Gas Powered Games.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iHuFCnYnP9A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Others
+
+I have read that Planetary Annhilation also uses SC2 Flowfield tech, while other old games like Age of Empires seem to use a modification of A*, sadly couldn't find anything on games like the Total War series or the Wargame Series which I like a lot, but as I said information like this is rarely shared in the industry.
+
+
