@@ -1,10 +1,9 @@
 ﻿# GroupMovement
 
-“I am <https://www.linkedin.com/in/aitor-simona-bouzas-aab43817b/>(Aitor Simona), student of the
-<https://www.citm.upc.edu/ing/estudis/graus-videojocs/>(Bachelor’s Degree in
-Video Games by UPC at CITM). This content is generated for the second year’s
-subject Project 2, under supervision of lecturer
-<https://es.linkedin.com/in/ricardpillosu>(Ricard Pillosu).”
+I am <https://www.linkedin.com/in/aitor-simona-bouzas-aab43817b/>(Aitor Simona), student of the
+<https://www.citm.upc.edu/ing/estudis/graus-videojocs/>(Bachelor’s Degree in Video Games by UPC at CITM). 
+This content is generated for the second year’s subject Project 2, under supervision of lecturer
+<https://es.linkedin.com/in/ricardpillosu>(Ricard Pillosu).
 
 * My Github Account: [AitorSimona](https://github.com/AitorSimona)
 
@@ -12,7 +11,6 @@ Welcome! I understand you are interested in this topic, one of the cores of the 
 So what is Group Movement? 
 
 Group Movement: Moving multiple units at the same time through complex terrain, while taking into account the relationships between the units that are part of the group.
-
 
 Wow, such a generic definition, don't you think? Let us expand it a bit. We are speaking about two big things here...
 
@@ -96,23 +94,24 @@ Boids three Steering behaviours as defined by Craig Reynolds himself, which toge
 
 Separation: steer to avoid crowding local flockmates.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/separation.gif"></p>
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/separation.png"></p>
 
 Alignment: steer towards the average heading of local flockmates.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/alignment.gif"></p>
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/alignment.png"></p>
 
 Cohesion: steer to move toward the average position of local flockmates.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/cohesion.gif"></p>
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/cohesion.png"></p>
 
 The boids also have a region on which they have influence over neighboring boids, this region is defined by an angle and distance, building a spherical field around each boid.
 
-<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/neighborhood.gif"></p>
+<p align="center"><img src="https://github.com/AitorSimona/Research_GroupMovement/blob/master/docs/Images/neighborhood.png"></p>
 
 _All images are property of Craig Reynolds, his web's link is at the bottom of this page_
 
 So we could define this steering behaviours as **a set of rules that regulate the relationship between individuals of a group**.
+By Craig Reynolds himself: _"the ability to navigate around their world in a life-like and improvisational manner."_
 
 ### Steering Behaviours
 
@@ -140,5 +139,5 @@ So, how many rules can we set to keep our units moving in a structured way? As d
   
 Wow, right? He defined lots of rules to enforce behaviours into groups, he himself as a precursor to everything videogames have been implementing ever since. 
 
-I'm not going to go one by one explaining each single behaviour since I haven't programmed them and we would extend this way too much, but if you are interested you can use this [Steering Behaviours](https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-leader-following--gamedev-10810) to gain a better understanding of some of them. Fernando Bevilacqua has some very good visuals to support the explanation.
+I'm not going to go one by one explaining each single behaviour since I haven't programmed them and we would extend this way too much, but if you are interested you can use this link: [Steering Behaviours](https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-leader-following--gamedev-10810) to gain a better understanding of some of them. Fernando Bevilacqua has some very good visuals to support the explanation.
   
