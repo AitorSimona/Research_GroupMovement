@@ -167,6 +167,8 @@ Pathfinding algorithms/solutions work with graphs, wo if you have a graph of an 
 
 Instead of having the regular tiles defined by the map, you can divide the map in zones, polygons, bigger tiles, so when issuing an A* request the algorithm only navigates a few tiles instead of thousands, significantly improving performance. SC2 uses a nav mesh, and has a hierarchical division of the graph, runs A* through the highest level (less nodes), traveling through tile "portals" and then issues a flow field request for the ones needed. I will leave a link to the method in the bottom of this webpage, check it if you are interested.
 
+***
+
 ## My Take
 
 Well, here we are! I hope you are still around, now that the topic has been properly introduced (I hope) let's head to a very simple implementation of Group Movement. Our goal is simple, handle the creation of groups, based on some entities/individuals and have them move from A to B. This implementation lets units overlap on the way to the destination, but organizes them at the end, so each entity/individual is on a different tile than the others, keeping a simple formation. 
@@ -187,12 +189,12 @@ In order to manage entities we will create a class and a struct.
 
 The Unit Structure: It contains information about the path to follow, the unit's state, a pointer to the group on which the unit is currently assigned and a boolean to know if the unit is selected
 
-IMG
+<img src="Images/Unit_struct.jpg" ><br>
 
 _The Unit Structure_
 
 The Group Class: It contains a list of the individuals/units that are in the group, methods to control the list, adding/removal/clear and more methods dedicated to units movement.
 
-IMG
+<img src="Images/group_class.jpg" ><br>
 
 _The Group Class_
