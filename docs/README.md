@@ -327,44 +327,48 @@ You should be able to spawn entities with the mouse's middle button, and also cr
 
 Use Ctrl+Shift+F and type TODO to check for all the TODOs in code, head to TODO 1.
 
-**TODO 1**
- --- TODO 1: If we find an entity then the group is valid and can be created ---
-	--- TODO 1: Remove the entity from a previous group if any is found ---
- --- TODO 1: Add the entity to the new group, update its current group pointer ---
+* **TODO 1**
+
+          * TODO 1: If we find an entity then the group is valid and can be created.
+	  * TODO 1: Remove the entity from a previous group if any is found.
+	  * TODO 1: Add the entity to the new group, update its current group pointer.
  
-**Solution**
+ * **Solution**
 We set the Validgroup Boolean to true, check if the unit's current group is nullptr and if is, we remove the entity from this last group and add it to the new one. 
 
 IMG
 
 Expected Behaviour: You should be able to group units now, and when issuing a move order, these units should travel very fast to the destination, most of them overlapping on one position.
 
-**TODO 2**
---- TODO 2: Check if any adjacent tile to the base_tile is free of entities ---
---- TODO 2: Add a call to IsTileFree on each case ---
---- TODO 2: Search for the adjacent given in the occupied_tiles list ---
---- TODO 2: If the adjacent is found, return false --- 
---- TODO 2: If the adjacent is not found, add it to the occupied_tiles list ---
+* **TODO 2**
 
-**Solution**
+	  * TODO 2: Check if any adjacent tile to the base_tile is free of entities.
+	  * TODO 2: Add a call to IsTileFree on each case.
+	  * TODO 2: Search for the adjacent given in the occupied_tiles list.
+	  * TODO 2: If the adjacent is found, return false.
+	  * TODO 2: If the adjacent is not found, add it to the occupied_tiles list.
+
+ * **Solution**
 We add a call to IsTileFree to each if statement, and inside this function, we iterate the Occupied_tiles list, compare the given adjacent with each tile in the list and if we find it this means another unit already chose this adjacent as destination tile, so we return false and check the next adjacent. If we do not find it in the list this means it is free and we can choose it as our destination. 
 
 IMG
 
 Expected Behaviour: You should see how units end up on different destinations at the end of the paths, keeping close to their partners without overlapping.
 
-**TODO 3**
---- TODO 3: Compute the module of our vector ---
---- TODO 3: We want a unitary vector to update the unit's direction/position ---
---- TODO 3: Now we Apply the unit's Speed and the dt to the unitary vector ---
+* **TODO 3**
+
+	  * TODO 3: Compute the module of our vector.
+	  * TODO 3: We want a unitary vector to update the unit's direction/position.
+	  * TODO 3: Now we Apply the unit's Speed and the dt to the unitary vector. 
 
 
-**Solution**
+ * **Solution**
 Having the distance to the next tile, which is a vector's 2D components pointing to it, we can compute the module of this vector and divide each component by the computed module to get the unitary components of the vector. Now we use this vector and multiply it by dt and the unit's speed to get the distance and direction we need to consider on this iteration. Just some simple maths.
 
 IMG
 
 Expected behaviour: Units move at a constant speed, no weird behaviours. 
+
 
 Congratulations! You have successfully reached the solution!
 
