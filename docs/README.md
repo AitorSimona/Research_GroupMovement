@@ -283,6 +283,7 @@ Huge thanks to everyone I took information from, for posting it on the internet.
   * [Coordinated Unit Movement - Dave Pottinger](http://www.gamasutra.com/view/feature/131720/coordinated_unit_movement.php)
   * [Implementing Coordinated Movement - Dave Pottinger](http://www.gamasutra.com/view/feature/131721/implementing_coordinated_movement.php)
   * [Coordinated Unit Movement - Jeremiah Warm](http://www.jeremiahwarm.com/coordinated-movement.php)
+  * [RTS Group Movement- Sandra Alvarez](https://sandruski.github.io/RTS-Group-Movement/)
 * **About Crowds**  
   * [Crowd Flows](http://grail.cs.washington.edu/projects/crowd-flows/)
   * [Multi-Unit movement - Reddit](https://www.reddit.com/r/Unity3D/comments/7v62t2/how_do_rts_games_such_as_starcraft_2_or_warcraft/)
