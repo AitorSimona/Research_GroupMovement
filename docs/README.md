@@ -268,4 +268,4 @@ What if I want to make an RTS with lots of units? You should be looking into Flo
 
 What if I want to have formations, like the Total War Series? And like in Total War, what if I want to see the destinations of every unit when dragging the mouse, while being able to modify the formation?
 
-Buff, such an amount of questions! It does really get me excited to know how many things take part into crowd behaviours, there are tons of stuff to learn! See you around and thanks for reading!
+Such a big amount of questions! It does really get me excited to know how many things take part into crowd behaviours, there are tons of stuff to learn about! See you around and thanks for reading!
