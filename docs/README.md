@@ -269,3 +269,30 @@ What if I want to make an RTS with lots of units? You should be looking into Flo
 What if I want to have formations, like the Total War Series? And like in Total War, what if I want to see the destinations of every unit when dragging the mouse, while being able to modify the formation?
 
 Such a big amount of questions! It does really get me excited to know how many things take part into crowd behaviours, there are tons of stuff to learn about! See you around and thanks for reading!
+
+## References
+
+Huge thanks to everyone I took information from, for posting it on the internet.
+
+* **Special Mention**
+  * [Craig Reynolds](http://www.red3d.com/index.html)
+* **About Pathfinding**  
+  * [Starcraft2 PF tech - GameDev](https://www.gamedev.net/forums/topic/563819-whats-starcraft2s-pathfinding-tech/)
+  * [Pathfinding and other stuff - Amit Patel](https://www.redblobgames.com/pathfinding/a-star/introduction.html)
+* **About Movement**
+  * [Coordinated Unit Movement - Dave Pottinger](http://www.gamasutra.com/view/feature/131720/coordinated_unit_movement.php)
+  * [Implementing Coordinated Movement - Dave Pottinger](http://www.gamasutra.com/view/feature/131721/implementing_coordinated_movement.php)
+  * [Coordinated Unit Movement - Jeremiah Warm](http://www.jeremiahwarm.com/coordinated-movement.php)
+* **About Crowds**  
+  * [Crowd Flows](http://grail.cs.washington.edu/projects/crowd-flows/)
+  * [Multi-Unit movement - Reddit](https://www.reddit.com/r/Unity3D/comments/7v62t2/how_do_rts_games_such_as_starcraft_2_or_warcraft/)
+  * [Crowd Simulation - Wikipedia](https://en.wikipedia.org/wiki/Crowd_simulation)
+* **About Flow Fields**
+  * [Game Ai Pro - Elijah Emerson](http://www.gameaipro.com/GameAIPro/GameAIPro_Chapter23_Crowd_Pathfinding_and_Steering_Using_Flow_Field_Tiles.pdf)
+  * [Flow Field Pathfinding - Leif Node](https://leifnode.com/2013/12/flow-field-pathfinding/)
+* **About Pathfinding && Movement**
+  * [Gamasutra - Andrew Erridge](http://www.gamasutra.com/blogs/AndrewErridge/20180522/318413/Group_Pathfinding__Movement_in_RTS_Style_Games.php)
+* **About Pathfinding, Steering and Movement**
+  * [Github - @daveleaver](https://howtorts.github.io/)
+  * [Steering Behaviours - Fernando Bevilacqua](https://gamedevelopment.tutsplus.com/series/understanding-steering-behaviors--gamedev-12732)
+  * [GDC Vault 2011 - AI Navigation](https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not)
