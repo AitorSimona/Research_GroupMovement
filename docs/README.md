@@ -237,6 +237,8 @@ Each time we check an adjacent destination, we are making sure it is a walkable 
 
 So now we have a different destination for each unit, and we issue a path for each one, getting them organisez in a simple formation at the desired position. Simple, right?
 
+*** 
+
 ## Performance && Improvements
 
 Computing a path for a single unit is not expensive for our CPU, but dealing with a lot of path requests gets things complicated very soon, even if we have a modern CPU. We need our movement to feel natural while being as less expensive as possible. The approach implemented is expensive when a decent number of units are involved, but does not have units in a line and looks more natural. 
@@ -264,6 +266,8 @@ In this implementation, no steering behaviours have been used, so our movement c
 
 What if the way we move our groups enables us to only make a single path request? And on the contrary, what if our pathfinding tech enables us to move any number of units with the behaviours we want? As you can see, we can improve on A to improve B, and the other way too.
 
+*** 
+
 ## Considerations && Final Words
 
 Well, it seems we made it! We have implemented a very simple and generic solution to get ourselves in the field of group movement. 
@@ -280,6 +284,8 @@ What if I want to make an RTS with lots of units? You should be looking into Flo
 What if I want to have formations, like the Total War Series? And like in Total War, what if I want to see the destinations of every unit when dragging the mouse, while being able to modify the formation?
 
 Such a big amount of questions! It does really get me excited to know how many things take part into crowd behaviours, there are tons of stuff to learn about! See you around and thanks for reading!
+
+***
 
 ## References
 
@@ -308,3 +314,67 @@ Huge thanks to everyone I took information from, for posting it on the internet.
   * [Github - @daveleaver](https://howtorts.github.io/)
   * [Steering Behaviours - Fernando Bevilacqua](https://gamedevelopment.tutsplus.com/series/understanding-steering-behaviors--gamedev-12732)
   * [GDC Vault 2011 - AI Navigation](https://www.gdcvault.com/play/1014514/AI-Navigation-It-s-Not)
+
+***
+
+## Practice with TODOs!
+
+Up for some practice? I'll propose a series of little exercises to get you to better understand the code I've implemented, don't panic, they are very simple and only aim to get you in touch with the code faster.
+
+Check the GitHub repository, there is a folder for the Handout, that contains the TODOs, remember that the base folder of the project is Game, so change it in Project Properties -> Configuration Properties -> Debugging -> Working Directory.
+
+You should be able to spawn entities with the mouse's middle button, and also creating a rectangle clicking and dragging the mouse. These rectangle selects all units that are inside its bounds.
+
+Use Ctrl+Shift+F and type TODO to check for all the TODOs in code, head to TODO 1.
+
+**TODO 1**
+ --- TODO 1: If we find an entity then the group is valid and can be created ---
+	--- TODO 1: Remove the entity from a previous group if any is found ---
+ --- TODO 1: Add the entity to the new group, update its current group pointer ---
+ 
+**Solution**
+We set the Validgroup Boolean to true, check if the unit's current group is nullptr and if is, we remove the entity from this last group and add it to the new one. 
+
+IMG
+
+Expected Behaviour: You should be able to group units now, and when issuing a move order, these units should travel very fast to the destination, most of them overlapping on one position.
+
+**TODO 2**
+--- TODO 2: Check if any adjacent tile to the base_tile is free of entities ---
+--- TODO 2: Add a call to IsTileFree on each case ---
+--- TODO 2: Search for the adjacent given in the occupied_tiles list ---
+--- TODO 2: If the adjacent is found, return false --- 
+--- TODO 2: If the adjacent is not found, add it to the occupied_tiles list ---
+
+**Solution**
+We add a call to IsTileFree to each if statement, and inside this function, we iterate the Occupied_tiles list, compare the given adjacent with each tile in the list and if we find it this means another unit already chose this adjacent as destination tile, so we return false and check the next adjacent. If we do not find it in the list this means it is free and we can choose it as our destination. 
+
+IMG
+
+Expected Behaviour: You should see how units end up on different destinations at the end of the paths, keeping close to their partners without overlapping.
+
+**TODO 3**
+--- TODO 3: Compute the module of our vector ---
+--- TODO 3: We want a unitary vector to update the unit's direction/position ---
+--- TODO 3: Now we Apply the unit's Speed and the dt to the unitary vector ---
+
+
+**Solution**
+Having the distance to the next tile, which is a vector's 2D components pointing to it, we can compute the module of this vector and divide each component by the computed module to get the unitary components of the vector. Now we use this vector and multiply it by dt and the unit's speed to get the distance and direction we need to consider on this iteration. Just some simple maths.
+
+IMG
+
+Expected behaviour: Units move at a constant speed, no weird behaviours. 
+
+Congratulations! You have successfully reached the solution!
+
+## Homework && more Improvements!
+
+If you want to move on from this point, I'll give you some ideas of interesting stuff to implement on the current code.
+
+* Implement a local avoidance system: Our units are overlaping on the way to the destination, what if we define a vital space for each one, a collider, and use attraction/repulsion forces to pull units together and push them apart?
+* Implement any set of steering behaviours: Let your imagination decide, there is plenty to try out, start checking one by one how they work and then try to combine them!
+* If we build something on a unit's path, a collider, the unit should avoid it right? On the current implementation I have not taken this into account, so units will get stucked, try to avoid repathing and search for a more optimal solution.
+* Try making two groups of units, with collision avoidance implemented, and have one go across another, you should find a way to go across the other group, what if you ask the other units to move apart? 
+* Think about how Total War games use formations, they have a preview of how the units will end up at the destination, and you can tune it the way you like, play with formations!
+* Our A* is very slow when moving large groups of units, look for Flow field implementations and implement one yourself! You could also dive into navigation meshes!
