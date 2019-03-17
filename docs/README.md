@@ -23,13 +23,13 @@ When we have to deal with more than one unit things get quite complicated, it is
 
 So, what if we give the order to move from position A to position B to all the units in our group. Will each unit follow its own path towards the destination? But if they do so, they won't be behaving as if they were a group, so we need to keep them together while advancing, right?
 
-Here is where many problems arise. How do we handle this group, how do we keep them together, move them apart each other when colliding, while maintaining a structured formation? My my, what a bunch of questions. There are so many things going on in the interactions between the units and the world and between the units itselves, that we could make a long list of questions of this type. 
+Here is where many problems arise. How do we handle this group, how do we keep them together, move them apart each other when colliding, while maintaining a structured formation? My my, what a bunch of questions. There are so many things going on in the interactions between the units and the world and between the units themselves, that we could make a long list of questions of this type. 
 
 So let us keep with the keypoint here: **How do we keep units organised, in a structured way?**
 
 ## Movement
 
-Now, if we give the order to move from position A to position B to all the units in our group. We need a way to get a path from A to B, and here we encounter another topic, Pathfinding. Pathfinding is not the main topic of this research, but is is necessary for the sake of it, so we will be using a tile-based greedy algorithm well-known called A*. We will use a very basic implementation of it, but more than enough to enable our units movement. 
+Now, if we give the order to move from position A to position B to all the units in our group. We need a way to get a path from A to B, and here we encounter another topic, Pathfinding. Pathfinding is not the main topic of this research, but it is necessary for the sake of it, so we will be using a tile-based greedy algorithm well-known called A*. We will use a very basic implementation of it, but more than enough to enable our units movement. 
 
 So, A* can give us a path, problem solved right? Not at all close. While A* gives us a path from A to B, it takes a good amount of time for it to retrieve this path. This problem is not so big when dealing with a single unit, but remember, we are dealing with groups...
 
@@ -85,7 +85,7 @@ I have read that Planetary Annhilation also uses SC2 Flowfield tech, while other
 
 Now that the topic has already been slightly introduced, let's look more deeply into the matter beign discussed.
 
-In Crowd-based simulations we can differentiate 3 approaches:
+In Crowd-based simulations many researchers differentiate 3 approaches:
 
 * Flow-based: The crowd as a whole rather than its components. Individuals are equal and behavioural factors are heavily reduced
 * Entity-based: All movements are determined by some global laws enforced to the individuals of the group
@@ -99,15 +99,15 @@ In 1986 Craig Reynolds, a software engineer, expert in artificial life and compu
 
 Boids three Steering behaviours as defined by Craig Reynolds himself, which together are defined as **flocking (swarm)**:
 
-Separation: steer to avoid crowding local flockmates.
+**Separation:** steer to avoid crowding local flockmates.
 
 <img src="Images/separation.jpg" ><br>
 
-Alignment: steer towards the average heading of local flockmates.
+**Alignment:** steer towards the average heading of local flockmates.
 
 <img src="Images/alignment.jpg" ><br>
 
-Cohesion: steer to move toward the average position of local flockmates.
+**Cohesion:** steer to move toward the average position of local flockmates.
 
 <img src="Images/cohesion.jpg" ><br>
 
@@ -175,7 +175,7 @@ Well, here we are! I hope you are still around, now that the topic has been prop
 
 We could fit this implementation in the **Flow-based approach** since we care about the group and not about every single individual. 
 
-To do so we will need 4 utilities:
+To do so we will need 3 utilities:
 
 * Pathfinding Module
 * Group Class & Unit Structure
@@ -204,7 +204,7 @@ _The Group Class_
 Whenever an individual is ordered to move, a state-machine will tke control of the individual's movement. It has 5 states, which are the following:
 
 1. MovementState_NoState: The Unit is static, if a move order is issued, goals for the group are set and state changes to NextStep.
-2.	MovementState_Wait: The Unit is put into Wait state if any obstacle is found, and should deal with the obstacle (do we repath?).
+2.	MovementState_Wait: The Unit is put into Wait state if any obstacle is found, and should deal with the obstacle (do we repath?). Note that in my implementation this state is not used, but left as "placeholder" for future use.
 3.	MovementState_FollowPath: The Unit has a next node assigned, so it moves to reach this node, when reached change state to NextStep.
 4. MovementState_NextStep: We get the next node in the path, change state to FollowPath. If there is no next node, change state to DestinationReached.
 5. MovementState_DestinationReached: The Unit has arrived to the destination, change state to NoState.
