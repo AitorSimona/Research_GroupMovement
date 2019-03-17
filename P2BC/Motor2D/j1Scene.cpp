@@ -9,7 +9,6 @@
 #include "j1Map.h"
 #include "j1PathFinding.h"
 #include "j1Scene.h"
-#include "j1Entity.h"
 #include "j1Unit.h"
 #include "j1EntityManager.h"
 #include "j1MovementManager.h"
@@ -77,38 +76,26 @@ bool j1Scene::Start()
 	debug_tex = App->tex->Load("maps/path2.png");
 	debug_tex2 = App->tex->Load("maps/path.png");
 
-	// --- Create Entity ---
-
-	entity_info tmp;
-	tmp.position = { 100,125 };
-	tmp.Size = { 24,24 };
-	tmp.Speed = 100;
-
-	UnitInfo infotmp;
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 50,175 };
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 350,275 };
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 250,400 };
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 250,450 };
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 400,300 };
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 400,275 };
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 400,325 };
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 4250,325 };
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 450,300 };
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 475,275 };
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
-	tmp.position = { 500,325 };
-	App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
 	return true;
+}
+
+
+void j1Scene::CreateEntityOnMouse(iPoint mouse_position)
+{
+	iPoint mouse_map = App->map->WorldToMap(mouse_position.x, mouse_position.y);
+
+	if (App->pathfinding->IsWalkable(mouse_map) == true)
+	{
+		entity_info tmp;
+		UnitInfo infotmp;
+
+		// --- Create Entity info ---
+		tmp.Size = { 24,24 };
+		tmp.Speed = 100;
+		tmp.position = { (float)mouse_position.x,(float)mouse_position.y };
+
+		App->manager->CreateEntity(entity_type::UNIT, tmp, infotmp);
+	}
 }
 
 // Called each loop iteration
@@ -125,6 +112,12 @@ bool j1Scene::PreUpdate()
 	iPoint p = App->render->ScreenToWorld(x, y);
 	p = App->map->WorldToMap(p.x, p.y);
 	mouse_pos = App->render->ScreenToWorld(x, y);
+
+	// --- If We press the middle mouse button, create a unit on mouse position ---
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+	{
+		CreateEntityOnMouse(mouse_pos);
+	}
 
 	return true;
 }

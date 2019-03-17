@@ -5,7 +5,6 @@
 #include <vector>
 
 struct SDL_Texture;
-class j1Player;
 
 #define RECT_MIN_AREA 5
 
@@ -38,6 +37,8 @@ public:
 
 	void RectangleSelection();
 
+	void CreateEntityOnMouse(iPoint mouse_position);
+
 public:
 
 	// Set new Walkability map
@@ -56,12 +57,6 @@ private:
 	SDL_Texture* debug_tex;
 
 	std::vector <std::string*> StageList;
-
-	//Entities on map
-	j1Player*           player = nullptr;
-	j1Player*           player2 = nullptr;
-	j1Player*           player3 = nullptr;
-	j1Player*           player4 = nullptr;
 };
 
 #endif // __j1SCENE_H__
