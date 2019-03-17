@@ -213,6 +213,10 @@ Whenever an individual is ordered to move, a state-machine will tke control of t
 
 _The Unit's Movement States_
 
+<img src="Images/StateMachine_Flow.png" ><br>
+
+_State-Machine Workflow_
+
 
 **PROBLEM**
 
@@ -372,8 +376,13 @@ Expected behaviour: Units move at a constant speed, no weird behaviours.
 If you want to move on from this point, I'll give you some ideas of interesting stuff to implement on the current code.
 
 * Implement a local avoidance system: Our units are overlaping on the way to the destination, what if we define a vital space for each one, a collider, and use attraction/repulsion forces to pull units together and push them apart?
+
 * Implement any set of steering behaviours: Let your imagination decide, there is plenty to try out, start checking one by one how they work and then try to combine them!
+
 * If we build something on a unit's path, a collider, the unit should avoid it right? On the current implementation I have not taken this into account, so units will get stucked, try to avoid repathing and search for a more optimal solution.
+
 * Try making two groups of units, with collision avoidance implemented, and have one go across another, you should find a way to go across the other group, what if you ask the other units to move apart? 
+
 * Think about how Total War games use formations, they have a preview of how the units will end up at the destination, and you can tune it the way you like, play with formations!
+
 * Our A* is very slow when moving large groups of units, look for Flow field implementations and implement one yourself! You could also dive into navigation meshes!
