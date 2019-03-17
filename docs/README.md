@@ -171,7 +171,7 @@ Instead of having the regular tiles defined by the map, you can divide the map i
 
 ## My Take
 
-Well, here we are! I hope you are still around, now that the topic has been properly introduced (I hope) let's head to a very simple implementation of Group Movement. Our goal is simple, handle the creation of groups, based on some entities/individuals and have them move from A to B. This implementation lets units overlap on the way to the destination, but organizes them at the end, so each entity/individual is on a different tile than the others, keeping a simple formation. 
+Well, here we are! I hope you are still around, now that the topic has been properly introduced (I hope) let's head to a very simple implementation of Group Movement. Our goal is simple, handling the creation of groups, based on some entities/individuals and have them move from A to B. This implementation lets units overlap on the way to the destination, but organizes them at the end, so each entity/individual is on a different tile than the others, keeping a simple formation. 
 
 We could fit this implementation in the **Flow-based approach** since we care about the group and not about every single individual. 
 
@@ -203,12 +203,69 @@ _The Group Class_
 
 Whenever an individual is ordered to move, a state-machine will tke control of the individual's movement. It has 5 states, which are the following:
 
-1. MovementState_NoState: 
-2.	MovementState_Wait: 
-3.	MovementState_FollowPath:
-4. MovementState_NextStep:
-5. MovementState_DestinationReached:
+1. MovementState_NoState: The Unit is static, if a move order is issued, goals for the group are set and state changes to NextStep.
+2.	MovementState_Wait: The Unit is put into Wait state if any obstacle is found, and should deal with the obstacle (do we repath?).
+3.	MovementState_FollowPath: The Unit has a next node assigned, so it moves to reach this node, when reached change state to NextStep.
+4. MovementState_NextStep: We get the next node in the path, change state to FollowPath. If there is no next node, change state to DestinationReached.
+5. MovementState_DestinationReached: The Unit has arrived to the destination, change state to NoState.
 
 <img src="Images/MovementStates.jpg" ><br>
 
+_The Unit's Movement States_
 
+
+**PROBLEM**
+
+When a move order is issued, every unit in the group calculates a path to the destination, but this means that all units will end up in the same node, overlapping. Why don't we make units move apart from each other when reaching the destination? If we did this, all units will follow the same path, ending up in a line, which is not natural group movement at all, so how do we solve this?
+
+**IMPLEMENTATION OF A SOLUTION**
+
+We want to have units structured and apart in the end goal, but letting them overlap on the way there, besides we don't want all units to follow the same path, since they end up shaping a line. 
+
+Now what if we give each unit a path to a different destination? This would make units take a different path from their colleagues, and would end up having them apart from each other at the destination. It does look like a plan, doesn't it?
+
+**STEP 1**
+
+We need to assign each unit a different destination and make them create a path to it, but how do we assign these destinations?
+To keep the units together, these destinations should be adjacent to the move order main destination, right? Now we can easily get the adjacent nodes and assign them to the units, but what if we have more units than adjacent nodes? There are no free adjacents!
+
+In this case we know that the first 9 units (Adjacents for cardinal directions N, S, W, E, NE, NW, SE, SW) will already have a destination, different from one another, so what we will do is get the second unit's destination and find adjacents to it, successfully solving the problem. 
+
+Each time we check an adjacent destination, we are making sure it is a walkable node and that no other unit of the group has this node assigned as destination. This is done with a list, every time a unit is assigned a new destination, this node is added to the list. This list is called Occupied_tiles and has all the nodes that are no longer available to get as new destination for the other units. 
+
+**STEP 2**
+
+So now we have a different destination for each unit, and we issue a path for each one, getting them organisez in a simple formation at the desired position. Simple, right?
+
+## Performance && Improvements
+
+Computing a path for a single unit is not expensive for our CPU, but dealing with a lot of path requests gets things complicated very soon, even if we have a modern CPU. We need our movement to feel natural while being as less expensive as possible. The approach implemented is expensive when a decent number of units are involved, but does not have units in a line and looks more natural. 
+
+So we need to tip the balance in one direction, at this point? Well, I would not sacrifice any of them, of course, so the solution is to improve on two directions.
+
+**A Modern Pathfinding**
+
+Our A* is very basic, and has a high impact on performance. I have introduced Flow Fields as a modern pathfinding tech for large groups of units, used in SC2 for example. So we need to implement a solution in this direction. Making our pathfinding efficient is key in order to have groups in movement, our A* is acting as a bottleneck now.
+
+**A Set of Steering behaviours**
+
+In this implementation, no steering behaviours have been used, so our movement could be heavily improved when implementing some of them, both in terms of life-like feeling and performance. 
+
+What if the way we move our groups enables us to only make a single path request? And on the contrary, what if our pathfinding tech enables us to move any number of units with the behaviours we want? As you can see, we can improve on A to improve B, and the other way too.
+
+## Considerations && Final Words
+
+Well, it seems we made it! We have implemented a very simple and generic solution to get ourselves in the field of group movement. 
+This is a departing point, there are lots and lots of stuff to look into from this point, what about steering behaviours, collision avoidance, formations... 
+
+Many questions can be made:
+
+What if a unit with a pre-calculated path finds a newly added collider, a building for example? Repathing is expensive, performance-wise, and if lots of units find themselves in this situation things will get complicated soon enough. 
+
+What if a group runs into another group, and we don't want them to overlap? How do they follow their path,, while avoiding other units that get in their way, like in modern RTS games?
+
+What if I want to make an RTS with lots of units? You should be looking into Flow Fields, nav meshes and optimizations
+
+What if I want to have formations, like the Total War Series? And like in Total War, what if I want to see the destinations of every unit when dragging the mouse, while being able to modify the formation?
+
+Buff, such an amount of questions! It does really get me excited to know how many things take part into crowd behaviours, there are tons of stuff to learn! See you around and thanks for reading!
