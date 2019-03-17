@@ -241,7 +241,18 @@ So now we have a different destination for each unit, and we issue a path for ea
 
 Computing a path for a single unit is not expensive for our CPU, but dealing with a lot of path requests gets things complicated very soon, even if we have a modern CPU. We need our movement to feel natural while being as less expensive as possible. The approach implemented is expensive when a decent number of units are involved, but does not have units in a line and looks more natural. 
 
-So we need to tip the balance in one direction, at this point? Well, I would not sacrifice any of them, of course, so the solution is to improve on two directions.
+I have used Brofiler to measure the impact on performance of multiple units movement, bear in mind that these results take into account the sample map I use in this implementation, and would change with maps of different sizes and bigger/smaller paths. All data gathered was taking into account a path from one side to the other side of the sample map.
+
+**Brofiler Data**
+* Group of 8 Units: Peaks of 50 ms.
+* Group of 16 Units: Peaks of 90 ms.
+* Group of 24 Units: Peaks of 130 ms.
+
+With groups of 24 units you can notice a slight interruption, caused by the repetition of a single frame. Since we are spending too much time trying to finish the current frame, we are rendering the same frame multiple times. This delay is more noticeable as time spent on the current frame increases. 
+
+The problem here is the Pathfinding module, our A* is too basic and is taking too much time to compute 24 paths. We could create 1 path per frame, but what would happen if we have lots of units? We would notice that some units are static while others start getting their paths done, a kind of wave reaction. 
+
+So seeing this performance problems we need to tip the balance in one direction, performance versus quality of movement right? Well, I would not sacrifice any of them, of course, so the solution is to improve on two directions.
 
 **A Modern Pathfinding**
 
