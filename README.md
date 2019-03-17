@@ -1,4 +1,4 @@
-# GroupMovement
+﻿# GroupMovement
 
 “I am <https://www.linkedin.com/in/aitor-simona-bouzas-aab43817b/>(Aitor Simona), student of the
 <https://www.citm.upc.edu/ing/estudis/graus-videojocs/>(Bachelor’s Degree in
@@ -20,6 +20,7 @@ This research has as an objective gain an initial understanding of the dimension
 * Mouse:
   * Left Click and drag : Creation of the Selection Rectangle, that selects units inside its bounds.
   * Right Click : Path Request from the Units currently Selected (A rectangle is drawn on selected units).
+  * Middle Click : Spawn an entity. 
   
 * Keyboard: 
   * Arrows: Camera Movement in all directions.
