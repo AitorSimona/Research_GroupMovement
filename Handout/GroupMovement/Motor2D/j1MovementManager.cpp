@@ -78,21 +78,14 @@ void j1MovementManager::CreateGroup()
 		// --- Check for entities that have been selected ---
 		if ((*entity)->info.IsSelected)
 		{
-			// --- If we find an entity then the group is valid and can be created ---
-			Validgroup = true;
+			// --- TODO 1: If we find an entity then the group is valid and can be created ---
+	
 
-			// --- Remove the entity from a previous group if any is found ---
-			if ((*entity)->info.current_group != nullptr)
-			{
-				(*entity)->info.current_group->removeUnit(*entity);
+			// --- TODO 1: Remove the entity from a previous group if any is found ---
+			
 
-				if ((*entity)->info.current_group->GetSize() == 0)
-					Groups.remove((*entity)->info.current_group);
-			}
+			// --- TODO 1: Add the entity to the new group, update its current group pointer ---
 
-			// --- Add the entity to the new group, update its current group pointer ---
-			group->addUnit(*entity);
-			(*entity)->info.current_group = group;
 		}
 
 		entity++;
@@ -187,21 +180,15 @@ void j1MovementManager::Move(j1Group * group, float dt)
 
 			distanceToNextTile = { (float)next_tile_world.x - (*unit)->Entityinfo.position.x,(float)next_tile_world.y - (*unit)->Entityinfo.position.y };
 
-			// --- We compute the module of our vector ---
-			DirectDistance = sqrtf(pow(distanceToNextTile.x, 2.0f) + pow(distanceToNextTile.y, 2.0f));
+			// --- TODO 3: Compute the module of our vector ---
 
-			//LOG("Next tile pos : x = %i y= %i", next_tile_world.x, next_tile_world.y);
-
-			// --- We want a unitary vector to update the unit's direction/position ---
+			// --- TODO 3: We want a unitary vector to update the unit's direction/position ---
 			if (DirectDistance > 0.0f)
 			{
-				distanceToNextTile.x /= DirectDistance;
-				distanceToNextTile.y /= DirectDistance;
+	
 			}
 
-			// --- Now we Apply the unit's Speed and the dt to the unitary vector  ---
-			distanceToNextTile.x *= (*unit)->Entityinfo.Speed*dt;
-			distanceToNextTile.y *= (*unit)->Entityinfo.Speed*dt;
+			// --- TODO 3: Now we Apply the unit's Speed and the dt to the unitary vector ---
 
 			// --- We convert an iPoint to fPoint for comparing purposes ---
 			to_fPoint.x = next_tile_world.x;
