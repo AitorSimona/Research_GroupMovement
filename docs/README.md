@@ -111,7 +111,7 @@ Boids three Steering behaviours as defined by Craig Reynolds himself, which toge
 
 <img src="Images/cohesion.jpg" ><br>
 
-The boids also have a region on which they have influence over neighboring boids, this region is defined by an angle and distance, building a spherical field around each boid.
+The boids also have a region on which they are influenced by neighboring boids, this region is defined by an angle and distance, building a spherical field around each boid.
 
 <img src="Images/neighborhood.jpg" ><br>
 
