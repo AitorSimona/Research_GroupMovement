@@ -10,6 +10,8 @@ This content is generated for the second year’s subject Project 2, under super
 Welcome! I understand you are interested in this topic, one of the cores of the RTS genre!
 So what is Group Movement? 
 
+<video src="docs/Overview.mp4" width="600" height="500" controls preload></video>
+
 Group Movement: Moving multiple units at the same time through complex terrain, while taking into account the relationships between the units that are part of the group.
 
 Wow, such a generic definition, don't you think? Let us expand it a bit. We are speaking about two big things here...
